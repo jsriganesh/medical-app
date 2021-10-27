@@ -1,246 +1,243 @@
 {
     "data": [
-        // {
-        //     "questionNo": 1,
-        //     "question": "What's your first name?",
-        //     "manditaory": true,
-        //     "message": [],
-        //     "dataType": "String", 
-        //     "optionList": [],
-        //     "minSelect": 0, 
-        //     "maxSelect": 0, 
-        //     "minLength": 2, 
-        //     "maxLength": 20, 
-        //     "image": "",
-        //     "answer": "",
-        //     "subQuestions": [],
-        // "buttonText":"Enter"
-        // },
-        // {
-        //     "questionNo": 2,
-        //     "question": "And your surname?",
-        //     "manditaory": true,
-        //     "message": [],
-        //     "dataType": "String", 
-        //     "optionList": [],
-        //     "minSelect": 0,
-        //     "maxSelect": 0,
-        //     "minLength": 1, 
-        //     "maxLength": 5,
-        //     "image": "",
-        //     "answer": "", 
-        //     "subQuestions": [],
-        // "buttonText":"Enter"
-        // },
-        // {
-        //     "questionNo": 3,
-        //     "question": "What's your email address:",
-        //     "manditaory": true,
-        //     "message": [],
-        //     "dataType": "Email",
-        //     "optionList": [],
-        //     "minSelect": 0,
-        //     "maxSelect": 0, 
-        //     "minLength": 7, 
-        //     "maxLength": 100, 
-        //     "image": "",
-        //     "answer": "",
-        //     "subQuestions": [],
-        // "buttonText":"Enter"
-        // },
-        // {
-        //     "questionNo": 4,
-        //     "question": "When were you born",
-        //     "manditaory": true,
-        //     "message": [],
-        //     "dataType": "Date",
-        //     "optionList": [],
-        //     "minSelect": 0, 
-        //     "maxSelect": 0, 
-        //     "minLength": 7,
-        //     "maxLength": 100,
-        //     "image": "",
-        //     "answer": "", 
-        //     "subQuestions": [],
-        // "buttonText":"Enter"
-        // },
-        // {
-        //     "questionNo": 5,
-        //     "question": "How do you feel about your health? Is there room for improvement?",
-        //     "manditaory": true,
-        //     "message": [],
-        //     "dataType": "Select",
-        //     "optionList": [
-        //         {
-        //             "option": "Very Healthy"
-        //         },
-        //         {
-        //             "option": "Good"
-        //         },
-        //         {
-        //             "option": "Room for improvement"
-        //         },
-        //         {
-        //             "option": "I've not quite been right"
-        //         },
-        //         {
-        //             "option": "Not good"
-        //         }
-        //     ],
-        //     "minSelect": 1,
-        //     "maxSelect": 1,
-        //     "minLength": 0,
-        //     "maxLength": 0,
-        //     "image": "",
-        //     "answer": "",
-        //     "subQuestions": [],
-        //     "buttonText": "Enter"
-        // },
-        // {
-        //     "questionNo": 6,
-        //     "question": "Which areas would you be interested in improving most?",
-        //     "manditaory": true,
-        //     "message": [
-        //         "I'll give you a score for each of these separately"
-        //     ],
-        //     "dataType": "Select",
-        //     "optionList": [
-        //         {
-        //             "option": "Energy"
-        //         },
-        //         {
-        //             "option": "Sleep"
-        //         },
-        //         {
-        //             "option": "Mood"
-        //         },
-        //         {
-        //             "option": "Stress & Resilience"
-        //         },
-        //         {
-        //             "option": "Menopause"
-        //         },
-        //         {
-        //             "option": "PMS"
-        //         },
-        //         {
-        //             "option": "Digestion"
-        //         },
-        //         {
-        //             "option": "Weight loss"
-        //         },
-        //         {
-        //             "option": "Fitness"
-        //         },
-        //         {
-        //             "option": "Joint and bones"
-        //         },
-        //         {
-        //             "option": "Prostate"
-        //         },
-        //         {
-        //             "option": "Skin"
-        //         },
-        //         {
-        //             "option": "Heart health"
-        //         },
-        //         {
-        //             "option": "Brain performance"
-        //         },
-        //         {
-        //             "option": "Others"
-        //         }
-        //     ],
-        //     "minSelect": 3,
-        //     "maxSelect": 3,
-        //     "minLength": 0,
-        //     "maxLength": 0,
-        //     "image": "",
-        //     "answer": "",
-        //     "subQuestions": [],
-        //     "buttonText": "Enter"
-        // },
-        // {
-        //     "questionNo": 7,
-        //     "question": "let's put together a picture of what you look like.",
-        //     "manditaory": false,
-        //     "message": [],
-        //     "dataType": "",
-        //     "optionList": [],
-        //     "minSelect": 0,
-        //     "maxSelect": 0,
-        //     "minLength": 0,
-        //     "maxLength": 0,
-        //     "image": "",
-        //     "answer": "",
-        //     "subQuestions": [],
-        //     "buttonText": "Ok"
-        // },
-        
-        // {
-        //     "questionNo": "a",
-        //     "question": "What is your skin type?",
-        //     "parentquestion": "let's put together a picture of what you look like.",
-
-        //     "parentQuestionNo": "7",
-        //     "optionList": [
-        //         {
-        //             "option": "1"
-        //         },
-        //         {
-        //             "option": "2"
-        //         },
-        //         {
-        //             "option": "3"
-        //         },
-        //         {
-        //             "option": "4"
-        //         },
-        //         {
-        //             "option": "5"
-        //         },
-        //         {
-        //             "option": "6"
-        //         }
-        //     ],
-        //     "minSelect": 1,
-        //     "maxSelect": 1,
-        //     "minLength": 0,
-        //     "maxLength": 0,
-        //     "image": "",
-        //     "answer": "",
-        //     "dataType": "Select",
-        //     "manditaory": true,
-        //     "message": [
-        //         "This is strongly linked to vitamin D needs especially in Winter"
-        //     ]
-        // },
-        // {
-        //     "questionNo": "b",
-        //     "question": "How much do you currently weigh in kgs?",
-        //     "parentquestion": "let's put together a picture of what you look like.",
-        //     "parentQuestionNo": "7",
-
-        //     "optionList": [],
-        //     "minSelect": 0,
-        //     "maxSelect": 0,
-        //     "minLength": 30,
-        //     "maxLength": 300,
-        //     "image": "",
-        //     "answer": "",
-        //     "dataType": "Number",
-        //     "manditaory": true,
-        //     "message": [
-        //         "Standard recommended dosages are based on a 70kg man we like to be a bit more personalised and accurate"
-        //     ],
-        //     "buttonText":"Ok"
-        // },
+        {
+            "questionNo": 1,
+            "question": "What's your first name?",
+            "manditaory": true,
+            "message": [],
+            "dataType": "String", 
+            "optionList": [],
+            "minSelect": 0, 
+            "maxSelect": 0, 
+            "minLength": 2, 
+            "maxLength": 20, 
+            "image": "",
+            "answer": "",
+            "subQuestions": [],
+        "buttonText":"Enter"
+        },
+        {
+            "questionNo": 2,
+            "question": "And your surname?",
+            "manditaory": true,
+            "message": [],
+            "dataType": "String", 
+            "optionList": [],
+            "minSelect": 0,
+            "maxSelect": 0,
+            "minLength": 1, 
+            "maxLength": 5,
+            "image": "",
+            "answer": "", 
+            "subQuestions": [],
+        "buttonText":"Enter"
+        },
+        {
+            "questionNo": 3,
+            "question": "What's your email address:",
+            "manditaory": true,
+            "message": [],
+            "dataType": "Email",
+            "optionList": [],
+            "minSelect": 0,
+            "maxSelect": 0, 
+            "minLength": 7, 
+            "maxLength": 100, 
+            "image": "",
+            "answer": "",
+            "subQuestions": [],
+        "buttonText":"Enter"
+        },
+        {
+            "questionNo": 4,
+            "question": "When were you born",
+            "manditaory": true,
+            "message": [],
+            "dataType": "Date",
+            "optionList": [],
+            "minSelect": 0, 
+            "maxSelect": 0, 
+            "minLength": 7,
+            "maxLength": 100,
+            "image": "",
+            "answer": "", 
+            "subQuestions": [],
+        "buttonText":"Enter"
+        },
+        {
+            "questionNo": 5,
+            "question": "How do you feel about your health? Is there room for improvement?",
+            "manditaory": true,
+            "message": [],
+            "dataType": "Select",
+            "optionList": [
+                {
+                    "option": "Very Healthy"
+                },
+                {
+                    "option": "Good"
+                },
+                {
+                    "option": "Room for improvement"
+                },
+                {
+                    "option": "I've not quite been right"
+                },
+                {
+                    "option": "Not good"
+                }
+            ],
+            "minSelect": 1,
+            "maxSelect": 1,
+            "minLength": 0,
+            "maxLength": 0,
+            "image": "",
+            "answer": "",
+            "subQuestions": [],
+            "buttonText": "Enter"
+        },
+        {
+            "questionNo": 6,
+            "question": "Which areas would you be interested in improving most?",
+            "manditaory": true,
+            "message": [
+                "I'll give you a score for each of these separately"
+            ],
+            "dataType": "Select",
+            "optionList": [
+                {
+                    "option": "Energy"
+                },
+                {
+                    "option": "Sleep"
+                },
+                {
+                    "option": "Mood"
+                },
+                {
+                    "option": "Stress & Resilience"
+                },
+                {
+                    "option": "Menopause"
+                },
+                {
+                    "option": "PMS"
+                },
+                {
+                    "option": "Digestion"
+                },
+                {
+                    "option": "Weight loss"
+                },
+                {
+                    "option": "Fitness"
+                },
+                {
+                    "option": "Joint and bones"
+                },
+                {
+                    "option": "Prostate"
+                },
+                {
+                    "option": "Skin"
+                },
+                {
+                    "option": "Heart health"
+                },
+                {
+                    "option": "Brain performance"
+                },
+                {
+                    "option": "Others"
+                }
+            ],
+            "minSelect": 3,
+            "maxSelect": 3,
+            "minLength": 0,
+            "maxLength": 0,
+            "image": "",
+            "answer": "",
+            "subQuestions": [],
+            "buttonText": "Enter"
+        },
+        {
+            "questionNo": 7,
+            "question": "let's put together a picture of what you look like.",
+            "manditaory": false,
+            "message": [],
+            "dataType": "",
+            "optionList": [],
+            "minSelect": 0,
+            "maxSelect": 0,
+            "minLength": 0,
+            "maxLength": 0,
+            "image": "",
+            "answer": "",
+            "subQuestions": [],
+            "buttonText": "Ok"
+        },
+        {
+            "questionNo": "a",
+            "question": "What is your skin type?",
+            "parentquestion": "let's put together a picture of what you look like.",
+            "parentQuestionNo": "7",
+            "optionList": [
+                {
+                    "option": "1"
+                },
+                {
+                    "option": "2"
+                },
+                {
+                    "option": "3"
+                },
+                {
+                    "option": "4"
+                },
+                {
+                    "option": "5"
+                },
+                {
+                    "option": "6"
+                }
+            ],
+            "minSelect": 1,
+            "maxSelect": 1,
+            "minLength": 0,
+            "maxLength": 0,
+            "image": "",
+            "answer": "",
+            "dataType": "Select",
+            "manditaory": true,
+            "message": [
+                "This is strongly linked to vitamin D needs especially in Winter"
+            ]
+        },
+        {
+            "questionNo": "b",
+            "question": "How much do you currently weigh in kgs?",
+            "parentquestion": "let's put together a picture of what you look like.",
+            "parentQuestionNo": "7",
+            "optionList": [],
+            "minSelect": 0,
+            "maxSelect": 0,
+            "minLength": 30,
+            "maxLength": 300,
+            "image": "",
+            "answer": "",
+            "dataType": "Number",
+            "manditaory": true,
+            "message": [
+                "Standard recommended dosages are based on a 70kg man we like to be a bit more personalised and accurate"
+            ],
+            "buttonText":"Ok"
+        },
         {
             "questionNo": "c",
             "question": "Has your weight been stable (within half a stone 7lbs/ 3kgs) over the last 3 months?",
             "parentquestion": "let's put together a picture of what you look like.",
             "parentQuestionNo": "7",
-
+            "isValidateQuestion":true,
             "optionList": [
                 {
                     "option": "Yes it's pretty stable"
@@ -263,12 +260,10 @@
             "message": []
         },
         {
-
             "questionNo": "d",
             "question": "How much weight have you lost?",
             "parentquestion": "let's put together a picture of what you look like.",
             "parentQuestionNo": "7",
-
             "validation": [
                 {
                     "parentQuestionNo": 7,
@@ -295,7 +290,6 @@
             "question": "About how much weight have you gained?",
             "parentquestion": "let's put together a picture of what you look like.",
             "parentQuestionNo": "7",
-
             "validation": [
                 {
                     "parentQuestionNo": 7,
@@ -320,18 +314,55 @@
             ]
         },
         {
-            "questionNo": "d",
+            "questionNo": "e",
             "question": "What height are you?",
             "parentquestion": "let's put together a picture of what you look like.",
             "parentQuestionNo": "7",
-
             "validation": [
+                // {
+                //     "parentQuestionNo": 7,
+                //     "questionNo": "c",
+                //     "value": "Yes it's pretty stable",
+                //     "type":"notEqual"
+                // }
                 {
                     "parentQuestionNo": 7,
                     "questionNo": "c",
-                    "value": "Yes it's pretty stable",
-                    "type":"equal"
+                    "value": "I've put on weight"
+                },
+                {
+                    "parentQuestionNo": 7,
+                    "questionNo": "c",
+                    "value": "I've lost weight"
                 }
+            ],
+            // "subQuestionNo": "e",
+            // "subQuestion": "What height are you?",
+            "optionList": [],
+            "minSelect": 1,
+            "maxSelect": 1,
+            "minLength": 50,
+            "maxLength": 300,
+            "image": "",
+            "answer": "",
+            "dataType": "Number",
+            "manditaory": true,
+            "message": [
+                "In centimetres"
+            ]
+        },
+        {
+        "questionNo": "d",
+        "question": "What height are you?",
+        "parentquestion": "let's put together a picture of what you look like.",
+        "parentQuestionNo": "7",
+            "validation": [
+        {
+        "parentQuestionNo": 7,
+        "questionNo": "c",
+        "value": "Yes it's pretty stable",
+        "type":"equal"
+        }
             ],
             // "subQuestionNo": "d",
             // "subQuestion": "What height are you?",
@@ -348,213 +379,202 @@
                 "In centimetres"
             ]
         },
+        ///////////////////////////////////////////////////////////////////  8 th question is start
         {
-
-            "questionNo": "e",
-            "question": "What height are you?",
-            "parentquestion": "let's put together a picture of what you look like.",
-            "parentQuestionNo": "7",
-
-            "validation": [
-                {
-                    "parentQuestionNo": 7,
-                    "questionNo": "c",
-                    "value": "Yes it's pretty stable",
-                    "type":"notEqual"
-                }
-                // {
-                //     "questionNo": 7,
-                //     "subQuestionNo": "c",
-                //     "value": "I've put on weight"
-                // },
-                // {
-                //     "questionNo": 7,
-                //     "subQuestionNo": "c",
-                //     "value": "I've lost weight"
-                // }
-            ],
-            // "subQuestionNo": "e",
-            // "subQuestion": "What height are you?",
+            "questionNo": 8,
+            "question": "If I understand your current lifestyle I can tell you more about your body's needs",
+            "manditaory": false,
+            "message": [],
+            "dataType": "",
             "optionList": [],
-            "minSelect": 1,
-            "maxSelect": 1,
-            "minLength": 50,
-            "maxLength": 300,
+            "minSelect": 0,
+            "maxSelect": 0,
+            "minLength": 0,
+            "maxLength": 0,
             "image": "",
             "answer": "",
-            "dataType": "Number",
+            "subQuestions": []
+        },
+        {
+            "questionNo": "a",
+            "question": "How would you describe your current fitness levels?",
+            "parentquestion": "If I understand your current lifestyle I can tell you more about your body's needs",
+            "parentQuestionNo": "8",
+            // "subQuestionNo": "a",
+            // "subQuestion": "How would you describe your current fitness levels?",
+            "optionList": [
+                {
+                    "option": "1"
+                },
+                {
+                    "option": "2"
+                },
+                {
+                    "option": "3"
+                },
+                {
+                    "option": "4"
+                },
+                {
+                    "option": "5"
+                }
+            ],
+            "minSelect": 1,
+            "maxSelect": 1,
+            "minLength": 0,
+            "maxLength": 0,
+            "image": "",
+            "answer": "",
+            "dataType": "Select",
             "manditaory": true,
-            "message": [
-                "In centimetres"
-            ]
+            "message": []
+        },
+        {
+            "questionNo": "b",
+            "question": "Do you exercise regularly?",
+            "parentquestion": "If I understand your current lifestyle I can tell you more about your body's needs",
+            "parentQuestionNo": "8",
+            // "subQuestionNo": "b",
+            // "subQuestion": "Do you exercise regularly?",
+            "isValidateQuestion": true,
+            "optionList": [
+                {
+                    "option": "Yes"
+                },
+                {
+                    "option": "No"
+                }
+            ],
+            "minSelect": 1,
+            "maxSelect": 1,
+            "minLength": 0,
+            "maxLength": 0,
+            "image": "",
+            "answer": "",
+            "dataType": "Select",
+            "manditaory": true,
+            "message": []
+        },
+        {
+            "questionNo": "c",
+            "question": "Do you exercise regularly?",
+            "parentquestion": "If I understand your current lifestyle I can tell you more about your body's needs",
+            "parentQuestionNo": "8",
+            "validation": [
+                {
+                    "parentQuestionNo": 8,
+                    "questionNo": "b",
+                    "value": "Yes",
+                    // "questionNo": 8,
+                    // "subQuestionNo": "b",
+                    // "value": "Yes"
+                }
+            ],
+            // "subQuestionNo": "c",
+            // "subQuestion": "How many hours of cardio/ aerobic exercise, such as running, swimming or cycling, do you do in a week?",
+            "optionList": [
+                {
+                    "option": "0-1"
+                },
+                {
+                    "option": "1-1"
+                },
+                {
+                    "option": "3-4"
+                },
+                {
+                    "option": "More than 4"
+                }
+            ],
+            "minSelect": 1,
+            "maxSelect": 1,
+            "minLength": 0,
+            "maxLength": 0,
+            "image": "",
+            "answer": "",
+            "dataType": "Select",
+            "manditaory": false,
+            "message": []
+        },
+        {
+            "questionNo": "d",
+            "question": "How many sessions of weight training do you do in a week?",
+            "parentquestion": "If I understand your current lifestyle I can tell you more about your body's needs",
+            "parentQuestionNo": "8",
+            "validation": [
+                {
+                    "parentQuestionNo": 8,
+                    "questionNo": "b",
+                    "value": "Yes",
+                    // "questionNo": 8,
+                    // "subQuestionNo": "b",
+                    // "value": "Yes"
+                }
+            ],
+            // "subQuestionNo": "d",
+            // "subQuestion": "How many sessions of weight training do you do in a week?",
+            "optionList": [
+                {
+                    "option": "None"
+                },
+                {
+                    "option": "1-2"
+                },
+                {
+                    "option": "3-4"
+                },
+                {
+                    "option": "More than 4"
+                }
+            ],
+            "minSelect": 1,
+            "maxSelect": 1,
+            "minLength": 0,
+            "maxLength": 0,
+            "image": "",
+            "answer": "",
+            "dataType": "Select",
+            "manditaory": false,
+            "message": []
+        },
+        {
+            "questionNo": "e",
+            "question": "Do you feel that your strength has changed? **********************",
+            "parentquestion": "If I understand your current lifestyle I can tell you more about your body's needs",
+            "parentQuestionNo": "8",
+            "validation": [
+                {
+                    "parentQuestionNo": 8,
+                    "questionNo": "b",
+                    "value": "Yes",
+                    // "questionNo": 8,
+                    // "subQuestionNo": "b",
+                    // "value": "Yes"
+                }
+            ],
+            // "subQuestionNo": "c",
+            // "subQuestion": "Do you feel that your strength has changed?",
+            "optionList": [
+                {
+                    "option": "Its the same"
+                },
+                {
+                    "option": "I feel weaker"
+                },
+                {
+                    "option": "I feel stronger"
+                }
+            ],
+            "minSelect": 1,
+            "maxSelect": 1,
+            "minLength": 0,
+            "maxLength": 0,
+            "image": "",
+            "answer": "",
+            "dataType": "Select",
+            "manditaory": false,
+            "message": []
         }
-    /////////////////////////////////////////////////////////////////////
-        // {
-        //     "questionNo": 8,
-        //     "question": "If I understand your current lifestyle I can tell you more about your body's needs",
-        //     "manditaory": false,
-        //     "message": [],
-        //     "dataType": "",
-        //     "optionList": [],
-        //     "minSelect": 0,
-        //     "maxSelect": 0,
-        //     "minLength": 0,
-        //     "maxLength": 0,
-        //     "image": "",
-        //     "answer": "",
-        //     "subQuestions": [
-        //         {
-        //             "subQuestionNo": "a",
-        //             "subQuestion": "How would you describe your current fitness levels?",
-        //             "optionList": [
-        //                 {
-        //                     "option": "1"
-        //                 },
-        //                 {
-        //                     "option": "2"
-        //                 },
-        //                 {
-        //                     "option": "3"
-        //                 },
-        //                 {
-        //                     "option": "4"
-        //                 },
-        //                 {
-        //                     "option": "5"
-        //                 }
-        //             ],
-        //             "minSelect": 1,
-        //             "maxSelect": 1,
-        //             "minLength": 0,
-        //             "maxLength": 0,
-        //             "image": "",
-        //             "answer": "",
-        //             "dataType": "Select",
-        //             "manditaory": true,
-        //             "message": []
-        //         },
-        //         {
-        //             "subQuestionNo": "b",
-        //             "subQuestion": "Do you exercise regularly?",
-        //             "optionList": [
-        //                 {
-        //                     "option": "Yes"
-        //                 },
-        //                 {
-        //                     "option": "No"
-        //                 }
-        //             ],
-        //             "minSelect": 1,
-        //             "maxSelect": 1,
-        //             "minLength": 0,
-        //             "maxLength": 0,
-        //             "image": "",
-        //             "answer": "",
-        //             "dataType": "Select",
-        //             "manditaory": true,
-        //             "message": []
-        //         },
-        //         {
-        //             "validation": [
-        //                 {
-        //                     "questionNo": 8,
-        //                     "subQuestionNo": "b",
-        //                     "value": "Yes"
-        //                 }
-        //             ],
-        //             "subQuestionNo": "c",
-        //             "subQuestion": "How many hours of cardio/ aerobic exercise, such as running, swimming or cycling, do you do in a week?",
-        //             "optionList": [
-        //                 {
-        //                     "option": "0-1"
-        //                 },
-        //                 {
-        //                     "option": "1-1"
-        //                 },
-        //                 {
-        //                     "option": "3-4"
-        //                 },
-        //                 {
-        //                     "option": "More than 4"
-        //                 }
-        //             ],
-        //             "minSelect": 1,
-        //             "maxSelect": 1,
-        //             "minLength": 0,
-        //             "maxLength": 0,
-        //             "image": "",
-        //             "answer": "",
-        //             "dataType": "Select",
-        //             "manditaory": false,
-        //             "message": []
-        //         },
-        //         {
-        //             "validation": [
-        //                 {
-        //                     "questionNo": 8,
-        //                     "subQuestionNo": "b",
-        //                     "value": "Yes"
-        //                 }
-        //             ],
-        //             "subQuestionNo": "d",
-        //             "subQuestion": "How many sessions of weight training do you do in a week?",
-        //             "optionList": [
-        //                 {
-        //                     "option": "None"
-        //                 },
-        //                 {
-        //                     "option": "1-2"
-        //                 },
-        //                 {
-        //                     "option": "3-4"
-        //                 },
-        //                 {
-        //                     "option": "More than 4"
-        //                 }
-        //             ],
-        //             "minSelect": 1,
-        //             "maxSelect": 1,
-        //             "minLength": 0,
-        //             "maxLength": 0,
-        //             "image": "",
-        //             "answer": "",
-        //             "dataType": "Select",
-        //             "manditaory": false,
-        //             "message": []
-        //         },
-        //         {
-        //             "validation": [
-        //                 {
-        //                     "questionNo": 8,
-        //                     "subQuestionNo": "b",
-        //                     "value": "Yes"
-        //                 }
-        //             ],
-        //             "subQuestionNo": "e",
-        //             "subQuestion": "Do you feel that your strength has changed?",
-        //             "optionList": [
-        //                 {
-        //                     "option": "Its the same"
-        //                 },
-        //                 {
-        //                     "option": "I feel weaker"
-        //                 },
-        //                 {
-        //                     "option": "I feel stronger"
-        //                 }
-        //             ],
-        //             "minSelect": 1,
-        //             "maxSelect": 1,
-        //             "minLength": 0,
-        //             "maxLength": 0,
-        //             "image": "",
-        //             "answer": "",
-        //             "dataType": "Select",
-        //             "manditaory": false,
-        //             "message": []
-        //         }
-        //     ]
-        // },
         // {
         //     "questionNo": 9,
         //     "question": "What sex are you?",

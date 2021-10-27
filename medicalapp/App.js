@@ -2,11 +2,16 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import RootNavigation from './navigations';
+import store from "./src/redux/store/store";
+import { Provider } from 'react-redux'
+
 // create a component
 class App extends Component {
   render() {
     return (
-      <RootNavigation/>
+      <Provider store={store}>
+        <RootNavigation />
+      </Provider>
     );
   }
 }

@@ -1,7 +1,8 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, Dimensions, TouchableOpacity, Image } from 'react-native';
-import { Question, QuestionMessage, TextBox, CommonButton } from "../components/commonComponents"
+import { Question, QuestionMessage, TextBox } from "../components/commonComponents"
+import  CommonButton  from "../components/commonButton"
 // create a component
 const { width } = Dimensions.get('window')
 import MultiselectButton from "../components/multiSelectButton"
@@ -90,9 +91,9 @@ class Home extends Component {
 
                                             <CommonButton changeIndex={this.changeIndex.bind(this)} index={index} allQuestions={dummyQuestions} data={data} />
                                         </View>
-                                        <Surface style={[{ elevation: 4, borderColor: "#000000" }, styles.backButtonStyle]}>
+                                        <Surface style={[{ elevation: 4, borderColor: "#000000", marginBottom: 15 }, styles.backButtonStyle]}>
                                             <TouchableOpacity style={styles.backButtonStyle}>
-                                                <Image source={require("../../assets/images/back-arrow.png")} style={{ height: 30, width: 30 }} />
+                                                <Image source={require("../../assets/images/back-arrow.png")} style={{ height: 25, width: 25 }} />
                                             </TouchableOpacity>
                                         </Surface>
                                     </View>
@@ -114,9 +115,9 @@ const styles = StyleSheet.create({
 
     },
     backButtonStyle: {
-        height: 70,
-        width: 70,
-        borderRadius: 50,
+        height: 60,
+        width: 60,
+        borderRadius: 45,
         backgroundColor: colors.themeColor,
         justifyContent: "center", alignItems: "center"
     }
