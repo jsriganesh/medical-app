@@ -5,5 +5,8 @@ export default Colors = {
     textBoXFontColor:"#2A6A53",
     red:"red",
     messageColor:"#648175",
-    white:"#FFFFFF"
+    white:"#FFFFFF",
+
+    buttonBackgroundColor:"#E9F0ED",
+    borderColor:"#A2BEB4"
 }

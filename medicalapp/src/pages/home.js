@@ -1,11 +1,13 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Dimensions, TouchableOpacity, Image } from 'react-native';
 import { Question, QuestionMessage, TextBox, CommonButton } from "../components/commonComponents"
 // create a component
 const { width } = Dimensions.get('window')
-
-var dummyQuestions = require("../../CNM_mock_questions.json")
+import MultiselectButton from "../components/multiSelectButton"
+import colors from '../utils/colors';
+var mockQuestions = require("../../CNM_mock_questions.json")
+import { Surface } from 'react-native-paper';
 
 const data = {
     "questionNo": 1,
@@ -30,22 +32,28 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            offset: 0
+            offset: 0,
+            dummyQuestions: mockQuestions.data,
+            // type : "next"
         }
     }
 
 
 
-    
     changeIndex(index) {
-        console.log(index)
-            this.refs.scroll.scrollTo({ x: index })
-        }
+        this.refs.scroll.scrollTo({ x: width * index })
+    }
 
+
+    selectedButtonAnswer(answer, index) {
+        var { dummyQuestions } = this.state
+        dummyQuestions[index]["answer"] = answer
+        this.setState({ dummyQuestions })
+    }
 
     render() {
+        var { dummyQuestions } = this.state
         return (
-
             <View style={styles.container}>
                 <ScrollView
                     scrollEnabled={false}
@@ -56,29 +64,37 @@ class Home extends Component {
                     ref={'scroll'}
                 >
                     {
-                        dummyQuestions.data.length > 0 ?
-                            dummyQuestions.data.map((data, index) => {
+                        dummyQuestions.length > 0 ?
+                            dummyQuestions.map((data, index) => {
                                 return (
-                                    <View key={index} style={{ justifyContent: "center", flex: 1, width: width, paddingHorizontal: 20 }} >
-                                        <Question questionNo={data.questionNo} question={data.question} manditaory={data.manditaory} />
-                                        {
-                                            data.message.length > 0 ?
-                                                data.message.map((msg, index) => {
-                                                    return (
-                                                        <QuestionMessage key={index} msg={msg} />
-                                                    )
-                                                })
-                                                : null
-                                        }
+                                    <View key={index} style={{ justifyContent: "space-between", flex: 1, width: width, paddingHorizontal: 20 }} >
+                                        <View></View>
+                                        <View>
+                                            <Question data={data} />
+                                            {
+                                                data.message.length > 0 ?
+                                                    data.message.map((msg, index) => {
+                                                        return (
+                                                            <QuestionMessage key={index} msg={msg} />
+                                                        )
+                                                    })
+                                                    : null
+                                            }
 
-                                        {
-                                            data.dataType == "String" ?
-                                                <TextBox />
-                                                : null
-                                        }
+                                            {
+                                                data.dataType == "String" || data.dataType == "Email" || data.dataType == "Date" || data.dataType == "Number" ?
+                                                    <TextBox />
+                                                    :
+                                                    <MultiselectButton index={index} data={data} selectedButtonAnswer={this.selectedButtonAnswer.bind(this)} />
+                                            }
 
-                                        <CommonButton changeIndex={this.changeIndex.bind(this)} index = {index} btnText={data.buttonName} />
-
+                                            <CommonButton changeIndex={this.changeIndex.bind(this)} index={index} allQuestions={dummyQuestions} data={data} />
+                                        </View>
+                                        <Surface style={[{ elevation: 4, borderColor: "#000000" }, styles.backButtonStyle]}>
+                                            <TouchableOpacity style={styles.backButtonStyle}>
+                                                <Image source={require("../../assets/images/back-arrow.png")} style={{ height: 30, width: 30 }} />
+                                            </TouchableOpacity>
+                                        </Surface>
                                     </View>
                                 )
                             })
@@ -97,6 +113,13 @@ const styles = StyleSheet.create({
         flex: 1,
 
     },
+    backButtonStyle: {
+        height: 70,
+        width: 70,
+        borderRadius: 50,
+        backgroundColor: colors.themeColor,
+        justifyContent: "center", alignItems: "center"
+    }
 });
 
 //make this component available to the app
