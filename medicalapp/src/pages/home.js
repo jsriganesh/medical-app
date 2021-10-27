@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, Dimensions, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Dimensions, TouchableOpacity, ImageBackground,Image } from 'react-native';
 import { Question, QuestionMessage, TextBox } from "../components/commonComponents"
 import  CommonButton  from "../components/commonButton"
 // create a component
@@ -55,7 +55,7 @@ class Home extends Component {
     render() {
         var { dummyQuestions } = this.state
         return (
-            <View style={styles.container}>
+            <ImageBackground resizeMode="center"  source={require("../../assets/images/backgroundImage1.png")}  style={styles.container}>
                 <ScrollView
                     scrollEnabled={false}
 
@@ -103,7 +103,7 @@ class Home extends Component {
                     }
                 </ScrollView>
 
-            </View>
+            </ImageBackground>
         );
     };
 }

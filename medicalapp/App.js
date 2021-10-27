@@ -4,9 +4,14 @@ import { View, Text, StyleSheet } from 'react-native';
 import RootNavigation from './navigations';
 import store from "./src/redux/store/store";
 import { Provider } from 'react-redux'
+import SplashScreen from 'react-native-splash-screen'
 
 // create a component
 class App extends Component {
+
+  componentDidMount(){
+    SplashScreen.hide();
+  }
   render() {
     return (
       <Provider store={store}>
