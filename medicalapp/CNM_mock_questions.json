@@ -94,7 +94,8 @@
             "image": "",
             "answer": "",
             "subQuestions": [],
-            "buttonText": "Enter"
+            "buttonText": "Enter",
+            "nextQuestionIndex":1
         },
         {
             "questionNo": 6,
@@ -158,7 +159,8 @@
             "image": "",
             "answer": "",
             "subQuestions": [],
-            "buttonText": "Enter"
+            "buttonText": "Enter",
+            "nextQuestionIndex":2
         },
         {
             "questionNo": 7,
@@ -174,7 +176,8 @@
             "image": "",
             "answer": "",
             "subQuestions": [],
-            "buttonText": "Ok"
+            "buttonText": "Ok",
+            "nextQuestionIndex":3
         },
         {
             "questionNo": "a",
@@ -575,108 +578,6 @@
             "manditaory": false,
             "message": []
         }
-        // {
-        //     "questionNo": 9,
-        //     "question": "What sex are you?",
-        //     "manditaory": true,
-        //     "message": [],
-        //     "dataType": "",
-        //     "optionList": [
-        //         {
-        //             "option": "Male"
-        //         },
-        //         {
-        //             "option": "Female"
-        //         }
-        //     ],
-        //     "minSelect": 0,
-        //     "maxSelect": 0,
-        //     "minLength": 0,
-        //     "maxLength": 0,
-        //     "image": "",
-        //     "answer": "",
-        //     "subQuestions": []
-        // },
-        // {
-        //     "validation": [
-        //         {
-        //             "questionNo": 9,
-        //             "subQuestionNo": "",
-        //             "value": "Male"
-        //         }
-        //     ],
-        //     "questionNo": 10,
-        //     "question": "Are you currently struggling with any of the following?",
-        //     "manditaory": true,
-        //     "message": [
-        //         "Choose as many as you like"
-        //     ],
-        //     "dataType": "Select",
-        //     "optionList": [
-        //         {
-        //             "option": "Enlarged prostate"
-        //         },
-        //         {
-        //             "option": "Poor urine flow or hesitation in starting to urinate"
-        //         },
-        //         {
-        //             "option": "Need to go at night or urgency during the day"
-        //         },
-        //         {
-        //             "option": "Prostatis"
-        //         },
-        //         {
-        //             "option": "Erectile dysfunction"
-        //         },
-        //         {
-        //             "option": "Libido is lower than it used to be"
-        //         },
-        //         {
-        //             "option": "No"
-        //         }
-        //     ],
-        //     "minSelect": 1,
-        //     "maxSelect": null,
-        //     "minLength": 0,
-        //     "maxLength": 0,
-        //     "image": "",
-        //     "answer": "",
-        //     "subQuestions": []
-        // },
-        // {
-        //     "validation": [
-        //         {
-        //             "questionNo": 9,
-        //             "subQuestionNo": "",
-        //             "value": "Female"
-        //         }
-        //     ],
-        //     "questionNo": 11,
-        //     "question": "Do you get any of the following?",
-        //     "manditaory": true,
-        //     "message": [],
-        //     "dataType": "Select",
-        //     "optionList": [
-        //         {
-        //             "option": "Night sweats"
-        //         },
-        //         {
-        //             "option": "Joint discomfort when the weather changes"
-        //         },
-        //         {
-        //             "option": "Sore joints after exercising"
-        //         },
-        //         {
-        //             "option": "Nope"
-        //         }
-        //     ],
-        //     "minSelect": 1,
-        //     "maxSelect": 1,
-        //     "minLength": 0,
-        //     "maxLength": 0,
-        //     "image": "",
-        //     "answer": "",
-        //     "subQuestions": []
-        // }
+       
     ]
 }

@@ -1,14 +1,21 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, Dimensions, TouchableOpacity, ImageBackground,Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Dimensions, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { Question, QuestionMessage, TextBox } from "../components/commonComponents"
-import  CommonButton  from "../components/commonButton"
+import CommonButton from "../components/commonButton"
 // create a component
 const { width } = Dimensions.get('window')
 import MultiselectButton from "../components/multiSelectButton"
 import colors from '../utils/colors';
 var mockQuestions = require("../../CNM_mock_questions.json")
 import { Surface } from 'react-native-paper';
+import { connect } from "react-redux";
+import { ActionTypes } from '../redux/action/actionList';
+
+const mapStateToProps = (state) => ({
+    backNavigationList: state.backNavigationListReducer.backNavigationList,
+});
+
 
 const data = {
     "questionNo": 1,
@@ -55,7 +62,7 @@ class Home extends Component {
     render() {
         var { dummyQuestions } = this.state
         return (
-            <ImageBackground resizeMode="center"  source={require("../../assets/images/backgroundImage1.png")}  style={styles.container}>
+            <ImageBackground resizeMode="center" source={require("../../assets/images/backgroundImage1.png")} style={styles.container}>
                 <ScrollView
                     scrollEnabled={false}
 
@@ -91,11 +98,30 @@ class Home extends Component {
 
                                             <CommonButton changeIndex={this.changeIndex.bind(this)} index={index} allQuestions={dummyQuestions} data={data} />
                                         </View>
-                                        <Surface style={[{ elevation: 4, borderColor: "#000000", marginBottom: 15 }, styles.backButtonStyle]}>
-                                            <TouchableOpacity style={styles.backButtonStyle}>
-                                                <Image source={require("../../assets/images/back-arrow.png")} style={{ height: 25, width: 25 }} />
-                                            </TouchableOpacity>
-                                        </Surface>
+
+                                        {
+                                            index === 0 ?
+                                                <View />
+                                                :
+
+
+                                                <Surface style={[{ elevation: 4, borderColor: "#000000", marginBottom: 15 }, styles.backButtonStyle]}>
+                                                    <TouchableOpacity style={styles.backButtonStyle} onPress={() => {
+                                                        console.log(this.props.backNavigationList)
+                                                        var index = this.props.backNavigationList.length - 1
+                                                        this.changeIndex(this.props.backNavigationList[index])
+                                                        // var afterRemoveLastData = this.props.backNavigationList.pop();
+                                                        this.props.backNavigationList.pop();
+                                                        console.log(this.props.backNavigationList)
+                                                        // var afterRemoveLastData = this.props.backNavigationList.splice(index,1) 
+                                                        const { dispatch } = this.props
+                                                        dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: this.props.backNavigationList })
+
+                                                    }}>
+                                                        <Image source={require("../../assets/images/back-arrow.png")} style={{ height: 25, width: 25 }} />
+                                                    </TouchableOpacity>
+                                                </Surface>
+                                        }
                                     </View>
                                 )
                             })
@@ -124,4 +150,5 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default Home;
+
+export default connect(mapStateToProps)(Home);

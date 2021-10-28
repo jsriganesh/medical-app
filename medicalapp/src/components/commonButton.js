@@ -8,11 +8,28 @@ import { connect } from "react-redux";
 import { ActionTypes } from '../redux/action/actionList';
 
 
+
+function getUnique(arr) {
+
+    let uniqueArr = [];
+
+    // loop through array
+    for (let i of arr) {
+        if (uniqueArr.indexOf(i) === -1) {
+            uniqueArr.push(i);
+        }
+    }
+    console.log(uniqueArr);
+
+    return(uniqueArr)
+}
+
 const mapStateToProps = (state) => ({
     validateQuestion: state.selectedValidationQuestion.validateQuestion,
+    backNavigationList: state.backNavigationListReducer.backNavigationList,
 });
 
-const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion, dispatch }) => {
+const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion, dispatch, backNavigationList }) => {
 
 
 
@@ -49,6 +66,11 @@ const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion
                             dispatch({ type: ActionTypes.SELECTED_VALIDATION_QUESTION, payload: data })
                         }
                         changeIndex(checIndex)
+
+                        var backList = backNavigationList
+                        backList.push(index);
+                        var filtered = getUnique(backList)
+                        dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: filtered })
                         break
                     } else {
                     }
@@ -75,8 +97,11 @@ const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion
                         if (data.isValidateQuestion) {
                             dispatch({ type: ActionTypes.SELECTED_VALIDATION_QUESTION, payload: data })
                         }
-                        // changeIndex(index+1)
                         changeIndex(checIndex)
+                        var backList = backNavigationList
+                        backList.push(index);
+                        var filtered = getUnique(backList)
+                        dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: filtered })
                         screenNavigated = true
                         break
                     } else {
@@ -96,6 +121,10 @@ const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion
                 dispatch({ type: ActionTypes.SELECTED_VALIDATION_QUESTION, payload: data })
             }
             changeIndex(index + 1)
+            var backList = backNavigationList
+            backList.push(index);
+            var filtered = getUnique(backList)
+            dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: filtered })
         }
     }
 
