@@ -7,7 +7,8 @@ import CommonButton from "../components/commonButton"
 const { width } = Dimensions.get('window')
 import MultiselectButton from "../components/multiSelectButton"
 import colors from '../utils/colors';
-var mockQuestions = require("../../CNM_mock_questions.json")
+// var mockQuestions = require("../../CNM_mock_questions.json")
+var mockQuestions = require("../../CMD_new_questions.json")
 import { Surface } from 'react-native-paper';
 import { connect } from "react-redux";
 import { ActionTypes } from '../redux/action/actionList';

@@ -10,10 +10,14 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^3.5.2",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
+    "moment": "^2.29.1",
     "react": "17.0.2",
     "react-native": "0.66.1",    
+    "react-native-keyboard-aware-scroll-view": "^0.9.4",
+    "react-native-modal-datetime-picker": "^11.0.0",
     "react-native-paper": "^4.9.2",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.7.2",
