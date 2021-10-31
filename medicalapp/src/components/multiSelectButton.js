@@ -2,13 +2,20 @@
 import React, { Component, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import colors from '../utils/colors';
+import { ActionTypes } from '../redux/action/actionList';
+import { connect } from "react-redux";
+
+
+const mapStateToProps = (state) => ({
+    isGenderQuestion: state.selectedValidationQuestion.isGenderQuestion,
+});
 
 
 
 const optionNumber = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
 // create a component
-const MultiselectButton = ({ data, selectedButtonAnswer, index }) => {
+const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion,dispatch }) => {
     const [selectedButtonsList, updateSelectedButton] = useState([])
 
     function removeDuplicate(datas) {
@@ -50,10 +57,14 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index }) => {
                 }
 
                 if (getSelectedValue) {
-                    selectedButtonsList.push(selectedvalue);
+                    if (data.maxSelect > selectedButtonsList.length) {
+                        selectedButtonsList.push(selectedvalue);
+                    }
                 }
             } else {
-                selectedButtonsList.push(selectedvalue)
+                if (data.maxSelect > selectedButtonsList.length) {
+                    selectedButtonsList.push(selectedvalue)
+                }
             }
 
             var removeData = removeDuplicate(selectedButtonsList);
@@ -63,16 +74,35 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index }) => {
 
     }
 
+
+    var optionList = [];
+    if (isGenderQuestion == "Male") {
+        optionList = data.optionListMale
+    } else if (isGenderQuestion == "Female") {
+        optionList = data.optionListFemale
+    } else {
+        optionList = data.optionList
+    }
+
+
+
     return (
         <View style={styles.container}>
             {
                 data.optionList.length > 0 ?
-                    data.optionList.map((option, index) => {
+                data.optionList.map((option, index) => {
+                    if(isGenderQuestion == option.type || option.type == null ||  option.type == undefined){
                         const found = selectedButtonsList.some(
                             (el) => el.option === option.option
                         );
                         return (
                             <TouchableOpacity key={index} style={[styles.ButtonStyle, found ? { borderColor: colors.themeColor } : {}]} onPress={() => {
+                                if (data.isGenderQuestion) {
+                                    dispatch({ type: ActionTypes.SELECTED_GENDER, payload: option.option })
+
+                                } else {
+
+                                }
                                 updateButtons(option)
                             }}>
                                 <View style={[styles.optionButtonStyle, found ? { backgroundColor: colors.themeColor } : {}]}>
@@ -83,6 +113,7 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index }) => {
                                     {option.option}</Text>
                             </TouchableOpacity>
                         )
+                    }
                     })
                     : null
             }
@@ -122,5 +153,5 @@ const styles = StyleSheet.create({
     optionButtonTextStyle: { fontWeight: "bold", color: colors.themeColor }
 });
 
-//make this component available to the app
-export default MultiselectButton;
+// export default MultiselectButton;
+export default connect(mapStateToProps)(MultiselectButton);

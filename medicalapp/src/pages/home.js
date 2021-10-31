@@ -60,6 +60,13 @@ class Home extends Component {
         this.setState({ dummyQuestions })
     }
 
+    changesTextboxAnswer(answer,index){
+        console.log(index,answer)
+        var { dummyQuestions } = this.state
+        dummyQuestions[index]["answer"] = answer
+        this.setState({ dummyQuestions })
+    }
+
     render() {
         var { dummyQuestions } = this.state
         return (
@@ -92,7 +99,7 @@ class Home extends Component {
 
                                             {
                                                 data.dataType == "String" || data.dataType == "Email" || data.dataType == "Date" || data.dataType == "Number" ?
-                                                    <TextBox />
+                                                    <TextBox index={index} data={data} changeText={this.changesTextboxAnswer.bind(this)}/>
                                                     :
                                                     <MultiselectButton index={index} data={data} selectedButtonAnswer={this.selectedButtonAnswer.bind(this)} />
                                             }
@@ -108,12 +115,12 @@ class Home extends Component {
 
                                                 <Surface style={[{ elevation: 4, borderColor: "#000000", marginBottom: 15 }, styles.backButtonStyle]}>
                                                     <TouchableOpacity style={styles.backButtonStyle} onPress={() => {
-                                                        console.log(this.props.backNavigationList)
+                                                        // console.log(this.props.backNavigationList)
                                                         var index = this.props.backNavigationList.length - 1
                                                         this.changeIndex(this.props.backNavigationList[index])
                                                         // var afterRemoveLastData = this.props.backNavigationList.pop();
                                                         this.props.backNavigationList.pop();
-                                                        console.log(this.props.backNavigationList)
+                                                        // console.log(this.props.backNavigationList)
                                                         // var afterRemoveLastData = this.props.backNavigationList.splice(index,1) 
                                                         const { dispatch } = this.props
                                                         dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: this.props.backNavigationList })

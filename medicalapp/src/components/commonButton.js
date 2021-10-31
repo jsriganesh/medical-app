@@ -21,7 +21,7 @@ function getUnique(arr) {
     }
     console.log(uniqueArr);
 
-    return(uniqueArr)
+    return (uniqueArr)
 }
 
 const mapStateToProps = (state) => ({
@@ -29,151 +29,50 @@ const mapStateToProps = (state) => ({
     backNavigationList: state.backNavigationListReducer.backNavigationList,
 });
 
-// const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion, dispatch, backNavigationList }) => {
-
-
-
-//     function doNavigationButtonValidation(index) {
-//         if (allQuestions[index + 1] && allQuestions[index + 1].validation && allQuestions[index + 1].validation.length > 0) {
-//             if (allQuestions[index + 1].validation.length > 1) {
-//                 console.log("length is > 1")
-//                 for (let ind = 0; ind < allQuestions.length; ind++) {
-//                     let checIndex = index + 1
-//                     if (
-//                         (
-//                             allQuestions[checIndex] && allQuestions[checIndex].validation && allQuestions[checIndex].validation.length > 0
-//                             &&
-//                             validateQuestion.parentQuestionNo == allQuestions[checIndex].validation[0].parentQuestionNo
-//                             &&
-//                             validateQuestion.questionNo == allQuestions[checIndex].validation[0].questionNo
-//                             &&
-//                             validateQuestion.answer.length > 0
-//                             &&
-//                             validateQuestion.answer[0].option == allQuestions[checIndex].validation[0].value) ||
-//                         (
-//                             allQuestions[checIndex] && allQuestions[checIndex].validation && allQuestions[checIndex].validation.length > 0
-//                             &&
-//                             validateQuestion.parentQuestionNo == allQuestions[checIndex].validation[1].parentQuestionNo
-//                             &&
-//                             validateQuestion.questionNo == allQuestions[checIndex].validation[1].questionNo
-//                             &&
-//                             validateQuestion.answer.length > 0
-//                             &&
-//                             validateQuestion.answer[0].option == allQuestions[checIndex].validation[1].value)
-//                     ) {
-//                         // console.log(data)
-//                         if (data.isValidateQuestion) {
-//                             dispatch({ type: ActionTypes.SELECTED_VALIDATION_QUESTION, payload: data })
-//                         }
-//                         changeIndex(checIndex)
-
-//                         var backList = backNavigationList
-//                         backList.push(index);
-//                         var filtered = getUnique(backList)
-//                         dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: filtered })
-//                         break
-//                     } else {
-//                     }
-//                 }
-//             } else {
-//                 console.log("length is == 1")
-
-//                 var screenNavigated = false
-//                 for (let ind = 0; ind < allQuestions.length; ind++) {
-
-//                     console.log("for length is validateQuestion " + JSON.stringify(validateQuestion))
-//                     var checIndex = ind + 1
-//                     if (
-//                         allQuestions[checIndex] && allQuestions[checIndex].validation && allQuestions[checIndex].validation.length > 0
-//                         &&
-//                         allQuestions[index].parentQuestionNo == allQuestions[checIndex].validation[0].parentQuestionNo
-//                         &&
-//                         allQuestions[index].questionNo == allQuestions[checIndex].validation[0].questionNo
-//                         &&
-//                         allQuestions[index].answer.length > 0
-//                         &&
-//                         allQuestions[index].answer[0].option == allQuestions[checIndex].validation[0].value
-//                     ) {
-//                         if (data.isValidateQuestion) {
-//                             dispatch({ type: ActionTypes.SELECTED_VALIDATION_QUESTION, payload: data })
-//                         }
-//                         changeIndex(checIndex)
-//                         var backList = backNavigationList
-//                         backList.push(index);
-//                         var filtered = getUnique(backList)
-//                         dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: filtered })
-//                         screenNavigated = true
-//                         break
-//                     } else {
-
-//                     }
-//                     if (!screenNavigated) {
-//                         doNavigationButtonValidation(index + 1)
-//                     } else {
-
-//                     }
-//                 }
-//             }
-
-//         } else {
-//             // console.log(data)
-//             if (data.isValidateQuestion) {
-//                 dispatch({ type: ActionTypes.SELECTED_VALIDATION_QUESTION, payload: data })
-//             }
-//             changeIndex(index + 1)
-            // var backList = backNavigationList
-            // backList.push(index);
-            // var filtered = getUnique(backList)
-            // dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: filtered })
-//         }
-//     }
-
-
-//     return (
-//         <TouchableOpacity style={styles.buttonStyle} onPress={() => {
-//             console.log("validateQuestion  " + JSON.stringify(validateQuestion))
-//             doNavigationButtonValidation(index)
-//         }}>
-//             <Text style={styles.buttonTextStyle}>{data.buttonName ? data.buttonName : "ENTER"}</Text>
-//         </TouchableOpacity>
-//     );
-// };
-
 
 const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion, dispatch, backNavigationList }) => {
 
 
-    function backNavigationLists (){
+    function backNavigationLists() {
         var backList = backNavigationList
+        console.log("back -----> 1 "+index)
+        console.log(backList)
         backList.push(index);
+        console.log("back -----> 2 "+index)
         var filtered = getUnique(backList)
+        console.log("back -----> 3 "+index)
         dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: filtered })
     }
 
 
     function doNavigationButtonValidation(index) {
-        if(data && data.nextQuestionIndex){
+        if (data && data.nextQuestionIndex) {
             console.log("nextQuestionIndex option ...")
             changeIndex(data.nextQuestionIndex)
             backNavigationLists(data.nextQuestionIndex)
-        }else if(data && data.dataType == "Select" && 
-        data.answer && data.answer.length > 0 && 
-        data.answer[0].nextQuestionIndex 
-        ){
+        } else if (data && data.dataType == "Select" &&
+            data.answer && data.answer.length > 0 &&
+            data.answer[0].nextQuestionIndex
+        ) {
             console.log("option ...")
             changeIndex(data.answer[0].nextQuestionIndex)
             backNavigationLists(data.answer[0].nextQuestionIndex)
-        }else{
+        } else {
             console.log("else option ...")
         }
-        
+
     }
 
 
     return (
         <TouchableOpacity style={styles.buttonStyle} onPress={() => {
-            // console.log("validateQuestion  " + JSON.stringify(validateQuestion))
-            doNavigationButtonValidation(index)
+            console.log("data  " + JSON.stringify(data))
+            // if(checkManditaory(data)){
+                doNavigationButtonValidation(index)
+            // }else{
+
+            // }
+            
         }}>
             <Text style={styles.buttonTextStyle}>{data.buttonName ? data.buttonName : "ENTER"}</Text>
         </TouchableOpacity>
@@ -181,6 +80,30 @@ const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion
 };
 
 
+
+const checkManditaory =(data)=>{
+    if(data.manditaory){
+        if(data.dataType == "Select"){
+            if(data.minSelect <= data.answer.length  && data.maxSelect >= data.answer.length){
+                return true
+            }else{
+                alert("Please select the Options,"+" you need to select minimum "+data.minSelect +" and maximum "+ data.maxSelect)
+                return false
+            }
+        }else{
+            // if(data.dataType == "Number" || data.dataType == "String" ){
+            // }
+            if(data.answer !== ""){
+                return true
+            }else{
+                alert("Plase Enter the answer")
+                return false
+            }
+        }
+    }else{
+        return true
+    }
+}
 
 // define your styles
 const styles = StyleSheet.create({

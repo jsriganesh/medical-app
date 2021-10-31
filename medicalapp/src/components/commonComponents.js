@@ -33,10 +33,16 @@ export const QuestionMessage = ({ msg }) => {
     );
 };
 
-export const TextBox = () => {
+export const TextBox = ({changeText,index,data}) => {
     return (
         <View>
-            <TextInput style={styles.textBoxStyle} />
+            <TextInput value={data.answer} 
+            maxLength={data.minLength}
+             keyboardType={data.dataType == "Number"? "number-pad":"default"}
+            onChangeText={(text) => {
+                changeText(text,index)
+            }}
+            style={styles.textBoxStyle} />
         </View>
     );
 };

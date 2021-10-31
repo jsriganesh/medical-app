@@ -162,8 +162,8 @@
             "optionList": [],
             "minSelect": 0,
             "maxSelect": 0,
-            "minLength": 30,
-            "maxLength": 300,
+            "minLength": 5,
+            "maxLength": 10,
             "image": "",
             "answer": "",
             "dataType": "Number",
@@ -210,8 +210,8 @@
             "optionList": [],
             "minSelect": 1,
             "maxSelect": 1,
-            "minLength": 0,
-            "maxLength": 0,
+            "minLength": 2,
+            "maxLength": 5,
             "image": "",
             "answer": "",
             "dataType": "Number",
@@ -227,8 +227,8 @@
             "optionList": [],
             "minSelect": 1,
             "maxSelect": 1,
-            "minLength": 0,
-            "maxLength": 0,
+            "minLength": 2,
+            "maxLength": 5,
             "image": "",
             "answer": "",
             "dataType": "Number",
@@ -335,7 +335,7 @@
                 },
                 {
                     "option": "No",
-                    "nextQuestionIndex":""
+                    "nextQuestionIndex":16
                 }
             ],
             "minSelect": 1,
@@ -435,7 +435,7 @@
         },
         {
             "questionNo": "e",
-            "question": "Do you feel that your strength has changed? **********************",
+            "question": "Do you feel that your strength has changed? *",
             "parentquestion": "If I understand your current lifestyle I can tell you more about your body's needs",
             "parentQuestionNo": "8",
             // "validation": [
@@ -469,8 +469,205 @@
             "answer": "",
             "dataType": "Select",
             "manditaory": false,
-            "message": []
-        }
-        // 10-15 questions end
+            "message": [],
+            "nextQuestionIndex":16
+        },
+        // 10-15 questions end   total 8 th question end 
+
+
+        // 16-19 questions start   total 4 th question start 
+        {
+            "questionNo": "9",
+            "question": "What sex are you?",
+            "parentquestion": "What sex are you?",
+            "parentQuestionNo": "9",
+            "isGenderQuestion":true,
+            "optionList": [
+                {
+                    "option": "Male"
+                },
+                {
+                    "option": "Female"
+                }
+            ],
+            "minSelect": 1,
+            "maxSelect": 1,
+            "minLength": 0,
+            "maxLength": 0,
+            "image": "",
+            "answer": "",
+            "dataType": "Select",
+            "manditaory": true,
+            "message": [],
+            "nextQuestionIndex":17
+        },
+
+        {
+            "prefix":"Thanks ",
+            "questionNo": "10",
+            "question": " Are you currently struggling with any of the following?",
+            "parentquestion": "",
+            "parentQuestionNo": "10",
+            "isGenderQuestion":true,
+            
+            "optionList":[
+                {
+                    "option": "Enlarged prostate",
+                    "type":"Male"
+                },
+                {
+                    "option": "Poor urine flow or hesitation in starting to urinate",
+                    "type":"Male"
+                },
+                {
+                    "option": "Prostatis",
+                    "type":"Male"
+                },
+                {
+                    "option": "Need to go at night or urgency during the day",
+                    "type":"Male"
+                },
+                {
+                    "option": "Erectile dysfunction",
+                    "type":"Male"
+                },
+                {
+                    "option": "Libido is lower than it used to be",
+                    "type":"Male"
+                },
+
+                {
+                    "option": "Menopause",
+                    "type":"Female"
+                },
+                {
+                    "option": "PMS",
+                    "type":"Female"
+                },
+                {
+                    "option": "Irregular periods",
+                    "type":"Female"
+                },
+                {
+                    "option": "PCOS (polycystic ovaries)",
+                    "type":"Female"
+                },
+                {
+                    "option": "Endometriosis",
+                    "type":"Female"
+                },
+                {
+                    "option": "Fibroids",
+                    "type":"Female"
+                },
+                {
+                    "option": "Cysts",
+                    "type":"Female"
+                },
+                {
+                    "option": "NO"
+                }
+            ],
+            
+            "minSelect": 1,
+            "maxSelect": 1,
+            "minLength": 1,
+            "maxLength": 10,
+            "image": "",
+            "answer": "",
+            "dataType": "Select",
+            "manditaory": true,
+            "message": ["Choose as many as you like"],
+            "nextQuestionIndex":18
+        },
+
+
+        {
+            "prefix":"",
+            "questionNo": "11",
+            "question": "Tell us about your skin health. Do you suffer with any of the following?",
+            "parentquestion": "",
+            "parentQuestionNo": "11",
+            "isGenderQuestion":false,
+            "optionList": [
+                {
+                    "option": "Ageing skin"
+                },
+                {
+                    "option": "Psoriasis"
+                },
+                {
+                    "option": "Eczema"
+                },
+                {
+                    "option": "Rosacea"
+                },
+
+                {
+                    "option": "Acne"
+                },
+                {
+                    "option": "Pigmentation"
+                },
+                {
+                    "option": "Premature lines or wrinkles"
+                },
+                {
+                    "option": "None"
+                },
+                {
+                    "option": "Other"
+                }
+            ],
+            "optionListMale":[],
+            "optionListFemale": [ ],
+            "minSelect": 1,
+            "maxSelect": 10,    
+            "minLength": 0,
+            "maxLength": 0,
+            "image": "",
+            "answer": "",
+            "dataType": "Select",
+            "manditaory": true,
+            "message": ["Choose as many as you like"],
+            "nextQuestionIndex":19
+        },
+
+        {
+            "prefix":"",
+            "questionNo": "12",
+            "question": "Do you get any of the following",
+            "parentquestion": "",
+            "parentQuestionNo": "12",
+            "isGenderQuestion":false,
+            "optionList": [
+                {
+                    "option": "Night sweats"
+                },
+                {
+                    "option": "Joint discomfort when the weather changes"
+                },
+                {
+                    "option": "Sore joints after exercising "
+                },
+                {
+                    "option": "Nope"
+                }
+            ],
+            "optionListMale":[],
+            "optionListFemale": [ ],
+            "minSelect": 1,
+            "maxSelect": 1,
+            "minLength": 0,
+            "maxLength": 0,
+            "image": "",
+            "answer": "",
+            "dataType": "Select",
+            "manditaory": true,
+            "message": ["Choose as many as you like"],
+            "nextQuestionIndex":"" // 20
+        },
+        // 16-19 questions end   total 4 th question ENd
+        
     ]
 }
