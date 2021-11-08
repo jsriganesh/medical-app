@@ -67,7 +67,7 @@ const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion
     return (
         <TouchableOpacity style={styles.buttonStyle} onPress={() => {
             console.log("data  " + JSON.stringify(data))
-            // if(checkManditaory(data)){
+            // if(checkMandatory(data)){
                 doNavigationButtonValidation(index)
             // }else{
 
@@ -81,8 +81,8 @@ const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion
 
 
 
-const checkManditaory =(data)=>{
-    if(data.manditaory){
+const checkMandatory =(data)=>{
+    if(data.mandatory){
         if(data.dataType == "Select"){
             if(data.minSelect <= data.answer.length  && data.maxSelect >= data.answer.length){
                 return true

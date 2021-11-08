@@ -30,34 +30,7 @@ function validateEmailAddress() {
 
     return showWrongEmailIdStyle
 
-    // this.setState({showWrongEmailIdStyle})
 }
-
-const Question = (props) => {
-
-    function onChangeValue(rr) {
-        console.log("test" + rr)
-    }
-    return (
-        <View style={{ marginBottom: 20 }}>
-            <Text style={styles.questionFontStyle}>{props.question}</Text>
-            <TextInput style={styles.textBoxStyle} />
-            {/* <FloationTextBox labels={"labels.legalFirstName"} componentKey={"firstName"} showMandatory={true} value={""} onChangeValue={onChangeValue} /> */}
-
-        </View>
-    )
-}
-
-const Button = ({ btnName, callBack }) => {
-    return (
-        <TouchableOpacity style={styles.buttonStyle} onPress={() => {
-            callBack()
-        }}>
-            <Text style={styles.buttonTextStyle}>{btnName}</Text>
-        </TouchableOpacity>
-    );
-}
-
 
 class LoginPage extends Component {
 
@@ -65,25 +38,12 @@ class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showPopup: false,
-            showPasswordPopup: false,
             showDatePicker: false,
-            dateOfBirth: "",
-            fName: "",
-            lName: "",
+
             email: "",
             password: "",
-            createPassword: "",
         }
     }
-
-    selectedDate(date) {
-        this.setState({
-            dateOfBirth: date,
-            showDatePicker: false
-        })
-    }
-
 
     updateText(key, value) {
         var states = this.state;
@@ -93,170 +53,120 @@ class LoginPage extends Component {
         })
     }
 
-    _doLogin() {
-        this.setState({
-            showPopup: false,
-            showPasswordPopup: false
-        })
-        this.props.navigation.navigate("Home")
-    }
-
-    showLoginPopup() {
-        this.setState({
-            showPopup: true
-        })
-    }
-
-    _doRegister() {
-        this.setState({
-            showPasswordPopup: true
-        })
-    }
-
-
-
-
-    createOrEnterPassword = () => {
-        var { email, password } = this.state
+    renderTextBoxWithIcon(image, placeholder, stateKey, value) {
         return (
-            <View>
-                <Question value={password} password={true} question={"Pleace Enter your password"} key={"passowrd"} updateText={this.updateText.bind(this)} />
-                <Button btnName="Login" callBack={this._doLogin.bind(this)} />
+            <View style={styles.componentContainer}>
+                <View style={styles.imageBackground}>
+                    <Image source={image} style={styles.image} />
+                </View>
+                <TextInput
+                    value={value}
+                    onChangeText={(text) => {
+                        this.updateText(stateKey, text)
+                    }} placeholderTextColor={colors.themeColor} style={styles.newTextBoxStyle} placeholder={placeholder} />
             </View>
         )
     }
 
-    loginModel = () => {
-        var { email, password } = this.state
+    renderButtonBoxWithIcon(image, placeholder, stateKey, value) {
         return (
-            <View>
-                <Question value={email} question={"Registered  email "} key={"email"} updateText={this.updateText.bind(this)} />
-                <Question value={password} password={true} question={"Password:"} key={"passowrd"} updateText={this.updateText.bind(this)} />
-                <Button btnName="Login" callBack={this._doLogin.bind(this)} />
-            </View>
+            <TouchableOpacity onPress={() => {
+                this.setState({
+                    showDatePicker: true
+                })
+            }} style={styles.componentContainer}>
+                <View style={styles.imageBackground}>
+                    <Image source={image} style={styles.image} />
+                </View>
+
+                <Text style={[styles.newTextBoxStyle]}>{value ? value : placeholder}</Text>
+            </TouchableOpacity>
         )
     }
+
+
+    button = (labels,pageName) => {
+        return (
+            <TouchableOpacity style={styles.buttonStyle} onPress={() => {this.props.navigation.navigate(pageName)}}>
+                <Text style={styles.buttonTextStyle}>{labels}</Text>
+            </TouchableOpacity>
+        );
+    }
+
 
     render() {
-        var { showPopup, showDatePicker, dateOfBirth, fName, lName, email, showPasswordPopup } = this.state
+        var { showDatePicker, email, password } = this.state
         return (
-            <ImageBackground resizeMode="center" source={require("../../assets/images/backgroundImage1.png")} style={styles.container}>
+            <View style={styles.container}>
+                <View style={{ marginVertical: 50, alignItems: "center", }}>
+                    <Image source={require("../../assets/images/backgroundImage.png")} style={{ height: 160, width: 180, tintColor: colors.themeColor }} />
+                </View>
+                <View>
+                    <KeyboardAwareScrollView>
+                        {this.renderTextBoxWithIcon(
+                            require("../../assets/images/email.png"),
+                            "Registered Email id",
+                            "email",
+                            email
+                        )}
+                        {this.renderTextBoxWithIcon(
+                            require("../../assets/images/password.png"),
+                            "Password"
+                        )}
 
-                <KeyboardAwareScrollView>
-                    <Question value={fName} question={"Enter your first name:"} key={"fName"} updateText={this.updateText.bind(this)} />
-                    <Question value={lName} question={"Enter your last name:"} key={"lName"} updateText={this.updateText.bind(this)} />
-                    <Question value={email} question={"Enter your Email Id:"} key={"email"} updateText={this.updateText.bind(this)} />
-                    <View style={{ marginBottom: 20 }}>
-                        <Text style={styles.questionFontStyle}>{"Enter your Date of Birth:"}</Text>
-                        <TouchableOpacity onPress={() => {
-                            this.setState({
-                                showDatePicker: true
-                            })
-                        }} style={styles.dobButtonStyle}>
-                            <Text style={{ fontSize: 20, color: colors.textBoXFontColor, }}>{dateOfBirth}</Text>
+                    </KeyboardAwareScrollView>
+                    <View style={{ flexDirection: "row" }}>
+                        <TouchableOpacity>
+                            <Text style={{ fontSize: 14, color: colors.themeColor }}>{"Forgot Password?"}</Text>
                         </TouchableOpacity>
+
                     </View>
-
-                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                        <Button btnName="Login" callBack={this.showLoginPopup.bind(this)} />
-                        <Button btnName="Register" callBack={this._doRegister.bind(this)} />
-                    </View>
-
-                    {
-                        showDatePicker ?
-                            <DatePicker date={dateOfBirth} selectedDate={this.selectedDate.bind(this)} />
-                            : null
-                    }
-
-
-                </KeyboardAwareScrollView>
-
-
-                <Modal
-                    animationType="slide"
-                    swipeToDismiss
-                    transparent={true}
-                    visible={showPopup}
-                    onRequestClose={() => {
-                        this.setState({
-                            showPopup: !showPopup
-                        })
-                        // setShowPopupFlag(!showPopup)
-                    }}
-                >
-                    <ModalComponent modalHeight="70%" canClose={true} onClose={() => {
-                        this.setState({
-                            showPopup: !showPopup
-                        })
-                    }} innerElement={this.loginModel()} />
-                </Modal>
-
-
-                <Modal
-                    animationType="slide"
-                    swipeToDismiss
-                    transparent={true}
-                    visible={showPasswordPopup}
-                    onRequestClose={() => {
-                        this.setState({
-                            showPasswordPopup: !showPasswordPopup
-                        })
-                    }}
-                >
-                    <ModalComponent modalHeight="70%" canClose={true} onClose={() => {
-                        this.setState({
-                            showPasswordPopup: !showPasswordPopup
-                        })
-                    }} innerElement={this.createOrEnterPassword()} />
-                </Modal>
-
-
-            </ImageBackground>
+                    {this.button("Sign In","Home")}
+                    {this.button("Sign Up","RegistrationPage")}
+                </View>
+                <View></View>
+            </View>
         );
     }
 }
 
+
+
+
 // define your styles
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 15,
+        paddingHorizontal: 30,
         flex: 1,
-        // justifyContent: "space-evenly",
-        paddingTop: 200,
+        // justifyContent: "space-between",
         backgroundColor: colors.white,
     },
-    questionFontStyle: {
-        color: colors.questionFontColor,
-        fontSize: 18,
-        fontFamily: FontFamily.fontBold
+    componentContainer: {
+        borderWidth: 2, height: 55, width: "100%", borderColor: colors.themeColor, borderRadius: 6, flexDirection: "row", alignItems: "center", marginVertical: 8
     },
-    textBoxStyle: {
+    imageBackground: {
+        backgroundColor: colors.themeColor, marginHorizontal: 10, borderRadius: 50, marginVertical: 5
+    },
+    newTextBoxStyle: {
         width: "100%",
-        height: 45,
-        borderBottomWidth: 2,
-        borderBottomColor: colors.textBoXFontColor,
-        color: colors.textBoXFontColor,
-        fontSize: 20,
-        padding: 0,
-        paddingHorizontal: 10
-
+        // height: 45,
+        fontSize: 16,
+        color: colors.themeColor,
+        // borderBottomWidth: 2,
+        // borderBottomColor: colors.textBoXFontColor,
+        // color: colors.textBoXFontColor,
+        paddingHorizontal: 10,
     },
-    dobButtonStyle: {
-        width: "100%",
-        height: 45,
-        borderBottomWidth: 2,
-        borderBottomColor: colors.textBoXFontColor,
-        // backgroundColor: "green"
-        justifyContent: "flex-end"
-    },
-
+    image: { height: 45, width: 45, tintColor: colors.white },
     buttonStyle: {
         backgroundColor: colors.themeColor,
         paddingHorizontal: 20,
-        paddingVertical: 6,
+        paddingVertical: 10,
         borderRadius: 5,
-        alignSelf: "flex-start",
-        marginVertical: 20
+        // alignSelf: "center",
+        alignItems: "center",
+        marginTop: 20,
+        width: "100%"
         // aliginContent:"flex-start",
         // alignSelf:"flex-start"
     },
@@ -264,9 +174,8 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontSize: 16,
         fontWeight: "bold",
-
-
     }
+
 });
 
 //make this component available to the app

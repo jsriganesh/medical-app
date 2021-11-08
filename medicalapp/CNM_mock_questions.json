@@ -3,7 +3,7 @@
         {
             "questionNo": 1,
             "question": "What's your first name?",
-            "manditaory": true,
+            "mandatory": true,
             "message": [],
             "dataType": "String", 
             "optionList": [],
@@ -19,7 +19,7 @@
         {
             "questionNo": 2,
             "question": "And your surname?",
-            "manditaory": true,
+            "mandatory": true,
             "message": [],
             "dataType": "String", 
             "optionList": [],
@@ -35,7 +35,7 @@
         {
             "questionNo": 3,
             "question": "What's your email address:",
-            "manditaory": true,
+            "mandatory": true,
             "message": [],
             "dataType": "Email",
             "optionList": [],
@@ -51,7 +51,7 @@
         {
             "questionNo": 4,
             "question": "When were you born",
-            "manditaory": true,
+            "mandatory": true,
             "message": [],
             "dataType": "Date",
             "optionList": [],
@@ -67,7 +67,7 @@
         {
             "questionNo": 5,
             "question": "How do you feel about your health? Is there room for improvement?",
-            "manditaory": true,
+            "mandatory": true,
             "message": [],
             "dataType": "Select",
             "optionList": [
@@ -100,7 +100,7 @@
         {
             "questionNo": 6,
             "question": "Which areas would you be interested in improving most?",
-            "manditaory": true,
+            "mandatory": true,
             "message": [
                 "I'll give you a score for each of these separately"
             ],
@@ -165,7 +165,7 @@
         {
             "questionNo": 7,
             "question": "let's put together a picture of what you look like.",
-            "manditaory": false,
+            "mandatory": false,
             "message": [],
             "dataType": "",
             "optionList": [],
@@ -211,7 +211,7 @@
             "image": "",
             "answer": "",
             "dataType": "Select",
-            "manditaory": true,
+            "mandatory": true,
             "message": [
                 "This is strongly linked to vitamin D needs especially in Winter"
             ]
@@ -229,7 +229,7 @@
             "image": "",
             "answer": "",
             "dataType": "Number",
-            "manditaory": true,
+            "mandatory": true,
             "message": [
                 "Standard recommended dosages are based on a 70kg man we like to be a bit more personalised and accurate"
             ],
@@ -259,7 +259,7 @@
             "image": "",
             "answer": "",
             "dataType": "Select",
-            "manditaory": true,
+            "mandatory": true,
             "message": []
         },
         {
@@ -283,7 +283,7 @@
             "image": "",
             "answer": "",
             "dataType": "Number",
-            "manditaory": true,
+            "mandatory": true,
             "message": [
                 "In kilograms"
             ]
@@ -311,7 +311,7 @@
             "image": "",
             "answer": "",
             "dataType": "Number",
-            "manditaory": true,
+            "mandatory": true,
             "message": [
                 "In kilograms"
             ]
@@ -349,7 +349,7 @@
             "image": "",
             "answer": "",
             "dataType": "Number",
-            "manditaory": true,
+            "mandatory": true,
             "message": [
                 "In centimetres"
             ]
@@ -377,7 +377,7 @@
             "image": "",
             "answer": "",
             "dataType": "Number",
-            "manditaory": true,
+            "mandatory": true,
             "message": [
                 "In centimetres"
             ]
@@ -386,7 +386,7 @@
         {
             "questionNo": 8,
             "question": "If I understand your current lifestyle I can tell you more about your body's needs",
-            "manditaory": false,
+            "mandatory": false,
             "message": [],
             "dataType": "",
             "optionList": [],
@@ -429,7 +429,7 @@
             "image": "",
             "answer": "",
             "dataType": "Select",
-            "manditaory": true,
+            "mandatory": true,
             "message": []
         },
         {
@@ -455,7 +455,7 @@
             "image": "",
             "answer": "",
             "dataType": "Select",
-            "manditaory": true,
+            "mandatory": true,
             "message": []
         },
         {
@@ -496,7 +496,7 @@
             "image": "",
             "answer": "",
             "dataType": "Select",
-            "manditaory": false,
+            "mandatory": false,
             "message": []
         },
         {
@@ -537,7 +537,7 @@
             "image": "",
             "answer": "",
             "dataType": "Select",
-            "manditaory": false,
+            "mandatory": false,
             "message": []
         },
         {
@@ -575,7 +575,7 @@
             "image": "",
             "answer": "",
             "dataType": "Select",
-            "manditaory": false,
+            "mandatory": false,
             "message": []
         }
        

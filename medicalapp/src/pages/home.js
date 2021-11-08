@@ -21,7 +21,7 @@ const mapStateToProps = (state) => ({
 const data = {
     "questionNo": 1,
     "question": "What's your first name?",
-    "manditaory": true,
+    "mandatory": true,
     "message": [],
     "dataType": "String",
     "optionList": [],
@@ -60,8 +60,8 @@ class Home extends Component {
         this.setState({ dummyQuestions })
     }
 
-    changesTextboxAnswer(answer,index){
-        console.log(index,answer)
+    changesTextboxAnswer(answer, index) {
+        console.log(index, answer)
         var { dummyQuestions } = this.state
         dummyQuestions[index]["answer"] = answer
         this.setState({ dummyQuestions })
@@ -84,7 +84,17 @@ class Home extends Component {
                             dummyQuestions.map((data, index) => {
                                 return (
                                     <View key={index} style={{ justifyContent: "space-between", flex: 1, width: width, paddingHorizontal: 20 }} >
-                                        <View></View>
+                                        <View>
+                                            {
+                                                <Surface style={[{ elevation: 4, borderColor: "#000000", marginTop: 15, alignItems: "flex-end", alignSelf: "flex-end" }, styles.backButtonStyle]}>
+                                                    <TouchableOpacity style={styles.backButtonStyle} onPress={() => {
+                                                            this.props.navigation.navigate("LoginPage")
+                                                    }}>
+                                                        <Image source={require("../../assets/images/logout.png")} style={{ height: 25, width: 25 }} />
+                                                    </TouchableOpacity>
+                                                </Surface>
+                                            }
+                                        </View>
                                         <View>
                                             <Question data={data} />
                                             {
@@ -99,7 +109,7 @@ class Home extends Component {
 
                                             {
                                                 data.dataType == "String" || data.dataType == "Email" || data.dataType == "Date" || data.dataType == "Number" ?
-                                                    <TextBox index={index} data={data} changeText={this.changesTextboxAnswer.bind(this)}/>
+                                                    <TextBox index={index} data={data} changeText={this.changesTextboxAnswer.bind(this)} />
                                                     :
                                                     <MultiselectButton index={index} data={data} selectedButtonAnswer={this.selectedButtonAnswer.bind(this)} />
                                             }

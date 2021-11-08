@@ -15,7 +15,7 @@ export const Question = ({ data }) => {
 
                 {data.questionNo ? data.questionNo + ". " : null}
                 {data.question}
-                {data.manditaory ?
+                {data.mandatory ?
                     <Text style={[styles.questionFontStyle, { color: colors.red }]}>{" *"}</Text>
                     : null
                 }</Text>
