@@ -18,23 +18,6 @@ const mapStateToProps = (state) => ({
 });
 
 
-const data = {
-    "questionNo": 1,
-    "question": "What's your first name?",
-    "mandatory": true,
-    "message": [],
-    "dataType": "String",
-    "optionList": [],
-    "minSelect": 0,
-    "maxSelect": 0,
-    "minLength": 2,
-    "maxLength": 20,
-    "image": "",
-    "answer": "",
-    "subQuestions": [],
-    "buttonName": "OK"
-}
-
 class Home extends Component {
 
 

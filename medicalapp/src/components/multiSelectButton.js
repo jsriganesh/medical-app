@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity,FlatList } from 'react-native';
 import colors from '../utils/colors';
 import { ActionTypes } from '../redux/action/actionList';
 import { connect } from "react-redux";
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
 const optionNumber = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
 // create a component
-const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion,dispatch }) => {
+const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion, dispatch }) => {
     const [selectedButtonsList, updateSelectedButton] = useState([])
 
     function removeDuplicate(datas) {
@@ -88,7 +88,7 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion
 
     return (
         <View style={styles.container}>
-            {
+            {/* {
                 data.optionList.length > 0 ?
                 data.optionList.map((option, index) => {
                     if(isGenderQuestion == option.type || option.type == null ||  option.type == undefined){
@@ -116,6 +116,39 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion
                     }
                     })
                     : null
+            } */}
+
+
+            {
+                <FlatList
+                    numColumns={2}
+                    data={data.optionList}
+                    renderItem={( option, index) => {
+                        if (isGenderQuestion == option.item.type || option.item.type == null || option.item.type == undefined) {
+                            const found = selectedButtonsList.some(
+                                (el) => el.option === option.item.option
+                            );
+                            return (
+                                <TouchableOpacity key={option.index} style={[styles.ButtonStyle, found ? { borderColor: colors.themeColor } : {},{flex:0.49,width:"100%"}]} onPress={() => {
+                                    if (data.isGenderQuestion) {
+                                        dispatch({ type: ActionTypes.SELECTED_GENDER, payload: option.item.option })
+
+                                    } else {
+
+                                    }
+                                    updateButtons(option.item)
+                                }}>
+                                    <View style={[styles.optionButtonStyle, found ? { backgroundColor: colors.themeColor } : {}]}>
+                                        <Text style={[styles.optionButtonTextStyle, found ? { color: colors.white } : {}]} >{optionNumber[option.index]}</Text>
+                                    </View>
+                                    <Text numberOfLines={5} style={{}} >
+
+                                        {option.item.option}</Text>
+                                </TouchableOpacity>
+                            )
+                        }
+                    }}
+                />
             }
 
         </View>
@@ -126,10 +159,10 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion
 const styles = StyleSheet.create({
     ButtonStyle: {
         backgroundColor: colors.buttonBackgroundColor,
-        // paddingVertical: 5,
-        height: 45,
-        // paddingHorizontal: 20,
+        paddingVertical: 5,
+        // height: 45,
         paddingRight: 20,
+        // padding: 20,
         marginHorizontal: 8,
         marginVertical: 4,
         borderRadius: 6,
