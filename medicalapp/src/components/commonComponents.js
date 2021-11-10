@@ -13,8 +13,8 @@ export const Question = ({ data }) => {
         <View>
             <Text style={styles.questionFontStyle}>
 
-                {data.questionNo ? data.questionNo + ". " : null}
-                {data.question}
+                {data && data.questionNo ? data.questionNo + ". " : null}
+                {data && data.question ?  data.question : null}
                 {data.mandatory ?
                     <Text style={[styles.questionFontStyle, { color: colors.red }]}>{" *"}</Text>
                     : null

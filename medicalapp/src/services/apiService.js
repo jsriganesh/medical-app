@@ -69,6 +69,9 @@ export async function post(url, data, successCallback, errorCallback) {
     header["Authorization"] = accessToken
   }
 
+  console.log(url)
+  
+  console.log(data)
   fetch(url, {
     method: 'POST',
     headers: header,

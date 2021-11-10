@@ -41,18 +41,22 @@ class Home extends Component {
 
 
     getQuestions() {
+
+        // var len = this.statedataBaseQuestions
+
         var data = this.state.dataBaseQuestions
-        var q = []
-        for (let i = 0; i < this.state.totalQuetions; i++) {
-            q.push(data[i])
-        }
+        // var q = []
+        // for (let i = 0; i < this.state.totalQuetions; i++) {
+        //     q.push(data[i])
+        // }
         this.setState({
-            listOfQuestions: q
+            // listOfQuestions: q
+            listOfQuestions: data
+
         })
     }
 
     componentDidMount() {
-        // this.getQuestions()
         this.getAllQuestions()
     }
 
@@ -69,10 +73,11 @@ class Home extends Component {
 
     getAllQuestionsSuccess = (data) => {
         changeSpinnerFlag(this.props, false)
-        // console.log("data "+JSON.stringify(data))
         if (data.success) {
+            console.log(JSON.stringify(data))
             this.setState({
                 dataBaseQuestions: data.data
+                // dataBaseQuestions: mockQuestions.data
             }, () => {
                 this.getQuestions()
             })
@@ -85,28 +90,31 @@ class Home extends Component {
     }
 
 
-    saveHealthRecords(){
+    saveHealthRecords() {
         changeSpinnerFlag(this.props, true)
+        var data = {
+            "data":this.state.listOfQuestions
+        }
         post(
             ApiUrl.updateUserAnswer,
-            this.state.listOfQuestions,
+            data,
             this.saveHealthRecordsSuccess,
             this.saveHealthRecordsError
         )
     }
 
-    saveHealthRecordsSuccess=success=>{
+    saveHealthRecordsSuccess = success => {
         changeSpinnerFlag(this.props, false);
         console.log(success)
-        if(success.success){
+        if (success.success) {
             SuccessAlert(success.message)
             this.changeIndex(0)
-        }else{
+        } else {
             ErrorAlert(success.message)
         }
     }
-    
-    saveHealthRecordsError=error=>{
+
+    saveHealthRecordsError = error => {
         console.log(error)
         changeSpinnerFlag(this.props, false)
         ErrorAlert(success.message)
@@ -114,19 +122,26 @@ class Home extends Component {
 
     changeIndex(index) {
 
-        // console.log("=======================<"+index)
-
-        if (index == 70) {
-
+        console.log("=======================<" + this.state.totalQuetions % 10)
+        // 71
+        if (index == 71) {
+            this.saveHealthRecords()
         } else {
             this.refs.scroll.scrollTo({ x: width * index })
-            if (this.state.totalQuetions == index) {
-                this.setState({
-                    totalQuetions: this.state.totalQuetions + 10
-                }, () => {
-                    this.getQuestions()
-                })
-            }
+            // if (this.state.totalQuetions == index) {
+            //     var states = this.state
+            //     if (this.state.totalQuetions % 10 == 0 && this.state.totalQuetions <= this.state.listOfQuestions.length) {
+            //         states["totalQuetions"] = this.state.totalQuetions + 10
+            //     } else if (this.state.totalQuetions < this.state.listOfQuestions.length) {
+            //         var num = this.state.totalQuetions % 10
+            //         states["totalQuetions"] = this.state.totalQuetions + num
+            //     }
+            //     this.setState({
+            //         states
+            //     }, () => {
+            //         this.getQuestions()
+            //     })
+            // }
         }
 
     }
@@ -181,7 +196,7 @@ class Home extends Component {
                                         <View>
                                             <Question data={data} />
                                             {
-                                                data.message.length > 0 ?
+                                                data && data.message && data.message.length > 0 ?
                                                     data.message.map((msg, index) => {
                                                         return (
                                                             <QuestionMessage key={index} msg={msg} />
@@ -191,7 +206,7 @@ class Home extends Component {
                                             }
 
                                             {
-                                                data.dataType == "String" || data.dataType == "Email" || data.dataType == "Date" || data.dataType == "Number" ?
+                                                data && (data.dataType == "String" || data.dataType == "Email" || data.dataType == "Date" || data.dataType == "Number") ?
                                                     <TextBox index={index} data={data} changeText={this.changesTextboxAnswer.bind(this)} />
                                                     :
                                                     <MultiselectButton index={index} data={data} selectedButtonAnswer={this.selectedButtonAnswer.bind(this)} />

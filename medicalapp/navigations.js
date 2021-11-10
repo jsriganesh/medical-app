@@ -6,6 +6,7 @@ import LoginPage from './src/pages/loginPage';
 import RegistrationPage from './src/pages/registration';
 import OverLaySpinner from './src/components/overLaySpinner';
 import { connect } from 'react-redux';
+import { getData, storageKeys } from "./src/components/asyncStorage"
 
 const Stack = createNativeStackNavigator();
 
@@ -13,22 +14,35 @@ const Stack = createNativeStackNavigator();
 
 const HomeNavigation = () => {
     return (
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={"Home"}>
+            <Stack.Screen name={"Home"} component={Home} />
+        </Stack.Navigator>
+    )
+}
+
+const LoginNavigation = () => {
+    return (
         <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={"LoginPage"}>
             <Stack.Screen name={"LoginPage"} component={LoginPage} />
             <Stack.Screen name={"Home"} component={Home} />
             <Stack.Screen name={"RegistrationPage"} component={RegistrationPage} />
-
-            
         </Stack.Navigator>
     )
 }
 
 
-
 const RootNavigation = (props) => {
+
+    console.log("================" + JSON.stringify(props.accessToken))
     return (
         <NavigationContainer>
-            <HomeNavigation />
+            {
+                props.accessToken ?
+                    <HomeNavigation />
+                    :
+                    <LoginNavigation />
+            }
+
             <OverLaySpinner visible={props.spinnerFlag} />
         </NavigationContainer>
     )

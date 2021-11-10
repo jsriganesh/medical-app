@@ -16,7 +16,7 @@ const optionNumber = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"
 
 // create a component
 const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion, dispatch }) => {
-    const [selectedButtonsList, updateSelectedButton] = useState([])
+    const [selectedButtonsList, updateSelectedButton] = useState(data.answer ? data.answer :[])
 
     function removeDuplicate(datas) {
         var nameListJsonObject = datas.map(JSON.stringify);
