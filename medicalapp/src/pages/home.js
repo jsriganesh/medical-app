@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, Dimensions, TouchableOpacity, ImageBackground, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, FlatList, Dimensions, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { Question, QuestionMessage, TextBox } from "../components/commonComponents"
 import CommonButton from "../components/commonButton"
 import MultiselectButton from "../components/multiSelectButton"
@@ -93,7 +93,7 @@ class Home extends Component {
     saveHealthRecords() {
         changeSpinnerFlag(this.props, true)
         var data = {
-            "data":this.state.listOfQuestions
+            "data": this.state.listOfQuestions
         }
         post(
             ApiUrl.updateUserAnswer,
@@ -241,6 +241,83 @@ class Home extends Component {
                             })
                             : null
                     }
+
+
+
+                    {/* <FlatList
+                        data={listOfQuestions}
+                        horizontal={true}
+                        // initialScrollIndex={}
+                        renderItem={({item,index}) => {
+                            // console.log("dat ============= > "+JSON.stringify(item))
+                            var data = item;
+                            
+                            return (
+                                <View key={index} style={{ justifyContent: "space-between", flex: 1, width: width, paddingHorizontal: 20 }} >
+                                    <View>
+                                        {
+                                            <Surface style={[{ elevation: 4, borderColor: "#000000", marginTop: 15, alignItems: "flex-end", alignSelf: "flex-end" }, styles.backButtonStyle]}>
+                                                <TouchableOpacity style={styles.backButtonStyle} onPress={() => {
+                                                    this.doLogout()
+                                                }}>
+                                                    <Image source={require("../../assets/images/logout.png")} style={{ height: 25, width: 25 }} />
+                                                </TouchableOpacity>
+                                            </Surface>
+                                        }
+                                    </View>
+                                    <View>
+                                        <Question data={data} />
+                                        {
+                                            data && data.message && data.message.length > 0 ?
+                                                data.message.map((msg, index) => {
+                                                    return (
+                                                        <QuestionMessage key={index} msg={msg} />
+                                                    )
+                                                })
+                                                : null
+                                        }
+
+                                        {
+                                            data && (data.dataType == "String" || data.dataType == "Email" || data.dataType == "Date" || data.dataType == "Number") ?
+                                                <TextBox index={index} data={data} changeText={this.changesTextboxAnswer.bind(this)} />
+                                                :
+                                                <MultiselectButton index={index} data={data} selectedButtonAnswer={this.selectedButtonAnswer.bind(this)} />
+                                        }
+
+                                        <CommonButton changeIndex={this.changeIndex.bind(this)} index={index} allQuestions={listOfQuestions} data={data} />
+                                    </View>
+
+                                    {
+                                        index === 0 ?
+                                            <View />
+                                            :
+
+
+                                            <Surface style={[{ elevation: 4, borderColor: "#000000", marginBottom: 15 }, styles.backButtonStyle]}>
+                                                <TouchableOpacity style={styles.backButtonStyle} onPress={() => {
+                                                    var index = this.props.backNavigationList.length - 1
+                                                    this.changeIndex(this.props.backNavigationList[index])
+                                                    // var afterRemoveLastData = this.props.backNavigationList.pop();
+                                                    this.props.backNavigationList.pop();
+                                                    // var afterRemoveLastData = this.props.backNavigationList.splice(index,1) 
+                                                    const { dispatch } = this.props
+                                                    dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: this.props.backNavigationList })
+
+                                                }}>
+                                                    <Image source={require("../../assets/images/back-arrow.png")} style={{ height: 25, width: 25 }} />
+                                                </TouchableOpacity>
+                                            </Surface>
+                                    }
+                                </View>
+                            )
+                        }}
+                        keyExtractor={(item) => {
+                            // console.log("index"+JSON.stringify(item.indexNo))
+                            // item.indexNo.toString()
+                            item.indexNo.toString()
+                        }}
+                    /> */}
+
                 </ScrollView>
 
             </ImageBackground>
