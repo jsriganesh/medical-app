@@ -19,7 +19,6 @@ function getUnique(arr) {
             uniqueArr.push(i);
         }
     }
-    console.log(uniqueArr);
 
     return (uniqueArr)
 }
@@ -35,30 +34,24 @@ const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion
 
     function backNavigationLists() {
         var backList = backNavigationList
-        console.log("back -----> 1 "+index)
-        console.log(backList)
+
         backList.push(index);
-        console.log("back -----> 2 "+index)
         var filtered = getUnique(backList)
-        console.log("back -----> 3 "+index)
         dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: filtered })
     }
 
 
     function doNavigationButtonValidation(index) {
         if (data && data.nextQuestionIndex) {
-            console.log("nextQuestionIndex option ...")
             changeIndex(data.nextQuestionIndex)
             backNavigationLists(data.nextQuestionIndex)
         } else if (data && data.dataType == "Select" &&
             data.answer && data.answer.length > 0 &&
             data.answer[0].nextQuestionIndex
         ) {
-            console.log("option ...")
             changeIndex(data.answer[0].nextQuestionIndex)
             backNavigationLists(data.answer[0].nextQuestionIndex)
         } else {
-            console.log("else option ...")
         }
 
     }
@@ -66,7 +59,6 @@ const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion
 
     return (
         <TouchableOpacity style={styles.buttonStyle} onPress={() => {
-            console.log("data  " + JSON.stringify(data))
             // if(checkMandatory(data)){
                 doNavigationButtonValidation(index)
             // }else{

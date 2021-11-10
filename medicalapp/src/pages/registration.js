@@ -1,15 +1,16 @@
 //import liraries
 import React, { Component, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, Modal, Dimensions, TouchableOpacity, ImageBackground, Image } from 'react-native';
-// import { Question, QuestionMessage, c } from "../components/commonComponents"
 import colors from '../utils/colors';
 import FloationTextBox from "../components/floatingTextBox"
-// create a component
+import { connect } from 'react-redux';
 import { DatePicker, TimePicker } from "../components/dateAndTimePicker"
 import { ModalComponent } from "../components/modalComponent"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
-
+import { changeSpinnerFlag, SuccessAlert } from "../components/commonFunctions"
+import { ErrorAlert } from "../components/commonFunctions"
+import {post} from "../services/apiService"
+import {ApiUrl} from "../services/apiUrl"
 function validateEmailAddress() {
     var showWrongEmailIdStyle = false
     const emailRegex =
@@ -31,31 +32,6 @@ function validateEmailAddress() {
     return showWrongEmailIdStyle
 
 }
-
-// const Question = (props) => {
-
-//     function onChangeValue(rr) {
-//         console.log("test" + rr)
-//     }
-//     return (
-//         <View style={{ marginBottom: 20 }}>
-//             <Text style={styles.questionFontStyle}>{props.question}</Text>
-//             <TextInput style={styles.textBoxStyle} />
-//             {/* <FloationTextBox labels={"labels.legalFirstName"} componentKey={"firstName"} showMandatory={true} value={""} onChangeValue={onChangeValue} /> */}
-
-//         </View>
-//     )
-// }
-
-// const Button = ({ btnName, callBack }) => {
-//     return (
-//         <TouchableOpacity style={styles.buttonStyle} onPress={() => {
-//             callBack()
-//         }}>
-//             <Text style={styles.buttonTextStyle}>{btnName}</Text>
-//         </TouchableOpacity>
-//     );
-// }
 
 
 class RegistrationPage extends Component {
@@ -92,50 +68,6 @@ class RegistrationPage extends Component {
         })
     }
 
-    // _doLogin() {
-    //     this.setState({
-    //         showPopup: false,
-    //         showPasswordPopup: false
-    //     })
-    //     this.props.navigation.navigate("Home")
-    // }
-
-    // showLoginPopup() {
-    //     this.setState({
-    //         showPopup: true
-    //     })
-    // }
-
-    // _doRegister() {
-    //     this.setState({
-    //         showPasswordPopup: true
-    //     })
-    // }
-
-
-
-
-    // createOrEnterPassword = () => {
-    //     var { email, password } = this.state
-    //     return (
-    //         <View>
-    //             <Question value={password} password={true} question={"Pleace Enter your password"} key={"passowrd"} updateText={this.updateText.bind(this)} />
-    //             <Button btnName="Login" callBack={this._doLogin.bind(this)} />
-    //         </View>
-    //     )
-    // }
-
-    // loginModel = () => {
-    //     var { email, password } = this.state
-    //     return (
-    //         <View>
-    //             <Question value={email} question={"Registered  email "} key={"email"} updateText={this.updateText.bind(this)} />
-    //             <Question value={password} password={true} question={"Password:"} key={"passowrd"} updateText={this.updateText.bind(this)} />
-    //             <Button btnName="Login" callBack={this._doLogin.bind(this)} />
-    //         </View>
-    //     )
-    // }
-
     renderTextBoxWithIcon(image, placeholder, stateKey, value) {
         return (
             <View style={{ borderWidth: 2, height: 55, borderColor: colors.themeColor, borderRadius: 6, flexDirection: "row", alignItems: "center", marginVertical: 8 }}>
@@ -167,16 +99,86 @@ class RegistrationPage extends Component {
         )
     }
 
-    button = (labels, pageName) => {
+    doRegistration() {
+        var { dateOfBirth, fName, lName, email, password } = this.state
+
+        if (fName) {
+            if (lName) {
+                if (email) {
+                    if (dateOfBirth) {
+                        if (password) {
+                            changeSpinnerFlag(this.props,true)
+                            var data ={
+                                firstName:fName,
+                                surName:lName,
+                                dateOfBirth:dateOfBirth,
+                                emailId:email,
+                                password:password,
+                            }
+                            post(
+                                ApiUrl.createUser,
+                                data,
+                                this.registrationnSuccess,
+                                this.registrationnError
+                            )
+
+                        } else {
+                            ErrorAlert("Please enter the password")
+                        }
+                    } else {
+                        ErrorAlert("Please Select the Date of birth")
+                    }
+                } else {
+                    ErrorAlert("Please enter the Email")
+                }
+            } else {
+                ErrorAlert("Please enter the Last name")
+            }
+        } else {
+            ErrorAlert("Please enter the First name")
+        }
+    }
+
+
+    registrationnSuccess=success=>{
+        changeSpinnerFlag(this.props,false)
+        console.log("success")
+        console.log(success)
+        if(success.success){
+            SuccessAlert(success.message)
+            this.props.navigation.navigate("LoginPage") 
+            this.setState({
+                dateOfBirth: "",
+                fName: "",
+                lName: "",
+                email: "",
+                password: "",
+            })
+        }else{
+            ErrorAlert(success.message)
+        }
+    }
+
+    registrationnError=err=>{
+        changeSpinnerFlag(this.props,false)
+        console.log("err")
+        console.log(err)
+        ErrorAlert(err.message)
+    }
+
+    button = (labels, pageName, callBack) => {
         return (
-            <TouchableOpacity style={styles.buttonStyle} onPress={() => { this.props.navigation.navigate(pageName) }}>
+            <TouchableOpacity style={styles.buttonStyle} onPress={() => {
+                // this.props.navigation.navigate(pageName) 
+                this.doRegistration()
+            }}>
                 <Text style={styles.buttonTextStyle}>{labels}</Text>
             </TouchableOpacity>
         );
     }
 
     render() {
-        var { showPopup, showDatePicker, dateOfBirth, fName, lName, email, showPasswordPopup } = this.state
+        var { showPopup, showDatePicker, dateOfBirth, fName, lName, email, showPasswordPopup, password } = this.state
         return (
             // <ImageBackground resizeMode="center" source={require("../../assets/images/backgroundImage1.png")} style={styles.container}>
             <View style={styles.container}>
@@ -208,32 +210,12 @@ class RegistrationPage extends Component {
                         "dateOfBirth",
                         dateOfBirth
                     )}
-                    {/* {this.renderTextBoxWithIcon(
-                        require("../../assets/images/password.png"),
-                        "Password"
-                    )}
                     {this.renderTextBoxWithIcon(
                         require("../../assets/images/password.png"),
-                        "Confirm Password"
-                    )} */}
-                    {/* <Question value={fName} question={"Enter your first name:"} key={"fName"} updateText={this.updateText.bind(this)} />
-                    <Question value={lName} question={"Enter your last name:"} key={"lName"} updateText={this.updateText.bind(this)} />
-                    <Question value={email} question={"Enter your Email Id:"} key={"email"} updateText={this.updateText.bind(this)} />
-                    <View style={{ marginBottom: 20 }}>
-                        <Text style={styles.questionFontStyle}>{"Enter your Date of Birth:"}</Text>
-                        <TouchableOpacity onPress={() => {
-                            this.setState({
-                                showDatePicker: true
-                            })
-                        }} style={styles.dobButtonStyle}>
-                            <Text style={{ fontSize: 20, color: colors.textBoXFontColor, }}>{dateOfBirth}</Text>
-                        </TouchableOpacity>
-                    </View>
-
-                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                        <Button btnName="Login" callBack={this.showLoginPopup.bind(this)} />
-                        <Button btnName="Register" callBack={this._doRegister.bind(this)} />
-                    </View> */}
+                        "Password",
+                        "password",
+                        password
+                    )}
 
                     {
                         showDatePicker ?
@@ -244,44 +226,6 @@ class RegistrationPage extends Component {
                     {this.button("Register", "Home")}
                 </KeyboardAwareScrollView>
 
-
-                {/* <Modal
-                    animationType="slide"
-                    swipeToDismiss
-                    transparent={true}
-                    visible={showPopup}
-                    onRequestClose={() => {
-                        this.setState({
-                            showPopup: !showPopup
-                        })
-                        // setShowPopupFlag(!showPopup)
-                    }}
-                >
-                    <ModalComponent modalHeight="70%" canClose={true} onClose={() => {
-                        this.setState({
-                            showPopup: !showPopup
-                        })
-                    }} innerElement={this.loginModel()} />
-                </Modal>
-
-
-                <Modal
-                    animationType="slide"
-                    swipeToDismiss
-                    transparent={true}
-                    visible={showPasswordPopup}
-                    onRequestClose={() => {
-                        this.setState({
-                            showPasswordPopup: !showPasswordPopup
-                        })
-                    }}
-                >
-                    <ModalComponent modalHeight="70%" canClose={true} onClose={() => {
-                        this.setState({
-                            showPasswordPopup: !showPasswordPopup
-                        })
-                    }} innerElement={this.createOrEnterPassword()} />
-                </Modal> */}
 
             </View>
             // </ImageBackground>
@@ -363,5 +307,6 @@ const styles = StyleSheet.create({
     }
 });
 
-//make this component available to the app
-export default RegistrationPage;
+const mapStateToProps = (state) => ({
+});
+export default connect(mapStateToProps)(RegistrationPage);

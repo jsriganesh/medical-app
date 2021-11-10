@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/pages/home';
 import LoginPage from './src/pages/loginPage';
 import RegistrationPage from './src/pages/registration';
+import OverLaySpinner from './src/components/overLaySpinner';
+import { connect } from 'react-redux';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,12 +25,17 @@ const HomeNavigation = () => {
 
 
 
-const RootNavigation = () => {
+const RootNavigation = (props) => {
     return (
         <NavigationContainer>
             <HomeNavigation />
+            <OverLaySpinner visible={props.spinnerFlag} />
         </NavigationContainer>
     )
 }
 
-export default RootNavigation;
+const mapStateToProps = (state) => ({
+    spinnerFlag: state.spinnerReducer.spinnerFlag,
+});
+
+export default connect(mapStateToProps)(RootNavigation);

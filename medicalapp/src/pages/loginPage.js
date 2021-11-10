@@ -1,14 +1,14 @@
 //import liraries
 import React, { Component, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, Modal, Dimensions, TouchableOpacity, ImageBackground, Image } from 'react-native';
-// import { Question, QuestionMessage, c } from "../components/commonComponents"
 import colors from '../utils/colors';
-import FloationTextBox from "../components/floatingTextBox"
-// create a component
-import { DatePicker, TimePicker } from "../components/dateAndTimePicker"
-import { ModalComponent } from "../components/modalComponent"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
+import { changeSpinnerFlag } from "../components/commonFunctions"
+import { ErrorAlert } from "../components/commonFunctions"
+import { post } from "../services/apiService"
+import { ApiUrl } from "../services/apiUrl"
+import { connect } from 'react-redux';
+import {storeData,storageKeys,getData} from '../components/asyncStorage'
 
 function validateEmailAddress() {
     var showWrongEmailIdStyle = false
@@ -40,9 +40,63 @@ class LoginPage extends Component {
         this.state = {
             showDatePicker: false,
 
-            email: "",
-            password: "",
+            email: "sri@gmail.com",
+            password: "12345",
         }
+    }
+
+
+    doLogin() {
+        var { email, password } = this.state
+        if (email) {
+            if (password) {
+                changeSpinnerFlag(this.props, true)
+                var data = {
+                    emailId: email,
+                    password: password,
+                }
+                post(
+                    ApiUrl.doLogin,
+                    data,
+                    this.loginSuccess,
+                    this.loginError
+                )
+
+            } else {
+                ErrorAlert("Please enter the password")
+            }
+        } else {
+            ErrorAlert("Please enter the Email")
+        }
+    }
+
+
+     loginSuccess  = async(success) => {
+        changeSpinnerFlag(this.props, false)
+        // console.log("success")
+        // console.log(success)
+        if (success.success) {
+            // var accessToken = success.accessToken
+            await storeData(storageKeys.loginDetails, success).then((val)=>{
+                // getData(storageKeys.loginDetails)
+            })
+           
+
+            this.props.navigation.navigate("Home")
+            this.setState({
+                email: "",
+                password: "",
+            })
+        } else {
+            ErrorAlert(success.message)
+        }
+    }
+
+    loginError = err => {
+        changeSpinnerFlag(this.props, false)
+        console.log("err")
+        console.log(err)
+        ErrorAlert(err.message)
     }
 
     updateText(key, value) {
@@ -85,9 +139,17 @@ class LoginPage extends Component {
     }
 
 
-    button = (labels,pageName) => {
+    button = (labels, pageName, type) => {
         return (
-            <TouchableOpacity style={styles.buttonStyle} onPress={() => {this.props.navigation.navigate(pageName)}}>
+            <TouchableOpacity style={styles.buttonStyle} onPress={() => {
+                if (type == "SI") {
+                    this.doLogin()
+                } else {
+                    this.props.navigation.navigate(pageName)
+                }
+                // this.props.navigation.navigate(pageName)
+                // this.doLogin()
+            }}>
                 <Text style={styles.buttonTextStyle}>{labels}</Text>
             </TouchableOpacity>
         );
@@ -111,7 +173,9 @@ class LoginPage extends Component {
                         )}
                         {this.renderTextBoxWithIcon(
                             require("../../assets/images/password.png"),
-                            "Password"
+                            "Password",
+                            "password",
+                            password
                         )}
 
                     </KeyboardAwareScrollView>
@@ -121,8 +185,8 @@ class LoginPage extends Component {
                         </TouchableOpacity>
 
                     </View>
-                    {this.button("Sign In","Home")}
-                    {this.button("Sign Up","RegistrationPage")}
+                    {this.button("Sign In", "Home", "SI")}
+                    {this.button("Sign Up", "RegistrationPage", "SU")}
                 </View>
                 <View></View>
             </View>
@@ -178,5 +242,9 @@ const styles = StyleSheet.create({
 
 });
 
+
+const mapStateToProps = (state) => ({
+});
+
 //make this component available to the app
-export default LoginPage;
+export default connect(mapStateToProps)(LoginPage);

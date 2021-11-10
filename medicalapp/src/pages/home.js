@@ -3,15 +3,18 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, Dimensions, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { Question, QuestionMessage, TextBox } from "../components/commonComponents"
 import CommonButton from "../components/commonButton"
-// create a component
-const { width } = Dimensions.get('window')
 import MultiselectButton from "../components/multiSelectButton"
 import colors from '../utils/colors';
-// var mockQuestions = require("../../CNM_mock_questions.json")
-var mockQuestions = require("../../CMD_new_questions.json")
 import { Surface } from 'react-native-paper';
 import { connect } from "react-redux";
 import { ActionTypes } from '../redux/action/actionList';
+
+import { post } from "../services/apiService"
+import { ApiUrl } from "../services/apiUrl"
+import { changeSpinnerFlag, ErrorAlert, SuccessAlert } from '../components/commonFunctions';
+import { removeValue, storageKeys } from "../components/asyncStorage"
+const { width } = Dimensions.get('window')
+var mockQuestions = require("../../CMD_new_questions.json")
 
 const mapStateToProps = (state) => ({
     backNavigationList: state.backNavigationListReducer.backNavigationList,
@@ -25,53 +28,150 @@ class Home extends Component {
         super(props);
         this.state = {
             offset: 0,
-            dummyQuestions: mockQuestions.data,
+            // dummyQuestions: mockQuestions.data,
             // type : "next"
+
+            dataBaseQuestions: [],
+
+            listOfQuestions: [],
+            totalQuetions: 10
         }
     }
 
 
 
+    getQuestions() {
+        var data = this.state.dataBaseQuestions
+        var q = []
+        for (let i = 0; i < this.state.totalQuetions; i++) {
+            q.push(data[i])
+        }
+        this.setState({
+            listOfQuestions: q
+        })
+    }
+
+    componentDidMount() {
+        // this.getQuestions()
+        this.getAllQuestions()
+    }
+
+
+    getAllQuestions() {
+        changeSpinnerFlag(this.props, true)
+        post(
+            ApiUrl.getQuestion,
+            {},
+            this.getAllQuestionsSuccess,
+            this.getAllQuestionsError
+        )
+    }
+
+    getAllQuestionsSuccess = (data) => {
+        changeSpinnerFlag(this.props, false)
+        // console.log("data "+JSON.stringify(data))
+        if (data.success) {
+            this.setState({
+                dataBaseQuestions: data.data
+            }, () => {
+                this.getQuestions()
+            })
+        }
+    }
+
+    getAllQuestionsError = (err) => {
+        changeSpinnerFlag(this.props, false)
+        console.log("err " + JSON.stringify(err))
+    }
+
+
+    saveHealthRecords(){
+        changeSpinnerFlag(this.props, true)
+        post(
+            ApiUrl.updateUserAnswer,
+            this.state.listOfQuestions,
+            this.saveHealthRecordsSuccess,
+            this.saveHealthRecordsError
+        )
+    }
+
+    saveHealthRecordsSuccess=success=>{
+        changeSpinnerFlag(this.props, false);
+        console.log(success)
+        if(success.success){
+            SuccessAlert(success.message)
+            this.changeIndex(0)
+        }else{
+            ErrorAlert(success.message)
+        }
+    }
+    
+    saveHealthRecordsError=error=>{
+        console.log(error)
+        changeSpinnerFlag(this.props, false)
+        ErrorAlert(success.message)
+    }
+
     changeIndex(index) {
-        this.refs.scroll.scrollTo({ x: width * index })
+
+        // console.log("=======================<"+index)
+
+        if (index == 70) {
+
+        } else {
+            this.refs.scroll.scrollTo({ x: width * index })
+            if (this.state.totalQuetions == index) {
+                this.setState({
+                    totalQuetions: this.state.totalQuetions + 10
+                }, () => {
+                    this.getQuestions()
+                })
+            }
+        }
+
     }
 
 
     selectedButtonAnswer(answer, index) {
-        var { dummyQuestions } = this.state
-        dummyQuestions[index]["answer"] = answer
-        this.setState({ dummyQuestions })
+        var { listOfQuestions } = this.state
+        listOfQuestions[index]["answer"] = answer
+        this.setState({ listOfQuestions })
     }
 
     changesTextboxAnswer(answer, index) {
-        console.log(index, answer)
-        var { dummyQuestions } = this.state
-        dummyQuestions[index]["answer"] = answer
-        this.setState({ dummyQuestions })
+        var { listOfQuestions } = this.state
+        listOfQuestions[index]["answer"] = answer
+        this.setState({ listOfQuestions })
+    }
+
+
+    async doLogout() {
+        await removeValue(storageKeys.loginDetails)
+        this.props.navigation.navigate("LoginPage")
     }
 
     render() {
-        var { dummyQuestions } = this.state
+        var { listOfQuestions } = this.state
         return (
             <ImageBackground resizeMode="center" source={require("../../assets/images/backgroundImage1.png")} style={styles.container}>
                 <ScrollView
                     scrollEnabled={false}
-
+                    animation={false}
                     horizontal={true}
                     pagingEnabled={true}
                     showsHorizontalScrollIndicator={false}
                     ref={'scroll'}
                 >
                     {
-                        dummyQuestions.length > 0 ?
-                            dummyQuestions.map((data, index) => {
+                        listOfQuestions.length > 0 ?
+                            listOfQuestions.map((data, index) => {
                                 return (
                                     <View key={index} style={{ justifyContent: "space-between", flex: 1, width: width, paddingHorizontal: 20 }} >
                                         <View>
                                             {
                                                 <Surface style={[{ elevation: 4, borderColor: "#000000", marginTop: 15, alignItems: "flex-end", alignSelf: "flex-end" }, styles.backButtonStyle]}>
                                                     <TouchableOpacity style={styles.backButtonStyle} onPress={() => {
-                                                            this.props.navigation.navigate("LoginPage")
+                                                        this.doLogout()
                                                     }}>
                                                         <Image source={require("../../assets/images/logout.png")} style={{ height: 25, width: 25 }} />
                                                     </TouchableOpacity>
@@ -97,7 +197,7 @@ class Home extends Component {
                                                     <MultiselectButton index={index} data={data} selectedButtonAnswer={this.selectedButtonAnswer.bind(this)} />
                                             }
 
-                                            <CommonButton changeIndex={this.changeIndex.bind(this)} index={index} allQuestions={dummyQuestions} data={data} />
+                                            <CommonButton changeIndex={this.changeIndex.bind(this)} index={index} allQuestions={listOfQuestions} data={data} />
                                         </View>
 
                                         {
@@ -108,12 +208,10 @@ class Home extends Component {
 
                                                 <Surface style={[{ elevation: 4, borderColor: "#000000", marginBottom: 15 }, styles.backButtonStyle]}>
                                                     <TouchableOpacity style={styles.backButtonStyle} onPress={() => {
-                                                        // console.log(this.props.backNavigationList)
                                                         var index = this.props.backNavigationList.length - 1
                                                         this.changeIndex(this.props.backNavigationList[index])
                                                         // var afterRemoveLastData = this.props.backNavigationList.pop();
                                                         this.props.backNavigationList.pop();
-                                                        // console.log(this.props.backNavigationList)
                                                         // var afterRemoveLastData = this.props.backNavigationList.splice(index,1) 
                                                         const { dispatch } = this.props
                                                         dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: this.props.backNavigationList })
