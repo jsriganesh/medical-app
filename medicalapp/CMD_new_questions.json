@@ -1,6 +1,5 @@
 {
     "data": [
-        // 0- 9 questions Start
         {
             "indexNo": 1,
             "questionNo": 5,
@@ -179,7 +178,7 @@
                 "Standard recommended dosages are based on a 70kg man we like to be a bit more personalised and accurate"
             ],
             "buttonText": "Ok",
-            "nextQuestionIndex": 5 //70
+            "nextQuestionIndex": 5 
         },
         {
             "indexNo": 6,
@@ -286,8 +285,7 @@
             ],
             "nextQuestionIndex": 10
         },
-        // 0- 9 questions end
-        // 10-15  questions start
+
         {
             "indexNo": 11,
             "questionNo": 8,
@@ -374,18 +372,6 @@
             "question": "Do you exercise regularly?",
             "parentquestion": "If I understand your current lifestyle I can tell you more about your body's needs",
             "parentQuestionNo": "8",
-            // "validation": [
-            //     {
-            //         "parentQuestionNo": 8,
-            //         "questionNo": "b",
-            //         "value": "Yes",
-            //         // "questionNo": 8,
-            //         // "subQuestionNo": "b",
-            //         // "value": "Yes"
-            //     }
-            // ],
-            // // "subQuestionNo": "c",
-            // "subQuestion": "How many hours of cardio/ aerobic exercise, such as running, swimming or cycling, do you do in a week?",
             "optionList": [
                 {
                     "option": "0-1"
@@ -473,8 +459,7 @@
             "message": [],
             "nextQuestionIndex": 16
         },
-        // 10-15 questions end   total 8 th question end 
-        // 16-19 questions start   total 4 th question start 
+
         {
             "indexNo": 17,
             "questionNo": "9",
@@ -668,10 +653,9 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 20, // 20
+            "nextQuestionIndex": 20
         },
-        // 16-19 questions end   total 4 th question ENd
-        // question 13 start  index is 20 to 24
+
         {
             "indexNo": 21,
             "prefix": "",
@@ -693,7 +677,7 @@
             "mandatory": false,
             "message": [],
             "nextQuestionIndex": 21,
-            "buttonText": "Continue",
+            "buttonText": "Continue"
         },
         {
             "indexNo": 22,
@@ -715,7 +699,7 @@
                 },
                 {
                     "option": "More than three times a week"
-                },
+                }
             ],
             "optionListMale": [],
             "optionListFemale": [],
@@ -729,7 +713,7 @@
             "mandatory": true,
             "message": [],
             "nextQuestionIndex": 22,
-            "buttonText": "Ok",
+            "buttonText": "Ok"
         },
         {
             "indexNo": 23,
@@ -764,8 +748,7 @@
             "dataType": "Select",
             "mandatory": true,
             "message": [],
-            // "nextQuestionIndex":23, 
-            "buttonText": "Ok",
+            "buttonText": "Ok"
         },
         {
             "indexNo": 24,
@@ -801,7 +784,7 @@
             "mandatory": true,
             "message": [],
             "nextQuestionIndex": 24,
-            "buttonText": "Ok",
+            "buttonText": "Ok"
         },
         {
             "indexNo": 25,
@@ -836,8 +819,8 @@
             "dataType": "Select",
             "mandatory": true,
             "message": [],
-            "nextQuestionIndex": 26, // 26
-            "buttonText": "Ok",
+            "nextQuestionIndex": 26, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 26,
@@ -872,11 +855,10 @@
             "dataType": "Select",
             "mandatory": true,
             "message": [],
-            "nextQuestionIndex": 26, // 26
-            "buttonText": "Ok",
+            "nextQuestionIndex": 26, 
+            "buttonText": "Ok"
         },
-        // question 13 end  index is 20 to 25
-        // question 14 start  index is 26 to 31
+
         {
             "indexNo": 27,
             "prefix": "Ok, great. ",
@@ -898,7 +880,7 @@
             "mandatory": false,
             "message": [],
             "nextQuestionIndex": 27,
-            "buttonText": "Continue",
+            "buttonText": "Continue"
         },
         {
             "indexNo": 28,
@@ -948,7 +930,7 @@
                 "Choose as many as you like"
             ],
             "nextQuestionIndex": 28,
-            "buttonText": "Ok",
+            "buttonText": "Ok"
         },
         {
             "indexNo": 29,
@@ -1004,7 +986,7 @@
                 "Choose as many as you like"
             ],
             "nextQuestionIndex": 29,
-            "buttonText": "Ok",
+            "buttonText": "Ok"
         },
         {
             "indexNo": 30,
@@ -1040,7 +1022,7 @@
             "mandatory": true,
             "message": [],
             "nextQuestionIndex": 30,
-            "buttonText": "Ok",
+            "buttonText": "Ok"
         },
         {
             "indexNo": 31,
@@ -1076,7 +1058,7 @@
             "mandatory": true,
             "message": [],
             "nextQuestionIndex": 31,
-            "buttonText": "Ok",
+            "buttonText": "Ok"
         },
         {
             "indexNo": 32,
@@ -1112,7 +1094,7 @@
             "mandatory": true,
             "message": [],
             "nextQuestionIndex": 32,
-            "buttonText": "Ok",
+            "buttonText": "Ok"
         },
         {
             "indexNo": 33,
@@ -1147,11 +1129,10 @@
             "dataType": "Select",
             "mandatory": true,
             "message": [],
-            "nextQuestionIndex": 33, // 
-            "buttonText": "Ok",
+            "nextQuestionIndex": 33, 
+            "buttonText": "Ok"
         },
-        // question 14 end  index is 26 to 32
-        // question 15 start  index is 26 to 33
+
         {
             "indexNo": 34,
             "prefix": "",
@@ -1176,7 +1157,7 @@
                 "We then personalised your probiotic..."
             ],
             "nextQuestionIndex": 34,
-            "buttonText": "Continue",
+            "buttonText": "Continue"
         },
         {
             "indexNo": 35,
@@ -1216,8 +1197,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 35, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 35, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 36,
@@ -1254,8 +1235,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 36, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 36, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 37,
@@ -1292,8 +1273,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 37, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 37, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 38,
@@ -1330,8 +1311,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 38, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 38, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 39,
@@ -1369,8 +1350,8 @@
             "dataType": "Select",
             "mandatory": true,
             "message": [],
-            "nextQuestionIndex": 39, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 39, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 40,
@@ -1421,7 +1402,7 @@
             "mandatory": true,
             "message": [],
             "nextQuestionIndex": 40,
-            "buttonText": "Ok",
+            "buttonText": "Ok"
         },
         {
             "indexNo": 41,
@@ -1460,7 +1441,7 @@
             "mandatory": true,
             "message": [],
             "nextQuestionIndex": 41,
-            "buttonText": "Ok",
+            "buttonText": "Ok"
         },
         {
             "indexNo": 42,
@@ -1495,7 +1476,7 @@
                 "Choose as many as you like"
             ],
             "nextQuestionIndex": 42,
-            "buttonText": "Ok",
+            "buttonText": "Ok"
         },
         {
             "indexNo": 43,
@@ -1541,7 +1522,7 @@
                 },
                 {
                     "option": "No"
-                },
+                }
             ],
             "optionListMale": [],
             "optionListFemale": [],
@@ -1556,11 +1537,10 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 43, // 43
-            "buttonText": "Ok",
+            "nextQuestionIndex": 43, 
+            "buttonText": "Ok"
         },
-        // question 15 Start  index is 32 to 42  
-        // question 16 Start  index is 43 to  48 
+
         {
             "indexNo": 44,
             "prefix": "Almost there,",
@@ -1582,7 +1562,7 @@
             "mandatory": false,
             "message": [],
             "nextQuestionIndex": 44,
-            "buttonText": "Continue",
+            "buttonText": "Continue"
         },
         {
             "indexNo": 45,
@@ -1622,8 +1602,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 45, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 45, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 46,
@@ -1661,8 +1641,8 @@
             "dataType": "Select",
             "mandatory": true,
             "message": [],
-            "nextQuestionIndex": 46, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 46, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 47,
@@ -1699,8 +1679,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 47, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 47, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 48,
@@ -1743,8 +1723,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 48, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 48, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 49,
@@ -1781,11 +1761,10 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 49, // 49
-            "buttonText": "Ok",
+            "nextQuestionIndex": 49, 
+            "buttonText": "Ok"
         },
-        // question 16 Start  index is 43 to  48 
-        // question 17 Start  index is 49 to   
+
         {
             "indexNo": 50,
             "prefix": "",
@@ -1807,7 +1786,7 @@
             "mandatory": false,
             "message": [],
             "nextQuestionIndex": 50,
-            "buttonText": "Continue",
+            "buttonText": "Continue"
         },
         {
             "indexNo": 51,
@@ -1847,8 +1826,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 51, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 51, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 52,
@@ -1885,8 +1864,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 52, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 52, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 53,
@@ -1929,8 +1908,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 53, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 53,
+            "buttonText": "Ok"
         },
         {
             "indexNo": 54,
@@ -1970,8 +1949,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 54, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 54, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 55,
@@ -2011,11 +1990,10 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 55, // 55
-            "buttonText": "Ok",
+            "nextQuestionIndex": 55, 
+            "buttonText": "Ok"
         },
-        // question 17 Start  index is 49 to   54
-        // question 18 Start  index is 55 to  60 
+
         {
             "indexNo": 56,
             "prefix": "",
@@ -2037,7 +2015,7 @@
             "mandatory": false,
             "message": [],
             "nextQuestionIndex": 56,
-            "buttonText": "Continue",
+            "buttonText": "Continue"
         },
         {
             "indexNo": 57,
@@ -2080,8 +2058,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 57, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 57,
+            "buttonText": "Ok"
         },
         {
             "indexNo": 58,
@@ -2116,8 +2094,8 @@
             "dataType": "Select",
             "mandatory": true,
             "message": [],
-            "nextQuestionIndex": 58, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 58, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 59,
@@ -2152,8 +2130,8 @@
             "dataType": "Select",
             "mandatory": true,
             "message": [],
-            "nextQuestionIndex": 59, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 59, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 60,
@@ -2205,8 +2183,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 60, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 60, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 61,
@@ -2246,8 +2224,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 61, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 61,
+            "buttonText": "Ok"
         },
         {
             "indexNo": 62,
@@ -2287,11 +2265,10 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 62, // 61
-            "buttonText": "Ok",
+            "nextQuestionIndex": 62, 
+            "buttonText": "Ok"
         },
-        // question 18 end  index is 55 to  60
-        // question 19 Start  index is 61 to 64 
+
         {
             "indexNo": 63,
             "prefix": "",
@@ -2317,7 +2294,7 @@
                 "3. The removal of environmental toxins."
             ],
             "nextQuestionIndex": 63,
-            "buttonText": "Continue",
+            "buttonText": "Continue"
         },
         {
             "indexNo": 64,
@@ -2363,8 +2340,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 64, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 64, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 65,
@@ -2401,8 +2378,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 65, // 33
-            "buttonText": "Ok",
+            "nextQuestionIndex": 65, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 66,
@@ -2439,11 +2416,10 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 66, // 65
-            "buttonText": "Ok",
+            "nextQuestionIndex": 66, 
+            "buttonText": "Ok"
         },
-        // question 19 end  index is 61 to 64
-        // question 20 Start  index is 65 to 65
+
         {
             "indexNo": 67,
             "prefix": "",
@@ -2474,11 +2450,9 @@
             "dataType": "Select",
             "mandatory": true,
             "message": [],
-            "nextQuestionIndex": 67, // 65
-            "buttonText": "Ok",
+            "nextQuestionIndex": 67,
+            "buttonText": "Ok"
         },
-        // question 20 end  index is 65 to 65
-        // question 21 Start  index is 66 to 69
         {
             "indexNo": 68,
             "prefix": true,
@@ -2501,8 +2475,8 @@
             "message": [
                 "Medication and drugs will affect the body in many ways. They can increase the requirement for some minerals and supplements and can interact with some supplements:"
             ],
-            "nextQuestionIndex": 68, // 65
-            "buttonText": "Ok",
+            "nextQuestionIndex": 68, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 69,
@@ -2542,8 +2516,8 @@
             "message": [
                 "Choose as many as you like"
             ],
-            "nextQuestionIndex": 69, // 65
-            "buttonText": "Ok",
+            "nextQuestionIndex": 69, 
+            "buttonText": "Ok"
         },
         {
             "indexNo": 70,
