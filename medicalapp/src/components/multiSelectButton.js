@@ -129,7 +129,9 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion
                                 (el) => el.option === option.item.option
                             );
                             return (
-                                <TouchableOpacity key={option.index} style={[styles.ButtonStyle, found ? { borderColor: colors.themeColor } : {},{flex:0.49,width:"100%"}]} onPress={() => {
+                                <TouchableOpacity key={option.index} style={[styles.ButtonStyle, found ? { borderColor: colors.themeColor } : {},
+                                    {flex:0.5,width:"100%"}
+                                ]} onPress={() => {
                                     if (data.isGenderQuestion) {
                                         dispatch({ type: ActionTypes.SELECTED_GENDER, payload: option.item.option })
 
@@ -141,7 +143,7 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion
                                     <View style={[styles.optionButtonStyle, found ? { backgroundColor: colors.themeColor } : {}]}>
                                         <Text style={[styles.optionButtonTextStyle, found ? { color: colors.white } : {}]} >{optionNumber[option.index]}</Text>
                                     </View>
-                                    <Text numberOfLines={5} style={{}} >
+                                    <Text numberOfLines={5} style={{flex:1}} >
 
                                         {option.item.option}</Text>
                                 </TouchableOpacity>
