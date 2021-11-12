@@ -69,7 +69,7 @@ export const EmailIdScreen = (props) => {
                         setEmail(text)
                     }}
                 />
-                <CommonButton label={"Next.."} callBack={() => {
+                <CommonButton label={"Next"} callBack={() => {
                     checkEmail()
                 }} />
                 <ModalPoup visible={errorMessageFlag} children={errorMessage} callBack={() => {
