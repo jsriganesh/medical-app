@@ -40,8 +40,10 @@ class LoginPage extends Component {
         this.state = {
             showDatePicker: false,
 
-            email: "sri@gmail.com",
-            password: "12345",
+            // email: "sri@gmail.com",
+            // password: "12345",
+            email: "",
+            password: "",
         }
     }
 
