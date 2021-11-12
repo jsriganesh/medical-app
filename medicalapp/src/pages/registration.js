@@ -9,8 +9,10 @@ import { ModalComponent } from "../components/modalComponent"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { changeSpinnerFlag, SuccessAlert } from "../components/commonFunctions"
 import { ErrorAlert } from "../components/commonFunctions"
-import {post} from "../services/apiService"
-import {ApiUrl} from "../services/apiUrl"
+import { post } from "../services/apiService"
+import { ApiUrl } from "../services/apiUrl"
+import ModalPoup from "../components/toast"
+
 function validateEmailAddress() {
     var showWrongEmailIdStyle = false
     const emailRegex =
@@ -49,6 +51,9 @@ class RegistrationPage extends Component {
             email: "",
             password: "",
             createPassword: "",
+
+            errorMessage: "",
+            errorMessageFlag: false
         }
     }
 
@@ -60,7 +65,7 @@ class RegistrationPage extends Component {
     }
 
 
-    updateText(key, value) {
+    updateText( value,key) {
         var states = this.state;
         states[key] = value;
         this.setState({
@@ -77,7 +82,7 @@ class RegistrationPage extends Component {
                 <TextInput
                     value={value}
                     onChangeText={(text) => {
-                        this.updateText(stateKey, text)
+                        this.updateText(text, stateKey)
                     }} placeholderTextColor={colors.themeColor} style={styles.newTextBoxStyle} placeholder={placeholder} />
             </View>
         )
@@ -107,13 +112,13 @@ class RegistrationPage extends Component {
                 if (email) {
                     if (dateOfBirth) {
                         if (password) {
-                            changeSpinnerFlag(this.props,true)
-                            var data ={
-                                firstName:fName,
-                                surName:lName,
-                                dateOfBirth:dateOfBirth,
-                                emailId:email,
-                                password:password,
+                            changeSpinnerFlag(this.props, true)
+                            var data = {
+                                firstName: fName,
+                                surName: lName,
+                                dateOfBirth: dateOfBirth,
+                                emailId: email,
+                                password: password,
                             }
                             post(
                                 ApiUrl.createUser,
@@ -123,30 +128,42 @@ class RegistrationPage extends Component {
                             )
 
                         } else {
-                            ErrorAlert("Please enter the password")
+                            this.updateText("Please enter the password", "errorMessage")
+                            this.updateText(true, "errorMessageFlag")
+                            // ErrorAlert("Please enter the password")
                         }
                     } else {
-                        ErrorAlert("Please Select the Date of birth")
+                        // ErrorAlert("Please Select the Date of birth")
+                        this.updateText("Please Select the Date of birth", "errorMessage")
+                        this.updateText(true, "errorMessageFlag")
                     }
                 } else {
-                    ErrorAlert("Please enter the Email")
+                    // ErrorAlert("Please enter the Email")
+                    this.updateText("Please enter the Email", "errorMessage")
+                    this.updateText(true, "errorMessageFlag")
                 }
             } else {
-                ErrorAlert("Please enter the Last name")
+                // ErrorAlert("Please enter the Last name")
+                this.updateText("Please enter the Last name", "errorMessage")
+                this.updateText(true, "errorMessageFlag")
             }
         } else {
-            ErrorAlert("Please enter the First name")
+            // ErrorAlert("Please enter the First name")
+            this.updateText("Please enter the First name", "errorMessage")
+            this.updateText(true, "errorMessageFlag")
         }
     }
 
 
-    registrationnSuccess=success=>{
-        changeSpinnerFlag(this.props,false)
+    registrationnSuccess = success => {
+        changeSpinnerFlag(this.props, false)
         console.log("success")
         console.log(success)
-        if(success.success){
-            SuccessAlert(success.message)
-            this.props.navigation.navigate("EmailIdScreen") 
+        if (success.success) {
+            // SuccessAlert(success.message)
+            this.updateText(success.message, "errorMessage")
+            this.updateText(true, "errorMessageFlag")
+            this.props.navigation.navigate("EmailIdScreen")
             this.setState({
                 dateOfBirth: "",
                 fName: "",
@@ -154,16 +171,20 @@ class RegistrationPage extends Component {
                 email: "",
                 password: "",
             })
-        }else{
-            ErrorAlert(success.message)
+        } else {
+            // ErrorAlert(success.message)
+            this.updateText(success.message, "errorMessage")
+            this.updateText(true, "errorMessageFlag")
         }
     }
 
-    registrationnError=err=>{
-        changeSpinnerFlag(this.props,false)
+    registrationnError = err => {
+        changeSpinnerFlag(this.props, false)
         console.log("err")
         console.log(err)
-        ErrorAlert(err.message)
+        // ErrorAlert(err.message)
+        this.updateText(err.message, "errorMessage")
+        this.updateText(true, "errorMessageFlag")
     }
 
     button = (labels, pageName, callBack) => {
@@ -226,6 +247,10 @@ class RegistrationPage extends Component {
                     {this.button("Register", "Home")}
                 </KeyboardAwareScrollView>
 
+                <ModalPoup visible={this.state.errorMessageFlag} children={this.state.errorMessage} callBack={() => {
+                    this.updateText("", "errorMessage")
+                    this.updateText(false, "errorMessageFlag")
+                }} />
 
             </View>
             // </ImageBackground>

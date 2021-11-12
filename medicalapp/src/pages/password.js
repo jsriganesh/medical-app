@@ -11,12 +11,13 @@ import { connect } from 'react-redux';
 import { storeData, storageKeys, getData } from '../components/asyncStorage'
 import { useNavigation } from '@react-navigation/native';
 import { RenderTextBoxWithIcon, CommonButton } from "../components/commonComponents"
+import ModalPoup from "../components/toast"
 
 export const PasswordScreen = (props) => {
     const navigation = useNavigation();
     const [password, setPassword] = useState("");
-    console.log(JSON.stringify(props.route.params.email))
-
+    const [errorMessage, setErrorMessage] = useState("");
+    const [errorMessageFlag, setErrorMessageFlag] = useState(false);
 
 
     function doLogin() {
@@ -38,30 +39,36 @@ export const PasswordScreen = (props) => {
                         navigation.navigate("Home")
                         setPassword("")
                     } else {
-                        ErrorAlert(success.message)
+                        // ErrorAlert(success.message)
+                        setErrorMessage(success.message)
+                        setErrorMessageFlag(true)
                     }
                 },
                 (error) => {
                     changeSpinnerFlag(props, false)
-                    ErrorAlert("Something went worng")
+                    setErrorMessage("Something went worng")
+                    setErrorMessageFlag(true)
+                    // ErrorAlert("Something went worng")
                 }
             )
 
         } else {
-            ErrorAlert("Please enter the password")
+            setErrorMessage("Please enter your password")
+            setErrorMessageFlag(true)
+            // ErrorAlert("Please enter the password")
         }
     }
 
 
     return (
         <View style={styles.container}>
-            <View style={{ marginVertical: 50, alignItems: "center", }}>
+            <View style={{ marginVertical: 50, alignItems: "center",flex:0.4,justifyContent:"center" }}>
                 <Image source={require("../../assets/images/backgroundImage.png")} style={{ height: 160, width: 180, tintColor: colors.themeColor }} />
             </View>
             {
                 props.route.params.email ?
 
-                    <View style={{ justifyContent: "center", flex: 1 }}>
+                    <View style={{ justifyContent: "center", flex: 0.6 }}>
                         <RenderTextBoxWithIcon
                             image={require("../../assets/images/email.png")}
                             placeholder="Enter Your password"
@@ -75,7 +82,7 @@ export const PasswordScreen = (props) => {
                             // navigation.navigate("Home")
                         }} />
                     </View>
-                    : <View style={{ justifyContent: "center", flex: 1 }}>
+                    : <View style={{ justifyContent: "center", flex: 0.6 }}>
                         <Text style={{ color: colors.themeColor ,textAlign:"center",marginHorizontal:20,fontSize:15}}>{"Your email id  is not register in this app. pls register and countinue.."}</Text>
                         <CommonButton label={"Register"} callBack={() => {
 
@@ -83,6 +90,10 @@ export const PasswordScreen = (props) => {
                         }} />
                     </View>
             }
+            <ModalPoup visible={errorMessageFlag} children={errorMessage} callBack={() => {
+                    setErrorMessage("")
+                    setErrorMessageFlag(false)
+                }} />
         </View>
     )
 

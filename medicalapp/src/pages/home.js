@@ -15,6 +15,7 @@ import { changeSpinnerFlag, ErrorAlert, SuccessAlert } from '../components/commo
 import { removeValue, storageKeys } from "../components/asyncStorage"
 const { width } = Dimensions.get('window')
 var mockQuestions = require("../../CMD_new_questions.json")
+import ModalPoup from "../components/toast"
 
 const mapStateToProps = (state) => ({
     backNavigationList: state.backNavigationListReducer.backNavigationList,
@@ -34,7 +35,9 @@ class Home extends Component {
             dataBaseQuestions: [],
 
             listOfQuestions: [],
-            totalQuetions: 10
+            totalQuetions: 10,
+            errorMessage: "",
+            errorMessageFlag: false
         }
     }
 
@@ -88,7 +91,13 @@ class Home extends Component {
         changeSpinnerFlag(this.props, false)
         console.log("err " + JSON.stringify(err))
     }
-
+    updateText(value, key) {
+        var states = this.state;
+        states[key] = value;
+        this.setState({
+            states
+        })
+    }
 
     saveHealthRecords() {
         changeSpinnerFlag(this.props, true)
@@ -107,17 +116,23 @@ class Home extends Component {
         changeSpinnerFlag(this.props, false);
         console.log(success)
         if (success.success) {
-            SuccessAlert(success.message)
+            this.updateText(success.message, "errorMessage")
+            this.updateText(true, "errorMessageFlag")
+            // SuccessAlert(success.message)
             this.changeIndex(0)
         } else {
-            ErrorAlert(success.message)
+            this.updateText(success.message, "errorMessage")
+            this.updateText(true, "errorMessageFlag")
+            // ErrorAlert(success.message)
         }
     }
 
     saveHealthRecordsError = error => {
         console.log(error)
         changeSpinnerFlag(this.props, false)
-        ErrorAlert(success.message)
+        // ErrorAlert(success.message)
+        this.updateText(error.message, "errorMessage")
+        this.updateText(true, "errorMessageFlag")
     }
 
     changeIndex(index) {
@@ -241,6 +256,11 @@ class Home extends Component {
                             })
                             : null
                     }
+
+                    <ModalPoup visible={this.state.errorMessageFlag} children={this.state.errorMessage} callBack={() => {
+                        this.updateText("", "errorMessage")
+                        this.updateText(false, "errorMessageFlag")
+                    }} />
 
 
 

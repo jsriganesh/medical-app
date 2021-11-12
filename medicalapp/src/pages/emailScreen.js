@@ -10,12 +10,15 @@ import { ApiUrl } from "../services/apiUrl"
 import { connect } from 'react-redux';
 import { storeData, storageKeys, getData } from '../components/asyncStorage'
 import { useNavigation } from '@react-navigation/native';
-import {RenderTextBoxWithIcon,CommonButton} from "../components/commonComponents"
+import { RenderTextBoxWithIcon, CommonButton } from "../components/commonComponents"
+import ModalPoup from "../components/toast"
 
 export const EmailIdScreen = (props) => {
     const navigation = useNavigation();
 
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState("sri@gmail.com");
+    const [errorMessage, setErrorMessage] = useState("");
+    const [errorMessageFlag, setErrorMessageFlag] = useState(false);
 
     function checkEmail() {
 
@@ -32,28 +35,32 @@ export const EmailIdScreen = (props) => {
                     if (success.userExist) {
                         navigation.navigate("PasswordScreen", { email: email, userDetails: success })
                     } else {
-                        navigation.navigate("PasswordScreen", { email: ""})
+                        navigation.navigate("PasswordScreen", { email: "" })
                         // ErrorAlert("Email Id is not register")
                         setEmail("")
                     }
                 },
                 (error) => {
                     changeSpinnerFlag(props, false)
-                    ErrorAlert("Something went worng")
+                    // ErrorAlert("Something went worng")
+                    setErrorMessage("Something went worng")
+                    setErrorMessageFlag(true)
                 }
             )
 
         } else {
-            ErrorAlert("Please enter the Email")
+            // ErrorAlert("Please enter the Email")
+            setErrorMessage("Please enter the Email")
+            setErrorMessageFlag(true)
         }
     }
 
     return (
         <View style={styles.container}>
-            <View style={{ marginVertical: 50, alignItems: "center", }}>
+            <View style={{ marginVertical: 50, alignItems: "center", flex: 0.4, justifyContent: "center" }}>
                 <Image source={require("../../assets/images/backgroundImage.png")} style={{ height: 160, width: 180, tintColor: colors.themeColor }} />
             </View>
-            <View style={{ justifyContent: "center", flex: 1 }}>
+            <View style={{ justifyContent: "center", flex: 0.6 }}>
                 <RenderTextBoxWithIcon
                     image={require("../../assets/images/email.png")}
                     placeholder="Registered Email id"
@@ -64,7 +71,10 @@ export const EmailIdScreen = (props) => {
                 />
                 <CommonButton label={"Next.."} callBack={() => {
                     checkEmail()
-                    // /    navigation.navigate("PasswordScreen",{email:email})
+                }} />
+                <ModalPoup visible={errorMessageFlag} children={errorMessage} callBack={() => {
+                    setErrorMessage("")
+                    setErrorMessageFlag(false)
                 }} />
             </View>
         </View>
@@ -87,5 +97,5 @@ const styles = StyleSheet.create({
         // justifyContent: "space-between",
         backgroundColor: colors.white,
     },
-  
+
 });
