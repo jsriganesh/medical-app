@@ -146,7 +146,7 @@ class RegistrationPage extends Component {
         console.log(success)
         if(success.success){
             SuccessAlert(success.message)
-            this.props.navigation.navigate("LoginPage") 
+            this.props.navigation.navigate("EmailIdScreen") 
             this.setState({
                 dateOfBirth: "",
                 fName: "",

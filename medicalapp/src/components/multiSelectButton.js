@@ -143,7 +143,7 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion
                                     <View style={[styles.optionButtonStyle, found ? { backgroundColor: colors.themeColor } : {}]}>
                                         <Text style={[styles.optionButtonTextStyle, found ? { color: colors.white } : {}]} >{optionNumber[option.index]}</Text>
                                     </View>
-                                    <Text numberOfLines={5} style={{flex:1}} >
+                                    <Text numberOfLines={5} style={{flex:1,color: colors.themeColor}} >
 
                                         {option.item.option}</Text>
                                 </TouchableOpacity>

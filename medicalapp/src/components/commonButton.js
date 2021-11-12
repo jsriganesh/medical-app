@@ -59,11 +59,11 @@ const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion
 
     return (
         <TouchableOpacity style={styles.buttonStyle} onPress={() => {
-            // if(checkMandatory(data)){
+            if(checkMandatory(data)){
                 doNavigationButtonValidation(index)
-            // }else{
+            }else{
 
-            // }
+            }
             
         }}>
             <Text style={styles.buttonTextStyle}>{data.buttonName ? data.buttonName : "ENTER"}</Text>
