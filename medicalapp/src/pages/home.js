@@ -162,7 +162,7 @@ class Home extends Component {
 
     async doLogout() {
         await removeValue(storageKeys.loginDetails)
-        this.props.navigation.navigate("LoginPage")
+        this.props.navigation.navigate("EmailIdScreen")
     }
 
     render() {
