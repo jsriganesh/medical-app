@@ -29,7 +29,7 @@ const mapStateToProps = (state) => ({
 });
 
 
-const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion, dispatch, backNavigationList }) => {
+const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion, dispatch, backNavigationList,errorMessageFunction }) => {
 
 
     function backNavigationLists() {
@@ -59,7 +59,7 @@ const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion
 
     return (
         <TouchableOpacity style={styles.buttonStyle} onPress={() => {
-            if(checkMandatory(data)){
+            if(checkMandatory(data,errorMessageFunction)){
                 doNavigationButtonValidation(index)
             }else{
 
@@ -73,13 +73,15 @@ const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion
 
 
 
-const checkMandatory =(data)=>{
+const checkMandatory =(data,callback)=>{
     if(data.mandatory){
         if(data.dataType == "Select"){
             if(data.minSelect <= data.answer.length  && data.maxSelect >= data.answer.length){
                 return true
             }else{
-                alert("Please select the Options,"+" you need to select minimum "+data.minSelect +" and maximum "+ data.maxSelect)
+                var msg = "Please select the Options,"+" you need to select minimum "+data.minSelect +" and maximum "+ data.maxSelect
+                callback(msg,true)
+                // alert(msg)
                 return false
             }
         }else{
@@ -88,7 +90,8 @@ const checkMandatory =(data)=>{
             if(data.answer !== ""){
                 return true
             }else{
-                alert("Plase Enter the answer")
+                // alert("Plase Enter the answer")
+                callback("Plase Enter the answer",true)
                 return false
             }
         }

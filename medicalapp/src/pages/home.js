@@ -227,7 +227,10 @@ class Home extends Component {
                                                     <MultiselectButton index={index} data={data} selectedButtonAnswer={this.selectedButtonAnswer.bind(this)} />
                                             }
 
-                                            <CommonButton changeIndex={this.changeIndex.bind(this)} index={index} allQuestions={listOfQuestions} data={data} />
+                                            <CommonButton errorMessageFunction={(msg,flag)=>{
+                                                 this.updateText(msg, "errorMessage")
+                                                 this.updateText(flag, "errorMessageFlag")
+                                            }} changeIndex={this.changeIndex.bind(this)} index={index} allQuestions={listOfQuestions} data={data} />
                                         </View>
 
                                         {
