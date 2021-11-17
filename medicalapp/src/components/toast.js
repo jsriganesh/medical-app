@@ -10,7 +10,7 @@ import {
     Animated,
     TouchableWithoutFeedback,
 } from 'react-native';
-
+import colors from "../utils/colors"
 const ModalPoup = ({ visible, children, callBack }) => {
     console.log(visible)
     const [showModal, setShowModal] = React.useState(visible);
@@ -44,7 +44,7 @@ const ModalPoup = ({ visible, children, callBack }) => {
                 <View style={styles.modalBackGround}>
                     <Animated.View
                         style={[styles.modalContainer, { transform: [{ scale: scaleValue }] }]}>
-                        <Text>{children}</Text>
+                        <Text style={{color:colors.themeColor,fontWeight:"500"}}>{children}</Text>
                     </Animated.View>
                 </View>
             </TouchableWithoutFeedback>

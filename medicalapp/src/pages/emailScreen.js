@@ -16,7 +16,7 @@ import ModalPoup from "../components/toast"
 export const EmailIdScreen = (props) => {
     const navigation = useNavigation();
 
-    const [email, setEmail] = useState("sri@gmail.com");
+    const [email, setEmail] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [errorMessageFlag, setErrorMessageFlag] = useState(false);
 
