@@ -16,6 +16,7 @@ import { removeValue, storageKeys } from "../components/asyncStorage"
 const { width } = Dimensions.get('window')
 // var mockQuestions = require("../../CMD_new_questions.json")
 import ModalPoup from "../components/toast"
+import { Platform } from 'react-native';
 
 const mapStateToProps = (state) => ({
     backNavigationList: state.backNavigationListReducer.backNavigationList,
@@ -183,12 +184,14 @@ class Home extends Component {
     render() {
         var { listOfQuestions } = this.state
         return (
-            <ImageBackground resizeMode="center" source={require("../../assets/images/backgroundImage1.png")} style={styles.container}>
+            <ImageBackground resizeMode="center" source={require("../../assets/images/backgroundImage1.png")} 
+            // style={[styles.container,Platform.OS == "web" ? {flexDirection:"row",flex:0.5}:{}]}
+            >
                 <ScrollView
                     scrollEnabled={false}
                     animation={false}
                     horizontal={true}
-                    pagingEnabled={true}
+                    // pagingEnabled={true}
                     showsHorizontalScrollIndicator={false}
                     ref={'scroll'}
                 >
@@ -196,8 +199,8 @@ class Home extends Component {
                         listOfQuestions.length > 0 ?
                             listOfQuestions.map((data, index) => {
                                 return (
-                                    <View key={index} style={{ justifyContent: "space-between", flex: 1, width: width, paddingHorizontal: 20 }} >
-                                        <View>
+                                    <View key={index} style={[{ justifyContent: "space-between", flex: 1, width: width, paddingHorizontal: 20 },Platform.OS == "web" ? {flex:0.5}:{}]} >
+                                        <View style={{width:"50%",alignSelf:"center"}}>
                                             {
                                                 <Surface style={[{ elevation: 4, borderColor: "#000000", marginTop: 15, alignItems: "flex-end", alignSelf: "flex-end" }, styles.backButtonStyle]}>
                                                     <TouchableOpacity style={styles.backButtonStyle} onPress={() => {
@@ -208,7 +211,7 @@ class Home extends Component {
                                                 </Surface>
                                             }
                                         </View>
-                                        <View>
+                                        <View style={{alignItems:"center"}}>
                                             <Question data={data} />
                                             {
                                                 data && data.message && data.message.length > 0 ?
@@ -226,11 +229,12 @@ class Home extends Component {
                                                     :
                                                     <MultiselectButton index={index} data={data} selectedButtonAnswer={this.selectedButtonAnswer.bind(this)} />
                                             }
-
+                                            <View style={Platform.OS =="web"? {width:"50%",alignItems:"center"}:{}}>
                                             <CommonButton errorMessageFunction={(msg,flag)=>{
                                                  this.updateText(msg, "errorMessage")
                                                  this.updateText(flag, "errorMessageFlag")
                                             }} changeIndex={this.changeIndex.bind(this)} index={index} allQuestions={listOfQuestions} data={data} />
+                                        </View>
                                         </View>
 
                                         {
@@ -238,8 +242,8 @@ class Home extends Component {
                                                 <View />
                                                 :
 
-
-                                                <Surface style={[{ elevation: 4, borderColor: "#000000", marginBottom: 15 }, styles.backButtonStyle]}>
+                                                <View style={Platform.OS =="web"? {width:"50%",alignItems:"center"}:{}}>
+                                                <Surface style={[{ elevation: 4, borderColor: "#000000", marginBottom: 15 }, styles.backButtonStyle,]}>
                                                     <TouchableOpacity style={styles.backButtonStyle} onPress={() => {
                                                         var index = this.props.backNavigationList.length - 1
                                                         this.changeIndex(this.props.backNavigationList[index])
@@ -253,6 +257,7 @@ class Home extends Component {
                                                         <Image source={require("../../assets/images/back-arrow.png")} style={{ height: 25, width: 25 }} />
                                                     </TouchableOpacity>
                                                 </Surface>
+                                                </View>
                                         }
                                     </View>
                                 )
