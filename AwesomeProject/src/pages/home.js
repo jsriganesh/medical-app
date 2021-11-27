@@ -199,7 +199,7 @@ class Home extends Component {
                         listOfQuestions.length > 0 ?
                             listOfQuestions.map((data, index) => {
                                 return (
-                                    <View key={index} style={[{ justifyContent: "space-between", flex: 1, width: width, paddingHorizontal: 20 },Platform.OS == "web" ? {flex:0.5}:{}]} >
+                                    <View key={index} style={[{ justifyContent: "space-between", flex: 1, width: width, paddingHorizontal: 20 },Platform.OS == "web" ? {flex:0.1}:{}]} >
                                         <View style={{width:"50%",alignSelf:"center"}}>
                                             {
                                                 <Surface style={[{ elevation: 4, borderColor: "#000000", marginTop: 15, alignItems: "flex-end", alignSelf: "flex-end" }, styles.backButtonStyle]}>
