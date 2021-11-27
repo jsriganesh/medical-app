@@ -1,10 +1,10 @@
 //import liraries
 import React, { Component, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, Modal, Dimensions, TouchableOpacity, ImageBackground, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TextInput, Modal, Dimensions, TouchableOpacity, ImageBackground, Image, Platform } from 'react-native';
 import { colors } from '../utils/colors';
 import FloationTextBox from "../components/floatingTextBox"
 import { connect } from 'react-redux';
-import { DatePicker, TimePicker } from "../components/dateAndTimePicker"
+// import { DatePicker, TimePicker } from "../components/dateAndTimePicker"
 import { ModalComponent } from "../components/modalComponent"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { changeSpinnerFlag, SuccessAlert } from "../components/commonFunctions"
@@ -13,6 +13,9 @@ import { post } from "../services/apiService"
 import { ApiUrl } from "../services/apiUrl"
 import ModalPoup from "../components/toast"
 import { CommonButton, RenderButtonWithIcon, RenderTextBoxWithIcon } from '../components/commonComponents';
+
+import { DatePicker } from 'antd';
+import 'antd/dist/antd.css';
 
 function validateEmailAddress() {
     var showWrongEmailIdStyle = false
@@ -98,29 +101,40 @@ class RegistrationPage extends Component {
     }
 
     renderButtonBoxWithIcon(image, placeholder, stateKey, value) {
+        var me = this
+        function onChange(date, dateString) {
+            console.log(date);
+            console.log(dateString);
+            me.setState({
+                dateOfBirth: dateString
+            })
+        }
         return (
-            // <TouchableOpacity onPress={() => {
-                // this.setState({
-                //     showDatePicker: true
-                // })
-            // }} style={{ borderWidth: 2, height: 55, width: "100%", borderColor: colors.themeColor, borderRadius: 6, flexDirection: "row", alignItems: "center", marginVertical: 8 }}>
-            //     <View style={{ backgroundColor: colors.themeColor, marginHorizontal: 10, borderRadius: 50, marginVertical: 5 }}>
-            //         <Image source={image} style={{ height: 45, width: 45, tintColor: colors.white }} />
-            //     </View>
+            <>
+                {
+                    Platform.OS === "web" ?
+                        <TouchableOpacity onPress={() => { }} style={{ borderWidth: 2, height: 55, width: "100%", borderColor: colors.themeColor, borderRadius: 6, flexDirection: "row", alignItems: "center", marginVertical: 8 }}>
+                            <View style={{ backgroundColor: colors.themeColor, marginHorizontal: 10, borderRadius: 50, marginVertical: 5 }}>
+                                <Image source={image} style={{ height: 45, width: 45, tintColor: colors.white }} />
+                            </View>
+                            <DatePicker onChange={onChange} style={{ borderWidth: 0, color: colors.themeColor, width: "100%" }} c placeholder={value ? value : placeholder} />
 
-            //     <Text style={[styles.newTextBoxStyle]}>{value ? value : placeholder}</Text>
-            // </TouchableOpacity>
-            <RenderButtonWithIcon
-            image={image}
-            placeholder={placeholder}
-            value={value}
-            callBack={() => {
-                this.setState({
-                    showDatePicker: true
-                })
-                // this.updateText(text, stateKey)
-            }}
-            />
+                            {/* <Text style={[styles.newTextBoxStyle]}>{value ? value : placeholder}</Text> */}
+                        </TouchableOpacity>
+                        :
+                        <RenderButtonWithIcon
+                            image={image}
+                            placeholder={placeholder}
+                            value={value}
+                            callBack={() => {
+                                this.setState({
+                                    showDatePicker: true
+                                })
+                                // this.updateText(text, stateKey)
+                            }}
+                        />
+                }
+            </>
         )
     }
 
@@ -231,45 +245,45 @@ class RegistrationPage extends Component {
                     <Image source={require("../../assets/images/backgroundImage.png")} style={{ height: 160, width: 180, tintColor: colors.themeColor }} />
                 </View>
                 <KeyboardAwareScrollView>
-                    <View style={{alignSelf:"center"}}>
-                    {this.renderTextBoxWithIcon(
-                        require("../../assets/images/user.png"),
-                        "First Name",
-                        "fName",
-                        fName
-                    )}
-                    {this.renderTextBoxWithIcon(
-                        require("../../assets/images/user.png"),
-                        "Last Name",
-                        "lName",
-                        lName
-                    )}
-                    {this.renderTextBoxWithIcon(
-                        require("../../assets/images/email.png"),
-                        "Email id",
-                        "email",
-                        email
-                    )}
-                    {this.renderButtonBoxWithIcon(
-                        require("../../assets/images/dob.png"),
-                        "Date of Birth",
-                        "dateOfBirth",
-                        dateOfBirth
-                    )}
-                    {this.renderTextBoxWithIcon(
-                        require("../../assets/images/password.png"),
-                        "Password",
-                        "password",
-                        password
-                    )}
+                    <View style={{ alignSelf: "center" }}>
+                        {this.renderTextBoxWithIcon(
+                            require("../../assets/images/user.png"),
+                            "First Name",
+                            "fName",
+                            fName
+                        )}
+                        {this.renderTextBoxWithIcon(
+                            require("../../assets/images/user.png"),
+                            "Last Name",
+                            "lName",
+                            lName
+                        )}
+                        {this.renderTextBoxWithIcon(
+                            require("../../assets/images/email.png"),
+                            "Email id",
+                            "email",
+                            email
+                        )}
+                        {this.renderButtonBoxWithIcon(
+                            require("../../assets/images/dob.png"),
+                            "Date of Birth",
+                            "dateOfBirth",
+                            dateOfBirth
+                        )}
+                        {this.renderTextBoxWithIcon(
+                            require("../../assets/images/password.png"),
+                            "Password",
+                            "password",
+                            password
+                        )}
 
-                    {
-                        showDatePicker ?
-                            <DatePicker date={dateOfBirth} selectedDate={this.selectedDate.bind(this)} />
-                            : null
-                    }
+                        {
+                            showDatePicker && (Platform.OS === "ios" || Platform.OS === "android") ?
+                                <DatePicker date={dateOfBirth} selectedDate={this.selectedDate.bind(this)} />
+                                : null
+                        }
 
-                    {this.button("Register", "Home")}
+                        {this.button("Register", "Home")}
                     </View>
                 </KeyboardAwareScrollView>
 
