@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { getData, storageKeys } from "./src/components/asyncStorage"
 import EmailIdScreen from "./src/pages/emailScreen";
 import PasswordScreen from "./src/pages/password";
+import FinalPage from './src/pages/finalPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,8 @@ const HomeNavigation = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={"Home"}>
             <Stack.Screen name={"Home"} component={Home} />
+            <Stack.Screen name={"FinalPage"} component={FinalPage} />
+
         </Stack.Navigator>
     )
 }

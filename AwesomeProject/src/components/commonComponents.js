@@ -50,7 +50,7 @@ export const TextBox = ({ changeText, index, data }) => {
     return (
         <View>
             <TextInput value={data.answer}
-                maxLength={data.minLength}
+                maxLength={data.maxLength}
                 keyboardType={data.dataType == "Number" ? "number-pad" : "default"}
                 onChangeText={(text) => {
                     changeText(text, index)

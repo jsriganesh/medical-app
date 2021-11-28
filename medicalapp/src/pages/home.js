@@ -120,6 +120,9 @@ class Home extends Component {
             this.updateText(true, "errorMessageFlag")
             // SuccessAlert(success.message)
             this.changeIndex(0)
+            this.props.navigation.navigate("FinalPage")
+            // this.changeIndex(0)
+
         } else {
             this.updateText(success.message, "errorMessage")
             this.updateText(true, "errorMessageFlag")
@@ -176,8 +179,11 @@ class Home extends Component {
 
 
     async doLogout() {
-        await removeValue(storageKeys.loginDetails)
+        await removeValue(storageKeys.loginDetails).then(()=>{
+            console.log("removeValue ===========> ")
+        })
         this.props.navigation.navigate("EmailIdScreen")
+        // this.props.navigation.navigate("EmailIdScreen")
     }
 
     render() {
@@ -218,6 +224,12 @@ class Home extends Component {
                                                         )
                                                     })
                                                     : null
+                                            }
+                                            {
+                                                data.image && data.image.length > 0 ? 
+                                                <Image source={{uri:data.image[0]}} style={{marginVertical:20,height:300,width:800}}/>
+                                                :
+                                                null
                                             }
 
                                             {

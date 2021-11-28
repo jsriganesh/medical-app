@@ -17,6 +17,7 @@ const { width } = Dimensions.get('window')
 // var mockQuestions = require("../../CMD_new_questions.json")
 import ModalPoup from "../components/toast"
 import { Platform } from 'react-native';
+import { base64Image } from '../services/config';
 
 const mapStateToProps = (state) => ({
     backNavigationList: state.backNavigationListReducer.backNavigationList,
@@ -119,12 +120,13 @@ class Home extends Component {
         if (success.success) {
             this.updateText(success.message, "errorMessage")
             this.updateText(true, "errorMessageFlag")
-            // SuccessAlert(success.message)
             this.changeIndex(0)
+            this.props.navigation.navigate("FinalPage")
+            // this.changeIndex(0)
+
         } else {
             this.updateText(success.message, "errorMessage")
             this.updateText(true, "errorMessageFlag")
-            // ErrorAlert(success.message)
         }
     }
 
@@ -177,13 +179,17 @@ class Home extends Component {
 
 
     async doLogout() {
-        await removeValue(storageKeys.loginDetails)
+        await removeValue(storageKeys.loginDetails).then(()=>{
+            console.log("removeValue ===========> ")
+        })
         this.props.navigation.navigate("EmailIdScreen")
+        // this.props.navigation.navigate("EmailIdScreen")
     }
 
     render() {
         var { listOfQuestions } = this.state
         return (
+            <ScrollView>
             <ImageBackground resizeMode="center" source={require("../../assets/images/backgroundImage1.png")} 
             // style={[styles.container,Platform.OS == "web" ? {flexDirection:"row",flex:0.5}:{}]}
             >
@@ -221,6 +227,13 @@ class Home extends Component {
                                                         )
                                                     })
                                                     : null
+                                            }
+
+                                            {
+                                                data.image && data.image.length > 0? 
+                                                <Image source={{uri:data.image[0]}} style={{marginVertical:20,height:300,width:800}}/>
+                                                :
+                                                null
                                             }
 
                                             {
@@ -349,6 +362,7 @@ class Home extends Component {
                 </ScrollView>
 
             </ImageBackground>
+            </ScrollView>
         );
     };
 }

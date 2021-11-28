@@ -5,10 +5,11 @@ import Home from './src/pages/home';
 // // import LoginPage from './src/pages/loginPage';
 import RegistrationPage from './src/pages/registration';
 import OverLaySpinner from './src/components/overLaySpinner';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 // import { getData, storageKeys } from "./src/components/asyncStorage"
 import EmailIdScreen from "./src/pages/emailScreen";
 import PasswordScreen from "./src/pages/password";
+import FinalPage from './src/pages/finalPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ const HomeNavigation = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={"Home"}>
             <Stack.Screen name={"Home"} component={Home} />
+            <Stack.Screen name={"FinalPage"} component={FinalPage} />
         </Stack.Navigator>
     )
 }
@@ -29,6 +31,7 @@ const LoginNavigation = () => {
             <Stack.Screen name={"PasswordScreen"} component={PasswordScreen}/>
             <Stack.Screen name={"Home"} component={Home} />
             <Stack.Screen name={"RegistrationPage"} component={RegistrationPage} />
+            
         </Stack.Navigator>
     )
 }
@@ -51,9 +54,9 @@ const RootNavigation = (props) => {
     )
 }
 
-// const mapStateToProps = (state) => ({
-//     spinnerFlag: state.spinnerReducer.spinnerFlag,
-// });
+const mapStateToProps = (state) => ({
+    spinnerFlag: state.spinnerReducer.spinnerFlag,
+});
 
-// export default connect(mapStateToProps)(RootNavigation);
-export default RootNavigation;
+export default connect(mapStateToProps)(RootNavigation);
+// export default RootNavigation;
