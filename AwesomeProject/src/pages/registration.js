@@ -198,7 +198,7 @@ class RegistrationPage extends Component {
             // SuccessAlert(success.message)
             this.updateText(success.message, "errorMessage")
             this.updateText(true, "errorMessageFlag")
-            this.props.navigation.navigate("EmailIdScreen")
+            this.props.navigation.navigate("EmailIdScreen",{regSuccessMessage:"Registration is successfully completed..."})
             this.setState({
                 dateOfBirth: "",
                 fName: "",

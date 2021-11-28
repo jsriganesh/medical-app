@@ -10,8 +10,9 @@ import { ApiUrl } from "../services/apiUrl"
 import { connect } from 'react-redux';
 import { storeData, storageKeys, getData } from '../components/asyncStorage'
 import { useNavigation } from '@react-navigation/native';
-import { RenderTextBoxWithIcon, CommonButton } from "../components/commonComponents"
+import { RenderTextBoxWithIcon, CommonButton, Question } from "../components/commonComponents"
 import ModalPoup from "../components/toast"
+import { FontFamily } from '../utils/fontFamily';
 
 export const EmailIdScreen = (props) => {
     const navigation = useNavigation();
@@ -55,12 +56,24 @@ export const EmailIdScreen = (props) => {
         }
     }
 
+    console.log(props)
     return (
         <View style={styles.container}>
             <View style={{ marginVertical: 50, alignItems: "center", flex: 0.4, justifyContent: "center" }}>
                 <Image source={require("../../assets/images/backgroundImage.png")} style={{ height: 160, width: 180, tintColor: colors.themeColor }} />
             </View>
             <View style={{ justifyContent: "center", flex: 0.6, alignSelf: "center" }}>
+
+                {/* regSuccessMessage */}
+
+                {
+                    props.route && props.route.params && props.route.params.regSuccessMessage ?
+                        <Text style={styles.questionFontStyle}>{props.route.params.regSuccessMessage}</Text>
+                        :
+                        null
+                }
+
+
                 <RenderTextBoxWithIcon
                     image={require("../../assets/images/email.png")}
                     placeholder="Registered Email id"
@@ -96,6 +109,12 @@ const styles = StyleSheet.create({
         flex: 1,
         // justifyContent: "space-between",
         backgroundColor: colors.white,
+    },
+    questionFontStyle: {
+        color: colors.questionFontColor,
+        fontSize: 24,
+        fontFamily: FontFamily.fontBold,
+        marginBottom: 20
     },
 
 });

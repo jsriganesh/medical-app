@@ -20,6 +20,9 @@ const HomeNavigation = () => {
         <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={"Home"}>
             <Stack.Screen name={"Home"} component={Home} />
             <Stack.Screen name={"FinalPage"} component={FinalPage} />
+            <Stack.Screen name={"EmailIdScreen"} component={EmailIdScreen}/>
+            <Stack.Screen name={"PasswordScreen"} component={PasswordScreen}/>
+            <Stack.Screen name={"RegistrationPage"} component={RegistrationPage} />
         </Stack.Navigator>
     )
 }
@@ -31,6 +34,7 @@ const LoginNavigation = () => {
             <Stack.Screen name={"PasswordScreen"} component={PasswordScreen}/>
             <Stack.Screen name={"Home"} component={Home} />
             <Stack.Screen name={"RegistrationPage"} component={RegistrationPage} />
+            <Stack.Screen name={"FinalPage"} component={FinalPage} />
             
         </Stack.Navigator>
     )

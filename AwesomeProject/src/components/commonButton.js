@@ -65,7 +65,7 @@ const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion
             }
             
         }}>
-            <Text style={styles.buttonTextStyle}>{data.buttonName ? data.buttonName : "ENTER"}</Text>
+            <Text style={styles.buttonTextStyle}>{data.buttonName ? data.buttonName : "NEXT"}</Text>
         </TouchableOpacity>
     );
 };
