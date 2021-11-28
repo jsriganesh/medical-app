@@ -63,6 +63,7 @@ class Home extends Component {
 
     componentDidMount() {
         this.getAllQuestions()
+        // this.changeIndex(0)
     }
 
 
@@ -118,10 +119,11 @@ class Home extends Component {
         changeSpinnerFlag(this.props, false);
         console.log(success)
         if (success.success) {
+            this.props.navigation.navigate("FinalPage")
+
             this.updateText(success.message, "errorMessage")
             this.updateText(true, "errorMessageFlag")
             this.changeIndex(0)
-            this.props.navigation.navigate("FinalPage")
             // this.changeIndex(0)
 
         } else {

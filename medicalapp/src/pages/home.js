@@ -116,11 +116,12 @@ class Home extends Component {
         changeSpinnerFlag(this.props, false);
         console.log(success)
         if (success.success) {
+            this.props.navigation.navigate("FinalPage")
             this.updateText(success.message, "errorMessage")
             this.updateText(true, "errorMessageFlag")
             // SuccessAlert(success.message)
             this.changeIndex(0)
-            this.props.navigation.navigate("FinalPage")
+            // this.props.navigation.navigate("FinalPage")
             // this.changeIndex(0)
 
         } else {

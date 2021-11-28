@@ -10,7 +10,7 @@ import {
     Animated,
     TouchableWithoutFeedback,
 } from 'react-native';
-import {colors}  from "../utils/colors"
+import { colors } from "../utils/colors"
 const ModalPoup = ({ visible, children, callBack }) => {
     console.log(visible)
     const [showModal, setShowModal] = React.useState(visible);
@@ -44,7 +44,14 @@ const ModalPoup = ({ visible, children, callBack }) => {
                 <View style={styles.modalBackGround}>
                     <Animated.View
                         style={[styles.modalContainer, { transform: [{ scale: scaleValue }] }]}>
-                        <Text style={{color:colors.themeColor,fontWeight:"500"}}>{children}</Text>
+
+                        <Text style={{ color: colors.themeColor, fontWeight: "500", flex: 0.9,marginTop:20 }}>{children}</Text>
+                        <TouchableOpacity style={{ flex: 0.1, alignItems: "flex-end" }} onPress={()=>{
+                            setShowModal(false)
+                            callBack(false)
+                        }}>
+                            <Image source={require("../../assets/images/close.png")} style={{ height: 20, width: 20,tintColor:colors.themeColor }} />
+                        </TouchableOpacity>
                     </Animated.View>
                 </View>
             </TouchableWithoutFeedback>
@@ -60,12 +67,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     modalContainer: {
-        width: '80%',
+        width: '40%',
         backgroundColor: 'white',
         paddingHorizontal: 20,
-        paddingVertical: 30,
+        paddingBottom: 30,
+        paddingTop: 10,
         borderRadius: 20,
         elevation: 20,
+        flexDirection: "row"
     },
     header: {
         width: '100%',
