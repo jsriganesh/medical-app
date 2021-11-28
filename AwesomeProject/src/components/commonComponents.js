@@ -53,7 +53,14 @@ export const TextBox = ({ changeText, index, data }) => {
                 maxLength={data.maxLength}
                 keyboardType={data.dataType == "Number" ? "number-pad" : "default"}
                 onChangeText={(text) => {
+                    var pattern = /^\d+$/;
+                    if(data.dataType == "Number" && text){
+                        if(pattern.test(text)){
+                            changeText(text, index)
+                        }
+                    }else{
                     changeText(text, index)
+                    }
                 }}
                 style={styles.textBoxStyle} />
         </View>
