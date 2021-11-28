@@ -70,6 +70,7 @@ export const PasswordScreen = (props) => {
 
                     <View style={{ justifyContent: "center", flex: 0.6 }}>
                         <RenderTextBoxWithIcon
+                            type={"password"}
                             image={require("../../assets/images/password.png")}
                             placeholder="Enter Your password"
                             value={password}

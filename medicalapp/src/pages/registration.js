@@ -81,6 +81,7 @@ class RegistrationPage extends Component {
                 </View>
                 <TextInput
                     value={value}
+                    type={stateKey}
                     onChangeText={(text) => {
                         this.updateText(text, stateKey)
                     }} placeholderTextColor={colors.themeColor} style={styles.newTextBoxStyle} placeholder={placeholder} />

@@ -73,6 +73,7 @@ export const PasswordScreen = (props) => {
                             image={require("../../assets/images/password.png")}
                             placeholder="Enter Your password"
                             value={password}
+                            type={"password"}
                             callBack={(text) => {
                                 setPassword(text)
                             }}

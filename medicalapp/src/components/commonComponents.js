@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity,Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import colors from '../utils/colors';
 import FontFamily from '../utils/fontFamily';
 import theme from '../utils/theme';
@@ -14,7 +14,7 @@ export const Question = ({ data }) => {
             <Text style={styles.questionFontStyle}>
 
                 {data && data.questionNo ? data.questionNo + ". " : null}
-                {data && data.question ?  data.question : null}
+                {data && data.question ? data.question : null}
                 {data.mandatory ?
                     <Text style={[styles.questionFontStyle, { color: colors.red }]}>{" *"}</Text>
                     : null
@@ -33,16 +33,16 @@ export const QuestionMessage = ({ msg }) => {
     );
 };
 
-export const TextBox = ({changeText,index,data}) => {
+export const TextBox = ({ changeText, index, data }) => {
     return (
         <View>
-            <TextInput value={data.answer} 
-            maxLength={data.maxLength}
-             keyboardType={data.dataType == "Number"? "number-pad":"default"}
-            onChangeText={(text) => {
-                changeText(text,index)
-            }}
-            style={styles.textBoxStyle} />
+            <TextInput value={data.answer}
+                maxLength={data.maxLength}
+                keyboardType={data.dataType == "Number" ? "number-pad" : "default"}
+                onChangeText={(text) => {
+                    changeText(text, index)
+                }}
+                style={styles.textBoxStyle} />
         </View>
     );
 };
@@ -121,13 +121,14 @@ export const CommonButton = ({ label, callBack }) => {
 }
 
 
-export const RenderTextBoxWithIcon = ({ image, placeholder, value, callBack }) => {
+export const RenderTextBoxWithIcon = ({ image, placeholder, value, callBack, type }) => {
     return (
         <View style={styles.componentContainer}>
             <View style={styles.imageBackground}>
                 <Image source={image} style={styles.image} />
             </View>
             <TextInput
+                secureTextEntry={type == "password" ? true : false}
                 value={value}
                 onChangeText={(text) => {
                     callBack(text)

@@ -93,6 +93,7 @@ class RegistrationPage extends Component {
                 image={image}
                 placeholder={placeholder}
                 value={value}
+                type={stateKey}
                 callBack={(text) => {
                     this.updateText(text, stateKey)
                 }}
@@ -241,10 +242,11 @@ class RegistrationPage extends Component {
         return (
             // <ImageBackground resizeMode="center" source={require("../../assets/images/backgroundImage1.png")} style={styles.container}>
             <View style={styles.container}>
+                <KeyboardAwareScrollView>
                 <View style={{ marginVertical: 50, alignItems: "center", }}>
                     <Image source={require("../../assets/images/backgroundImage.png")} style={{ height: 160, width: 180, tintColor: colors.themeColor }} />
                 </View>
-                <KeyboardAwareScrollView>
+                {/* <KeyboardAwareScrollView> */}
                     <View style={{ alignSelf: "center" }}>
                         {this.renderTextBoxWithIcon(
                             require("../../assets/images/user.png"),

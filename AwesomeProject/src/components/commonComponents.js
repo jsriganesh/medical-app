@@ -153,7 +153,7 @@ export const CommonButton = ({ label, callBack }) => {
 }
 
 
-export const RenderTextBoxWithIcon = ({ image, placeholder, value, callBack }) => {
+export const RenderTextBoxWithIcon = ({ image, placeholder, value, callBack,type }) => {
 
     
 
@@ -176,6 +176,7 @@ export const RenderTextBoxWithIcon = ({ image, placeholder, value, callBack }) =
                 <Image source={image} style={styles.image} />
             </View>
             <TextInput
+                secureTextEntry={type == "password" ?true: false}
                 value={value}
                 onChangeText={(text) => {
                     callBack(text)
