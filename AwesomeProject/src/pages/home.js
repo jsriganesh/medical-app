@@ -64,8 +64,15 @@ class Home extends Component {
     componentDidMount() {
         this.getAllQuestions()
         // this.changeIndex(0)
+        this._unsubscribe = this.props.navigation.addListener('focus', () => {
+            this.getAllQuestions()
+          });
     }
 
+      
+      componentWillUnmount() {
+        this._unsubscribe();
+      }
 
     getAllQuestions() {
         changeSpinnerFlag(this.props, true)
@@ -85,6 +92,7 @@ class Home extends Component {
                 dataBaseQuestions: data.data
                 // dataBaseQuestions: mockQuestions.data
             }, () => {
+                this.changeIndex(0)
                 this.getQuestions()
             })
         }
