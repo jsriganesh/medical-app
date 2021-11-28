@@ -120,7 +120,7 @@ class Home extends Component {
             this.updateText(success.message, "errorMessage")
             this.updateText(true, "errorMessageFlag")
             // SuccessAlert(success.message)
-            this.changeIndex(0)
+            // this.changeIndex(0)
             // this.props.navigation.navigate("FinalPage")
             // this.changeIndex(0)
 
