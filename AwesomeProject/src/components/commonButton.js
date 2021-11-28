@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 6,
         borderRadius: 5,
-        alignSelf: "flex-start",
+        alignSelf: "center",
         marginVertical: 20
         // aliginContent:"flex-start",
         // alignSelf:"flex-start"
