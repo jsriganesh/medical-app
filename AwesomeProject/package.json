@@ -24,6 +24,7 @@
     "react-native": "0.64.3",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-loading-spinner-overlay": "^2.0.0",
+    "react-native-media-query": "^1.0.10",
     "react-native-modal-datetime-picker": "^13.0.0",
     "react-native-paper": "^4.10.1",
     "react-native-safe-area-context": "^3.3.2",

@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import { RenderTextBoxWithIcon, CommonButton, Question } from "../components/commonComponents"
 import ModalPoup from "../components/toast"
 import { FontFamily } from '../utils/fontFamily';
-
+import responsiveStyle from "../utils/responsiveStyle"
 export const EmailIdScreen = (props) => {
     const navigation = useNavigation();
 
@@ -57,8 +57,10 @@ export const EmailIdScreen = (props) => {
     }
 
     console.log(props)
+
+    let { ids } = responsiveStyle.getSheet();
     return (
-        <View style={styles.container}>
+        <View dataSet={{ media: ids.emailContainerView }} style={styles.container}>
             <View style={{ marginVertical: 50, alignItems: "center", flex: 0.4, justifyContent: "center" }}>
                 <Image source={require("../../assets/images/backgroundImage.png")} style={{ height: 160, width: 180, tintColor: colors.themeColor }} />
             </View>

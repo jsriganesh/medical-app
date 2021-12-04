@@ -5264,6 +5264,13 @@
   dependencies:
     "prop-types" "^15.6.2"
 
+"react-native-media-query@^1.0.10":
+  "integrity" "sha512-xQOq7ICBXpurXu0R5FakbVrEtR6TgR3PEqDBwuaT9uEhJzAXhPMJ+hMmbOqgYEaBIvsMj9jTSCphWwrHbGgTKg=="
+  "resolved" "https://registry.npmjs.org/react-native-media-query/-/react-native-media-query-1.0.10.tgz"
+  "version" "1.0.10"
+  dependencies:
+    "css-mediaquery" "^0.1.2"
+
 "react-native-modal-datetime-picker@^13.0.0":
   "integrity" "sha512-Ltxr5bUXiaRTfDmRQkc3gIVKmRmPo6lW8rQYw+lyMhgveNIeTdGMkC8SY2vI5SLw+tT/3An2W7+6hta61LTb5A=="
   "resolved" "https://registry.npmjs.org/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-13.0.0.tgz"

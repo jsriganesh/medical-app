@@ -13,11 +13,12 @@ import { post } from "../services/apiService"
 import { ApiUrl } from "../services/apiUrl"
 import { changeSpinnerFlag, ErrorAlert, SuccessAlert } from '../components/commonFunctions';
 import { removeValue, storageKeys } from "../components/asyncStorage"
-const { width } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
 // var mockQuestions = require("../../CMD_new_questions.json")
 import ModalPoup from "../components/toast"
 import { Platform } from 'react-native';
 import { base64Image } from '../services/config';
+import responsiveStyle from "../utils/responsiveStyle"
 
 const mapStateToProps = (state) => ({
     backNavigationList: state.backNavigationListReducer.backNavigationList,
@@ -236,6 +237,7 @@ class Home extends Component {
 
     render() {
         var { listOfQuestions } = this.state
+        let { ids } = responsiveStyle.getSheet();
         return (
             <ScrollView>
                 <ImageBackground resizeMode="center" source={require("../../assets/images/backgroundImage1.png")}
@@ -253,101 +255,106 @@ class Home extends Component {
                             listOfQuestions.length > 0 ?
                                 listOfQuestions.map((data, index) => {
                                     return (
-                                        <View key={index} style={[{ justifyContent: "space-between", flex: 1, width: width, paddingHorizontal: 20 }, Platform.OS == "web" ? { flex: 0.1 } : {}]} >
-                                            <View style={{ width: "100%", alignSelf: "center" }}>
-                                                {
-                                                    <Surface style={[{ elevation: 4, borderColor: "#000000", marginTop: 15, alignItems: "flex-end", alignSelf: "flex-end" }, styles.backButtonStyle]}>
-                                                        <TouchableOpacity style={styles.backButtonStyle} onPress={() => {
-                                                            this.doLogout()
-                                                        }}>
-                                                            <Image source={require("../../assets/images/logout.png")} style={{ height: 25, width: 25 }} />
-                                                        </TouchableOpacity>
-                                                    </Surface>
-                                                }
-                                            </View>
-                                            <View style={{ alignItems: "center" }}>
-                                                <Question data={data} />
-                                                {
-                                                    data && data.message && data.message.length > 0 ?
-                                                        data.message.map((msg, index) => {
-                                                            return (
-                                                                <QuestionMessage key={index} msg={msg} />
-                                                            )
-                                                        })
-                                                        : null
-                                                }
+                                        <View style={{ flex: 1, width: "100%" }}>
+                                            <ScrollView>
+                                                <View key={index} style={[{ justifyContent: 'space-between', height: height, width: width, paddingHorizontal: 20 }]} >
+                                                    <View style={{ width: "100%", alignSelf: "center" }}>
+                                                        {
+                                                            <Surface style={[{ elevation: 4, borderColor: "#000000", marginTop: 15, alignItems: "flex-end", alignSelf: "flex-end" }, styles.backButtonStyle]}>
+                                                                <TouchableOpacity style={styles.backButtonStyle} onPress={() => {
+                                                                    this.doLogout()
+                                                                }}>
+                                                                    <Image source={require("../../assets/images/logout.png")} style={{ height: 25, width: 25 }} />
+                                                                </TouchableOpacity>
+                                                            </Surface>
+                                                        }
+                                                    </View>
+                                                    <View style={{ alignItems: "center" }}>
+                                                        <Question data={data} />
+                                                        {
+                                                            data && data.message && data.message.length > 0 ?
+                                                                data.message.map((msg, index) => {
+                                                                    return (
+                                                                        <QuestionMessage key={index} msg={msg} />
+                                                                    )
+                                                                })
+                                                                : null
+                                                        }
 
-                                                {
-                                                    data.image && data.image.length > 0 ?
-                                                        <Image source={{ uri: data.image[0] }} style={{ marginVertical: 20, height: 300, width: 800 }} />
-                                                        :
-                                                        null
-                                                }
+                                                        {
+                                                            data.image && data.image.length > 0 ?
+                                                                <Image dataSet={{ media: ids.faceImage }} source={{ uri: data.image[0] }} resizeMode={"contain"} style={{ height: 250, width: width }} />
+                                                                :
+                                                                null
+                                                        }
 
-                                                {
-                                                    data && (data.dataType == "String" || data.dataType == "Email" || data.dataType == "Date" || data.dataType == "Number") ?
-                                                        <TextBox index={index} data={data} changeText={this.changesTextboxAnswer.bind(this)} />
-                                                        :
-                                                        <MultiselectButton index={index} data={data} selectedButtonAnswer={this.selectedButtonAnswer.bind(this)} />
-                                                }
-                                                {/* <View style={Platform.OS == "web" ? { width: "50%", alignItems: "center" } : {}}>
+                                                        {
+                                                            data && (data.dataType == "String" || data.dataType == "Email" || data.dataType == "Date" || data.dataType == "Number") ?
+                                                                <TextBox index={index} data={data} changeText={this.changesTextboxAnswer.bind(this)} />
+                                                                :
+                                                                <MultiselectButton index={index} data={data} selectedButtonAnswer={this.selectedButtonAnswer.bind(this)} />
+                                                        }
+                                                        {/* <View style={Platform.OS == "web" ? { width: "50%", alignItems: "center" } : {}}>
                                                     <CommonButton errorMessageFunction={(msg, flag) => {
                                                         this.updateText(msg, "errorMessage")
                                                         this.updateText(flag, "errorMessageFlag")
                                                     }} changeIndex={this.changeIndex.bind(this)} index={index} allQuestions={listOfQuestions} data={data} />
                                                 </View> */}
-                                            </View>
+                                                    </View>
 
-                                            <View style={{ flexDirection: "row", justifyContent: "space-evenly", alignItems: "center", width: "80%", alignSelf: "center" }}>
-                                                {
-                                                    index === 0 ?
-                                                        <View />
-                                                        :
+                                                    <View style={{ flexDirection: "row", justifyContent: "space-evenly", alignItems: "center", width: "80%", alignSelf: "center" }}>
+                                                        {
+                                                            index === 0 ?
+                                                                <View />
+                                                                :
 
+                                                                <View
+                                                                //  style={Platform.OS == "web" ? { width: "50%", alignItems: "center" } : {}}
+                                                                >
+                                                                    <Surface dataSet={{ media: ids.backIconButton }} style={[{ elevation: 4, borderColor: "#000000" }, styles.backButtonStyle,]}>
+                                                                        <TouchableOpacity dataSet={{ media: ids.backButtonsStyle }} style={styles.backButtonStyle} onPress={() => {
+                                                                            var index = this.props.backNavigationList.length - 1
+                                                                            this.changeIndex(this.props.backNavigationList[index])
+                                                                            // var afterRemoveLastData = this.props.backNavigationList.pop();
+                                                                            this.props.backNavigationList.pop();
+                                                                            // var afterRemoveLastData = this.props.backNavigationList.splice(index,1) 
+                                                                            const { dispatch } = this.props
+                                                                            dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: this.props.backNavigationList })
+
+                                                                        }}>
+                                                                            <Image dataSet={{ media: ids.backIcon }} source={require("../../assets/images/back-arrow.png")} style={{ height: 25, width: 25 }} />
+                                                                        </TouchableOpacity>
+                                                                    </Surface>
+                                                                </View>
+                                                        }
                                                         <View
                                                         //  style={Platform.OS == "web" ? { width: "50%", alignItems: "center" } : {}}
                                                         >
-                                                            <Surface style={[{ elevation: 4, borderColor: "#000000" }, styles.backButtonStyle,]}>
-                                                                <TouchableOpacity style={styles.backButtonStyle} onPress={() => {
-                                                                    var index = this.props.backNavigationList.length - 1
-                                                                    this.changeIndex(this.props.backNavigationList[index])
-                                                                    // var afterRemoveLastData = this.props.backNavigationList.pop();
-                                                                    this.props.backNavigationList.pop();
-                                                                    // var afterRemoveLastData = this.props.backNavigationList.splice(index,1) 
-                                                                    const { dispatch } = this.props
-                                                                    dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: this.props.backNavigationList })
 
-                                                                }}>
-                                                                    <Image source={require("../../assets/images/back-arrow.png")} style={{ height: 25, width: 25 }} />
-                                                                </TouchableOpacity>
-                                                            </Surface>
-                                                        </View>
-                                                }
-                                                <View
-                                                //  style={Platform.OS == "web" ? { width: "50%", alignItems: "center" } : {}}
-                                                >
-
-                                                    <TouchableOpacity style={styles.buttonStyle} onPress={() => {
-                                                        this.saveDraft()
-                                                    }}>
-                                                        <Text style={styles.buttonTextStyle}>{"SAVE DRAFT"}</Text>
-                                                    </TouchableOpacity>
-                                                    {/* <CommonButton errorMessageFunction={(msg, flag) => {
+                                                            <TouchableOpacity dataSet={{ media: ids.bootomButton }} style={styles.buttonStyle} onPress={() => {
+                                                                this.saveDraft()
+                                                            }}>
+                                                                <Text dataSet={{ media: ids.bootomButtonText }} style={styles.buttonTextStyle}>{"SAVE DRAFT"}</Text>
+                                                            </TouchableOpacity>
+                                                            {/* <CommonButton errorMessageFunction={(msg, flag) => {
                                                         this.updateText(msg, "errorMessage")
                                                         this.updateText(flag, "errorMessageFlag")
                                                     }} changeIndex={this.changeIndex.bind(this)} index={index} allQuestions={listOfQuestions} data={data} /> */}
-                                                </View>
+                                                        </View>
 
-                                                <View
-                                                // style={Platform.OS == "web" ? { width: "50%", alignItems: "center" } : {}}
-                                                >
-                                                    <CommonButton errorMessageFunction={(msg, flag) => {
-                                                        this.updateText(msg, "errorMessage")
-                                                        this.updateText(flag, "errorMessageFlag")
-                                                    }} changeIndex={this.changeIndex.bind(this)} index={index} allQuestions={listOfQuestions} data={data} />
+                                                        <View
+                                                        // style={Platform.OS == "web" ? { width: "50%", alignItems: "center" } : {}}
+                                                        >
+                                                            <CommonButton errorMessageFunction={(msg, flag) => {
+                                                                this.updateText(msg, "errorMessage")
+                                                                this.updateText(flag, "errorMessageFlag")
+                                                            }} changeIndex={this.changeIndex.bind(this)} index={index} allQuestions={listOfQuestions} data={data} />
+                                                        </View>
+                                                        {/* <View/> */}
+                                                    </View>
+
                                                 </View>
-                                                {/* <View/> */}
-                                            </View>
+                                            </ScrollView>
                                         </View>
                                     )
                                 })

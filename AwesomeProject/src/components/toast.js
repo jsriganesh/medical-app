@@ -11,6 +11,9 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import { colors } from "../utils/colors"
+import responsiveStyle from "../utils/responsiveStyle"
+
+
 const ModalPoup = ({ visible, children, callBack }) => {
     console.log(visible)
     const [showModal, setShowModal] = React.useState(visible);
@@ -35,6 +38,8 @@ const ModalPoup = ({ visible, children, callBack }) => {
             }).start();
         }
     };
+
+    let { ids } = responsiveStyle.getSheet();
     return (
         <Modal transparent visible={showModal} >
             <TouchableWithoutFeedback onPress={() => {
@@ -42,7 +47,7 @@ const ModalPoup = ({ visible, children, callBack }) => {
                 callBack(false)
             }}>
                 <View style={styles.modalBackGround}>
-                    <Animated.View
+                    <Animated.View dataSet={{ media: ids.modalContainer }}
                         style={[styles.modalContainer, { transform: [{ scale: scaleValue }] }]}>
 
                         <Text style={{ color: colors.themeColor, fontWeight: "500", flex: 0.9,marginTop:20 }}>{children}</Text>

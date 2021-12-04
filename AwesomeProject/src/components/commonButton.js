@@ -1,11 +1,11 @@
 //import liraries
 import React, { Component, useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import {colors}  from '../utils/colors';
-import {FontFamily} from '../utils/fontFamily';
+import { colors } from '../utils/colors';
+import { FontFamily } from '../utils/fontFamily';
 import { connect } from "react-redux";
 import { ActionTypes } from '../redux/action/actionList';
-
+import responsiveStyle from "../utils/responsiveStyle"
 
 
 function getUnique(arr) {
@@ -28,7 +28,7 @@ const mapStateToProps = (state) => ({
 });
 
 
-const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion, dispatch, backNavigationList,errorMessageFunction }) => {
+const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion, dispatch, backNavigationList, errorMessageFunction }) => {
 
 
     function backNavigationLists() {
@@ -55,46 +55,47 @@ const CommonButton = ({ data, changeIndex, index, allQuestions, validateQuestion
 
     }
 
+    let { ids } = responsiveStyle.getSheet();
 
     return (
-        <TouchableOpacity style={styles.buttonStyle} onPress={() => {
-            if(checkMandatory(data,errorMessageFunction)){
+        <TouchableOpacity dataSet={{ media: ids.bootomButton }} style={styles.buttonStyle} onPress={() => {
+            if (checkMandatory(data, errorMessageFunction)) {
                 doNavigationButtonValidation(index)
-            }else{
+            } else {
 
             }
-            
+
         }}>
-            <Text style={styles.buttonTextStyle}>{data.buttonName ? data.buttonName : "NEXT"}</Text>
+            <Text dataSet={{ media: ids.bootomButtonText }} style={styles.buttonTextStyle}>{data.buttonName ? data.buttonName : "NEXT"}</Text>
         </TouchableOpacity>
     );
 };
 
 
 
-const checkMandatory =(data,callback)=>{
-    if(data.mandatory){
-        if(data.dataType == "Select"){
-            if(data.minSelect <= data.answer.length  && data.maxSelect >= data.answer.length){
+const checkMandatory = (data, callback) => {
+    if (data.mandatory) {
+        if (data.dataType == "Select") {
+            if (data.minSelect <= data.answer.length && data.maxSelect >= data.answer.length) {
                 return true
-            }else{
-                var msg = "Please select the Options,"+" you need to select minimum "+data.minSelect +" and maximum "+ data.maxSelect
-                callback(msg,true)
+            } else {
+                var msg = "Please select the Options," + " you need to select minimum " + data.minSelect + " and maximum " + data.maxSelect
+                callback(msg, true)
                 // alert(msg)
                 return false
             }
-        }else{
+        } else {
             // if(data.dataType == "Number" || data.dataType == "String" ){
             // }
-            if(data.answer !== ""){
+            if (data.answer !== "") {
                 return true
-            }else{
+            } else {
                 // alert("Plase Enter the answer")
-                callback("Plase Enter the answer",true)
+                callback("Plase Enter the answer", true)
                 return false
             }
         }
-    }else{
+    } else {
         return true
     }
 }

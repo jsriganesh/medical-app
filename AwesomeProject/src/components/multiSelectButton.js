@@ -1,10 +1,10 @@
 //import liraries
-import React, { Component, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity,FlatList } from 'react-native';
-import {colors}  from '../utils/colors';
+import React, { Component, useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { colors } from '../utils/colors';
 import { ActionTypes } from '../redux/action/actionList';
 import { connect } from "react-redux";
-
+import responsiveStyle from "../utils/responsiveStyle"
 
 const mapStateToProps = (state) => ({
     isGenderQuestion: state.selectedValidationQuestion.isGenderQuestion,
@@ -16,7 +16,7 @@ const optionNumber = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"
 
 // create a component
 const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion, dispatch }) => {
-    const [selectedButtonsList, updateSelectedButton] = useState(data.answer ? data.answer :[])
+    const [selectedButtonsList, updateSelectedButton] = useState(data.answer ? data.answer : [])
 
     function removeDuplicate(datas) {
         var nameListJsonObject = datas.map(JSON.stringify);
@@ -84,46 +84,48 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion
         optionList = data.optionList
     }
 
-
+    let { ids } = responsiveStyle.getSheet();
 
     return (
-        <View style={styles.container}>
-            {/* {
+        <View dataSet={{ media: ids.multipleQuestionContainer }} >
+            {
                 data.optionList.length > 0 ?
-                data.optionList.map((option, index) => {
-                    if(isGenderQuestion == option.type || option.type == null ||  option.type == undefined){
-                        const found = selectedButtonsList.some(
-                            (el) => el.option === option.option
-                        );
-                        return (
-                            <TouchableOpacity key={index} style={[styles.ButtonStyle, found ? { borderColor: colors.themeColor } : {}]} onPress={() => {
-                                if (data.isGenderQuestion) {
-                                    dispatch({ type: ActionTypes.SELECTED_GENDER, payload: option.option })
+                    data.optionList.map((option, index) => {
+                        if (isGenderQuestion == option.type || option.type == null || option.type == undefined) {
+                            const found = selectedButtonsList.some(
+                                (el) => el.option === option.option
+                            );
+                            return (
+                                <View dataSet={{ media: ids.buttonWidthView }}>
+                                    <TouchableOpacity key={index} style={[styles.ButtonStyle, found ? { borderColor: colors.themeColor } : {}]} onPress={() => {
+                                        if (data.isGenderQuestion) {
+                                            dispatch({ type: ActionTypes.SELECTED_GENDER, payload: option.option })
 
-                                } else {
+                                        } else {
 
-                                }
-                                updateButtons(option)
-                            }}>
-                                <View style={[styles.optionButtonStyle, found ? { backgroundColor: colors.themeColor } : {}]}>
-                                    <Text style={[styles.optionButtonTextStyle, found ? { color: colors.white } : {}]} >{optionNumber[index]}</Text>
+                                        }
+                                        updateButtons(option)
+                                    }}>
+                                        <View style={[styles.optionButtonStyle, found ? { backgroundColor: colors.themeColor } : {}]}>
+                                            <Text style={[styles.optionButtonTextStyle, found ? { color: colors.white } : {}]} >{optionNumber[index]}</Text>
+                                        </View>
+                                        <Text>
+
+                                            {option.option}</Text>
+                                    </TouchableOpacity>
                                 </View>
-                                <Text>
-
-                                    {option.option}</Text>
-                            </TouchableOpacity>
-                        )
-                    }
+                            )
+                        }
                     })
                     : null
-            } */}
+            }
 
 
-            {
+            {/* {
                 <FlatList
-                    numColumns={2}
+                    numColumns={dimension <= 800 ? 1 : 2}
                     data={data.optionList}
-                    renderItem={( option, index) => {
+                    renderItem={(option, index) => {
                         if (isGenderQuestion == option.item.type || option.item.type == null || option.item.type == undefined) {
                             const found = selectedButtonsList.some(
                                 (el) => el.option === option.item.option
@@ -143,7 +145,7 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion
                                     <View style={[styles.optionButtonStyle, found ? { backgroundColor: colors.themeColor } : {}]}>
                                         <Text style={[styles.optionButtonTextStyle, found ? { color: colors.white } : {}]} >{optionNumber[option.index]}</Text>
                                     </View>
-                                    <Text numberOfLines={5} style={{flex:1,color: colors.themeColor}} >
+                                    <Text numberOfLines={5} style={{ flex: 1, color: colors.themeColor }} >
 
                                         {option.item.option}</Text>
                                 </TouchableOpacity>
@@ -151,7 +153,7 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion
                         }
                     }}
                 />
-            }
+            } */}
 
         </View>
     );
@@ -176,10 +178,12 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         flexWrap: "wrap",
+        flex: 1,
+        // width:"40%",
+        alignItems: 'center',
+        alignSelf: "center",
+        justifyContent: 'center',
 
-        // flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
         // backgroundColor: '#2c3e50',
     },
     optionButtonStyle: {
