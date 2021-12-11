@@ -106,9 +106,9 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion
                                         }
                                         updateButtons(option)
                                     }}>
-                                        <View style={[styles.optionButtonStyle, found ? { backgroundColor: colors.themeColor } : {}]}>
+                                        {/* <View style={[styles.optionButtonStyle, found ? { backgroundColor: colors.themeColor } : {}]}>
                                             <Text style={[styles.optionButtonTextStyle, found ? { color: colors.white } : {}]} >{optionNumber[index]}</Text>
-                                        </View>
+                                        </View> */}
                                         <Text>
 
                                             {option.option}</Text>
@@ -163,9 +163,9 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion
 const styles = StyleSheet.create({
     ButtonStyle: {
         backgroundColor: colors.buttonBackgroundColor,
-        paddingVertical: 5,
+        paddingVertical: 10,
         // height: 45,
-        paddingRight: 20,
+        // paddingRight: 20,
         // padding: 20,
         marginHorizontal: 8,
         marginVertical: 4,
@@ -174,6 +174,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         borderColor: colors.borderColor,
         alignItems: "center",
+        paddingHorizontal:10
     },
     container: {
         flexDirection: "row",

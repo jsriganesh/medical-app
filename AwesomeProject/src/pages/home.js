@@ -311,7 +311,19 @@ class Home extends Component {
                                                                 <View
                                                                 //  style={Platform.OS == "web" ? { width: "50%", alignItems: "center" } : {}}
                                                                 >
-                                                                    <Surface dataSet={{ media: ids.backIconButton }} style={[{ elevation: 4, borderColor: "#000000" }, styles.backButtonStyle,]}>
+
+                                                                    <TouchableOpacity dataSet={{ media: ids.bootomButton }} style={styles.buttonStyle} onPress={() => {
+                                                                        var index = this.props.backNavigationList.length - 1
+                                                                        this.changeIndex(this.props.backNavigationList[index])
+                                                                        // var afterRemoveLastData = this.props.backNavigationList.pop();
+                                                                        this.props.backNavigationList.pop();
+                                                                        // var afterRemoveLastData = this.props.backNavigationList.splice(index,1) 
+                                                                        const { dispatch } = this.props
+                                                                        dispatch({ type: ActionTypes.BACK_NAVIGATIONS, payload: this.props.backNavigationList })
+                                                                    }}>
+                                                                        <Text dataSet={{ media: ids.bootomButtonText }} style={styles.buttonTextStyle}>{"Back"}</Text>
+                                                                    </TouchableOpacity>
+                                                                    {/* <Surface dataSet={{ media: ids.backIconButton }} style={[{ elevation: 4, borderColor: "#000000" }, styles.backButtonStyle,]}>
                                                                         <TouchableOpacity dataSet={{ media: ids.backButtonsStyle }} style={styles.backButtonStyle} onPress={() => {
                                                                             var index = this.props.backNavigationList.length - 1
                                                                             this.changeIndex(this.props.backNavigationList[index])
@@ -324,7 +336,7 @@ class Home extends Component {
                                                                         }}>
                                                                             <Image dataSet={{ media: ids.backIcon }} source={require("../../assets/images/back-arrow.png")} style={{ height: 25, width: 25 }} />
                                                                         </TouchableOpacity>
-                                                                    </Surface>
+                                                                    </Surface> */}
                                                                 </View>
                                                         }
                                                         <View
