@@ -79,7 +79,7 @@ export default class StyleSheetFactory {
                 },
                 "@media (max-width: 1800px) and (min-width: 800px)": {
 
-                    minWidth:"40%",
+                    minWidth:"30%",
                     // width: "40%"
 
                 },

@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native';
 import { colors } from '../utils/colors';
 import { ActionTypes } from '../redux/action/actionList';
 import { connect } from "react-redux";
@@ -96,7 +96,13 @@ const MultiselectButton = ({ data, selectedButtonAnswer, index, isGenderQuestion
                                 (el) => el.option === option.option
                             );
                             return (
-                                <View dataSet={{ media: ids.buttonWidthView }}>
+                                <View dataSet={{ media: ids.buttonWidthView }} style={option?.image ? {flexDirection:"row",alignItems:"center",marginVertical:10}:{}}>
+                                    {
+                                      option?.image ? 
+                                      <Image source={{ uri: option?.image }} resizeMode={"contain"} style={{ height: 207, width: 109 }} />
+
+                                      : null
+                                    }
                                     <TouchableOpacity key={index} style={[styles.ButtonStyle, found ? { borderColor: colors.themeColor } : {}]} onPress={() => {
                                         if (data.isGenderQuestion) {
                                             dispatch({ type: ActionTypes.SELECTED_GENDER, payload: option.option })
