@@ -11,7 +11,7 @@ import { ActionTypes } from '../redux/action/actionList';
 
 import { post } from "../services/apiService"
 import { ApiUrl } from "../services/apiUrl"
-import { changeSpinnerFlag, ErrorAlert, SuccessAlert } from '../components/commonFunctions';
+import { changeSpinnerFlag, ErrorAlert, flexValidation, SuccessAlert } from '../components/commonFunctions';
 import { removeValue, storageKeys } from "../components/asyncStorage"
 const { width, height } = Dimensions.get('window')
 // var mockQuestions = require("../../CMD_new_questions.json")
@@ -24,6 +24,7 @@ const mapStateToProps = (state) => ({
     backNavigationList: state.backNavigationListReducer.backNavigationList,
 });
 
+const DeviceWidth = Dimensions.get("window").width
 
 class Home extends Component {
 
@@ -40,7 +41,8 @@ class Home extends Component {
             listOfQuestions: [],
             totalQuetions: 10,
             errorMessage: "",
-            errorMessageFlag: false
+            errorMessageFlag: false,
+            currentQuestionDetails: {}
         }
     }
 
@@ -191,6 +193,9 @@ class Home extends Component {
         if (index == 71) {
             this.saveHealthRecords()
         } else {
+            this.setState({
+                currentQuestionDetails: this.state.listOfQuestions[index]
+            })
             this.refs.scroll.scrollTo({ x: width * index })
             // if (this.state.totalQuetions == index) {
             //     var states = this.state
@@ -235,14 +240,38 @@ class Home extends Component {
         // this.props.navigation.navigate("EmailIdScreen")
     }
 
+
+
+
+    progressBar() {
+        var data = this.state.currentQuestionDetails
+        var qNo = data?.parentQuestionNo ? data.parentQuestionNo : data?.questionNo ? data.questionNo : 1
+
+
+        return (
+            <View style={{ marginHorizontal: 10, marginVertical: 25, height: 40, position: "absolute", width: DeviceWidth - 100 }}>
+                <View style={{}}>
+                    <View style={{ backgroundColor: colors.borderColor, height: 40, borderRadius: 45, flexDirection: "row" }}>
+                        <View style={{ backgroundColor: colors.themeColor, flex: flexValidation(qNo), height: 40, borderRadius: 45, alignItems: "center", justifyContent: "center" }}>
+                            <Text style={{ fontSize: 16, fontWeight: "bold", color: colors.white }}>{qNo + " / 17"}</Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+        )
+    }
+
     render() {
         var { listOfQuestions } = this.state
         let { ids } = responsiveStyle.getSheet();
         return (
-            <ScrollView>
+            // <View style={{flex:1}}>
+            <ScrollView style={{ flex: 1 }}>
                 <ImageBackground resizeMode="center" source={require("../../assets/images/backgroundImage1.png")}
                 // style={[styles.container,Platform.OS == "web" ? {flexDirection:"row",flex:0.5}:{}]}
                 >
+                    {this.progressBar()}
+
                     <ScrollView
                         scrollEnabled={false}
                         animation={false}
@@ -258,16 +287,18 @@ class Home extends Component {
                                         <View style={{ flex: 1, width: "100%" }}>
                                             <ScrollView>
                                                 <View key={index} style={[{ justifyContent: 'space-between', height: height, width: width, paddingHorizontal: 20 }]} >
-                                                    <View style={{ width: "100%", alignSelf: "center" }}>
-                                                        {
-                                                            <Surface style={[{ elevation: 4, borderColor: "#000000", marginTop: 15, alignItems: "flex-end", alignSelf: "flex-end" }, styles.backButtonStyle]}>
-                                                                <TouchableOpacity style={styles.backButtonStyle} onPress={() => {
-                                                                    this.doLogout()
-                                                                }}>
-                                                                    <Image source={require("../../assets/images/logout.png")} style={{ height: 25, width: 25 }} />
-                                                                </TouchableOpacity>
-                                                            </Surface>
-                                                        }
+                                                    <View>
+                                                        <View style={{ width: "100%", alignSelf: "center" }}>
+                                                            {
+                                                                <Surface style={[{ elevation: 4, borderColor: "#000000", marginTop: 15, alignItems: "flex-end", alignSelf: "flex-end" }, styles.backButtonStyle]}>
+                                                                    <TouchableOpacity style={styles.backButtonStyle} onPress={() => {
+                                                                        this.doLogout()
+                                                                    }}>
+                                                                        <Image source={require("../../assets/images/logout.png")} style={{ height: 25, width: 25 }} />
+                                                                    </TouchableOpacity>
+                                                                </Surface>
+                                                            }
+                                                        </View>
                                                     </View>
                                                     <View style={{ alignItems: "center" }}>
                                                         <Question data={data} />
